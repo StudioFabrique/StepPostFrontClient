@@ -125,5 +125,6 @@ export class ProfilComponent implements OnInit {
       this.auth.username = newDest.nom;
     }
     this.coordonnees = false;
+    this.user = newDest;
   }
 }

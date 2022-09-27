@@ -5,7 +5,7 @@ const localUrl = 'http://localhost:3000/api';
 const remoteUrl = 'https://step-post-nodejs.herokuapp.com/api';
 export const environment = {
   production: false,
-  baseUrl: remoteUrl,
+  baseUrl: localUrl,
   mailRegex:
     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
   numberRegex: /^[0-9]*$/,
