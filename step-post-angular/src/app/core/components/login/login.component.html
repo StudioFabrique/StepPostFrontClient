@@ -1,0 +1,25 @@
+<main class="connexion-form-main">
+    <section *ngIf="!loader" class="section-connexion-titre">
+        <h2>Connexion</h2>
+    </section>
+    <section class="section-connexion-form">
+        <div *ngIf="loader" class="lds-dual-ring"></div>
+        <form *ngIf="!loader" class="form-connexion" [formGroup]="loginForm">
+
+            <!-- email -->
+            <label for="email">Email :</label>
+            <input id="email" type="email" formControlName="email" required [testLoginForm]="emailError">
+
+            <!-- password -->
+            <label for="password">Mot de Passe :</label>
+            <input id="password" type="password" formControlName="password" required [testLoginForm]="passwordError">
+
+            <!-- buttons -->
+            <div>
+                <a routerLink="/profil/password-reset">Mot de passe oublié</a>
+                <button class="button" (click)="onSubmitForm()" [disabled]="loginForm.invalid" type="submit">se
+                    connecter</button>
+            </div>
+        </form>
+    </section>
+</main>

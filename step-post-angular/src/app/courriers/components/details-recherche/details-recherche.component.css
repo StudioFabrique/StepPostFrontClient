@@ -1,0 +1,42 @@
+.article-details-recherche {
+  width: 80vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #646464;
+  padding: 1vw;
+  border-radius: 5px;
+}
+.article-details-recherche > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 1vh;
+  color: #140A82;
+}
+.article-details-recherche > div > span {
+  display: flex;
+  align-items: center;
+  -moz-column-gap: 0.75vw;
+       column-gap: 0.75vw;
+}
+.article-details-recherche > div > span > img {
+  height: 24px;
+  width: auto;
+}
+.article-details-recherche > div > span > img:hover {
+  cursor: pointer;
+}
+
+@media print {
+  .button,
+img {
+    display: none;
+  }
+  .article-details-recherche {
+    display: flex;
+    flex-direction: column;
+  }
+}/*# sourceMappingURL=details-recherche.component.css.map */

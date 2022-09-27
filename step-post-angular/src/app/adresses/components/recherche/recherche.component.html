@@ -1,0 +1,29 @@
+<section class="section-recherche">
+    <input class="searchBox" #searchBox (keyup)="onSearch(searchBox.value)" autofocus>
+    <article class="article-recherche-nom" *ngIf="!recherche">
+        <span class="bouton-ajouter">
+            <h4>Nouvelle adresse</h4>
+            <a routerLink="/adresses/add">
+                <img src="assets/img/plus-btn.png" alt="lien nouvelle adresse">
+            </a>
+        </span>
+    </article>
+
+    <article class="article-recherche-nom" *ngIf="recherche">
+        <div class="bouton-ajouter">
+            <h4>Nouvelle adresse</h4>
+            <a routerLink="/adresses/add">
+                <img src="assets/img/plus-btn.png" alt="lien nouvelle adresse">
+            </a>
+        </div>
+        <div>
+            <span>Résultat de la recherche pour :
+                {{nom | titlecase}}
+            </span>
+        </div>
+
+        <div>
+            <h5 (click)="onRetour()">retour</h5>
+        </div>
+    </article>
+</section>

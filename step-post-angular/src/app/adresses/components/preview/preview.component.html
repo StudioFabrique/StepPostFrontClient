@@ -1,0 +1,83 @@
+<main class="main-bordereau">
+    <section class="section-bordereau-exp">
+        <article class="article-exp-left">
+            <div>
+                <img src="assets/img/logo.png" alt="logo step post" />
+                <form [formGroup]="typeForm">
+                    <input type="checkbox" formControlName="lettreAs" (click)="onCheckboxClick()">
+                    <label htmlFor="lettre">Lettre AS</label>
+                    <input type="checkbox" formControlName="lettreAr" (click)="onCheckboxClick()">
+                    <label htmlFor="lettre">Lettre AR</label>
+                    <input type="checkbox" formControlName="colis" (click)="onCheckboxClick()">
+                    <label htmlFor="colis">Colis</label>
+                </form>
+                <p>Date et cachet STEP POST</p>
+            </div>
+            <div>
+                <p>STEP POST Opérateur Postal</p>
+                <p>Autorisation n°12-0098</p>
+                <p>Technopolis Hélioparc</p>
+                <p>2 av. du Président Pierre Angot 64000 PAU</p>
+                <p>RCS de Pau 434 805 644</p>
+            </div>
+        </article>
+        <article class="article-exp-right">
+            <div>
+                <h2>SIGNEO</h2>
+                <p>Le service recommandé de Step Post</p>
+            </div>
+            <div>
+                <h3>Expéditeur</h3>
+                <span>
+                    <app-displayed-adresse [isExp]="true" [adresse]="exp"></app-displayed-adresse>
+                </span>
+            </div>
+        </article>
+    </section>
+    <div *ngIf="loader" class="lds-dual-ring"></div>
+    <section class="section-bordereau-dest">
+        <article class="article-dest-left">
+            <div *ngIf="!qrcode">
+                <h5>
+                    Le QR code et le numéro de bordereau seront générés lors de
+                    l'impression.
+                </h5>
+
+            </div>
+            <div *ngIf="qrcode">
+                <img [src]="qrcode" alt="QRCode" (load)="onQrCodeLoaded()">
+            </div>
+            <div>
+                <p>Bordereau n°&nbsp;</p>
+                <p *ngIf="!qrcode">-----</p>
+                <p *ngIf="qrcode">{{numBordereau}}</p>
+            </div>
+        </article>
+        <article class="article-dest-right">
+            <div>
+                <h3>Destinataire</h3>
+                <span>
+                    <app-displayed-adresse [isExp]="false" [adresse]="dest" [infos]="infos"></app-displayed-adresse>
+                </span>
+            </div>
+            <div>
+                <p>Signature :</p>
+                <span>
+                    <p>Date :</p>
+                    <p> .. / .. / .. </p>
+                </span>
+            </div>
+        </article>
+    </section>
+    <section class="section-bordereau-buttons">
+        <div>
+            <button class="button" (click)="onSauvegarder()">enregistrer l'adresse</button>
+        </div>
+        <div>
+            <button class="button" (click)="onRetour()">retour</button>
+            <button class="button" (click)="onPrint()">imprimer</button>
+        </div>
+    </section>
+    <app-popup-confirmation *ngIf="popup" (fermerPopup)="onFermerPopup()" (confirmer)="onConfirmerPopup()" [msg]="msg">
+    </app-popup-confirmation>
+</main>

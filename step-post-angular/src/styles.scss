@@ -1,0 +1,86 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~ngx-toastr/toastr';
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+$blue: #140A82;
+$orange: #FF5E1A;
+$green: #24A640;
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100vh;
+}
+
+body {
+    position: relative;
+    color: $blue;
+    font-family: rubik;
+
+    >#root {
+        position: relative;
+        width: 100%;
+        min-height: 100vh;
+        margin: 0 auto;
+    }
+}
+
+.active {
+    border-bottom: 1px solid $blue;
+}
+
+.button {
+    padding: .5vw;
+    color: white;
+    font-weight: bold;
+    background-color: $blue;
+    border: none;
+    box-shadow: 4px 4px 4px #646464;
+
+    &:hover {
+        cursor: pointer;
+        filter: brightness(1.25);
+    }
+
+    &:active {
+        transform: translate(2px, 2px);
+    }
+}
+
+button {
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.lds-dual-ring {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+}
+
+.lds-dual-ring:after {
+    content: " ";
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border-radius: 50%;
+    border: 6px solid $orange;
+    border-color: $orange transparent $orange transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+}
+
+@keyframes lds-dual-ring {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

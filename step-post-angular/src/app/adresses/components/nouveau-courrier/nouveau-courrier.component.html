@@ -1,0 +1,16 @@
+<main class="main-nc">
+    <section class="section-titre">
+        <h4>Imprimer un bordereau d'expédition</h4>
+        <a routerLink="/adresses">
+            <h4>retour</h4>
+        </a>
+    </section>
+    <div *ngIf="loader" class="lds-dual-ring"></div>
+    <section *ngIf="!loader" class="section-bordereau-form">
+        <app-adresse-form *ngIf="!bordereauForm" [dest]="dest" (submitted)="onSubmitted($event)">
+        </app-adresse-form>
+    </section>
+    <section class="section-bordereau-form">
+        <app-bordereau-form *ngIf="retourDest" [dest]="retourDest"></app-bordereau-form>
+    </section>
+</main>

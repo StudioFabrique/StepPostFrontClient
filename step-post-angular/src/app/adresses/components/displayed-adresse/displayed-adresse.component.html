@@ -1,0 +1,23 @@
+<article className="article-ne-adresse" *ngIf="adresse">
+    <div>
+
+        <p *ngIf="isExp">
+            {{adresse.prenom | titlecase}} {{adresse.nom |
+            titlecase}}
+        </p>
+        <p *ngIf="!isExp">
+            {{adresse.civilite | titlecase}} {{adresse.prenom | titlecase}} {{adresse.nom |
+            titlecase}}
+        </p>
+
+        <p>{{adresse.adresse | titlecase}}</p>
+        <p>{{adresse.complement | titlecase}}</p>
+        <p>{{adresse.codePostal | titlecase}} {{adresse.ville | titlecase}}</p>
+    </div>
+    <div *ngIf="!isExp" class="infos-livraison">
+        <p *ngIf="infos.instructions">Instructions de livraison :</p>
+        <p>{{infos.instructions}}</p>
+        <p *ngIf="infos.telephone">( tél : {{infos.telephone}} )</p>
+    </div>
+
+</article>

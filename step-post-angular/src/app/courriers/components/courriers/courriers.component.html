@@ -1,0 +1,33 @@
+<main class="main-home">
+
+    <app-recherche (isLoading)="onSetLoader($event)" (searchedName)="onRechercheNom($event)"
+        (retourNoResults)="onRetour()">
+    </app-recherche>
+
+    <section class="section-courriers-titre">
+        <div *ngIf="!(rechercheNom)">
+            <h3>Envois en cours</h3>
+        </div>
+        <div *ngIf="rechercheNom">
+            <h3>Courrier(s) en cours de distribution pour {{courriers[0].civilite |
+                titlecase}}
+                {{courriers[0].prenom | titlecase}} {{courriers[0].nom | titlecase}}</h3>
+            <h4 (click)="onRetour()">retour</h4>
+        </div>
+    </section>
+    <div *ngIf="loader" class="lds-dual-ring"></div>
+    <section *ngIf="!loader && courriers" class="section-home">
+        <app-courrier (courrierClickId)="onCourrierClick($event)" *ngFor="let courrier of courriers"
+            [courrier]="courrier" @fade></app-courrier>
+
+        <div class="pages" *ngIf="courriers">
+            <button [ngStyle]="{visibility: previous}" (click)="onClickPrevious()"> {{"<"}} </button>
+                    <p>{{courriersService.page + 1}} / {{courriersService.pagesMax}}</p>
+                    <button [ngStyle]="{visibility: next}" (click)="onClickNext()"> {{">"}} </button>
+        </div>
+    </section>
+    <section *ngIf="!courriers && !loader">
+        <app-liste-vide [msg]="msg"></app-liste-vide>
+    </section>
+
+</main>

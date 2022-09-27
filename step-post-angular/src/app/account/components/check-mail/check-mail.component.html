@@ -1,0 +1,15 @@
+<section>
+    <article>
+        <div>
+            <label>Entrez votre email svp :</label>
+            <div>
+                <input type="email" #mailBox (keyup)="onCheck(mailBox.value)" autofocus>
+            </div>
+            <div>
+                <h3 [ngStyle]="{color: 'green'}" *ngIf="isEmailAvailable">Email disponible</h3>
+                <h3 [ngStyle]="{color: 'red'}" *ngIf="!isEmailAvailable && isEmailAvailable !== undefined">Email non
+                    disponible</h3>
+            </div>
+        </div>
+    </article>
+</section>

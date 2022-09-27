@@ -1,0 +1,23 @@
+<article class="adresse" id="adresse.id">
+  <div>
+    <span>
+      <p>{{adresse.civilite | titlecase}}&nbsp;</p>
+      <p>{{adresse.nom | titlecase}}&nbsp;</p>
+      <p>{{adresse.prenom | titlecase}}</p>
+    </span>
+    <p>{{adresse.adresse | titlecase}}</p>
+    <p>{{adresse.codePostal | titlecase}} {{adresse.ville | titlecase}}</p>
+  </div>
+  <ul>
+    <li> <a routerLink="/adresses/nouveau-courrier/{{adresse.id}}">
+        <img src="assets/img/icone-poste.png" alt="icone nouvel envoi"></a>
+    </li>
+    <li>
+      <a routerLink="/adresses/edition/{{adresse.id}}">
+        <img src="assets/img/icone-edit.png" alt="icone edition adresse"></a>
+    </li>
+    <li>
+      <img src="assets/img/icone-delete.png" alt="icone suppression adresse" (click)="onDelete()">
+    </li>
+  </ul>
+</article>

@@ -1,0 +1,4 @@
+<section class="section-adresse-form">
+    <div *ngIf="loader" class="lds-dual-ring"></div>
+    <app-adresse-form *ngIf="!loader" (submitted)="onSubmitted($event)"></app-adresse-form>
+</section>

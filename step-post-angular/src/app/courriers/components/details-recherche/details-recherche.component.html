@@ -1,0 +1,10 @@
+<article class="article-details-recherche">
+    <div>
+        <span>
+            <h4>Courrier n° : {{detailsCourrier.courrier.bordereau}} </h4>
+            <img src="assets/img/icone-print.png" alt="icone impression" (click)="onPrint()">
+        </span>
+        <button class="button" (click)="onFermer()">Fermer</button>
+    </div>
+    <app-details-courrier [detailsCourrier]="detailsCourrier"></app-details-courrier>
+</article>

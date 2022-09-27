@@ -1,0 +1,48 @@
+.adresse {
+  display: flex;
+  row-gap: 0.5vh;
+  padding: 1VW;
+  border: 1px solid #140A82;
+  border-radius: 10px;
+  -moz-column-gap: 1vw;
+       column-gap: 1vw;
+}
+.adresse:hover {
+  box-shadow: 4px 4px 4px #646464;
+}
+.adresse:hover > ul {
+  visibility: visible;
+}
+.adresse > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.adresse > div > span {
+  display: flex;
+}
+.adresse > ul {
+  visibility: hidden;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  border-left: 1px #140A82 solid;
+  padding: 0 0 0 0.5vw;
+}
+.adresse > ul > li > img,
+.adresse > ul > li > a > img {
+  height: 24px;
+  width: auto;
+}
+.adresse > ul > li > img:hover,
+.adresse > ul > li > a > img:hover {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+  .section-adresses > .adresse {
+    white-space: nowrap;
+  }
+}/*# sourceMappingURL=destinataire.component.css.map */

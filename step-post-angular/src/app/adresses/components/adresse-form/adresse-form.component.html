@@ -1,0 +1,88 @@
+<article class="article-form-adresse">
+    <form class="form-edition" [formGroup]="adresseForm" (submit)="onSubmitForm()">
+        <div>
+            <label>Civilité
+                <select id="civilite" formControlName="civilite" placeholder="Mr">
+                    <option value="">---</option>
+                    <option value="mr">Mr</option>
+                    <option value="mme">Mme</option>
+                </select>
+            </label>
+            <p>( Les champs marqués d'un * sont obligatoires )</p>
+        </div>
+        <div>
+            <label>
+                <div>
+                    <p>Prénom / Service</p>
+                    <p class="obligatoire">*</p>
+                </div>
+                <input type="text" id="prenom" formControlName="prenom" placeholder="Jean">
+            </label>
+            <label>
+                <div>
+                    <p>Nom / Entreprise</p>
+                    <p class="obligatoire">*</p>
+                </div>
+                <input type="text" id="nom" formControlName="nom" placeholder="Dupont">
+            </label>
+        </div>
+        <div>
+            <label>
+                <div>
+                    <p>Adresse</p>
+                    <p class="obligatoire">*</p>
+                </div>
+                <textarea id="adresse" rows="2" formControlName="adresse"
+                    placeholder="12 rue du Président Toto"></textarea>
+            </label>
+        </div>
+        <div>
+            <label>
+                <div>
+                    <p>Complément d'adresse</p>
+                </div>
+                <textarea id="complement" rows="2" formControlName="complement"
+                    placeholder="Chez Mr Jacques Durand"></textarea>
+            </label>
+        </div>
+        <div>
+            <label>
+                <div>
+                    <p>Code Postal</p>
+                    <p class="obligatoire">*</p>
+                </div>
+                <input type="text" id="codePostal" formControlName="codePostal" placeholder="64000">
+            </label>
+            <label>
+                <div>
+                    <p>Ville</p>
+                    <p class="obligatoire">*</p>
+                </div>
+                <input type="text" id="ville" formControlName="ville" placeholder="Pau">
+            </label>
+        </div>
+        <div>
+            <label>
+                Téléphone
+                <input type="text" id="telephone" formControlName="telephone" placeholder="0102030405">
+            </label>
+            <label>
+                Email
+                <input type="text" id="email" formControlName="email" placeholder="jean.dupont@exemple.fr">
+            </label>
+        </div>
+        <div class="nnc" *ngIf="!nouveauCourrier">
+            <button class="button" type="button" (click)="onCancel()">annuler</button>
+            <input class="button" type="submit" value="envoyer">
+        </div>
+        <div class="nc" *ngIf="nouveauCourrier">
+            <div>
+                <button class="button" type="button" (click)="onSauvegarder()">enregistrer l'adresse</button>
+            </div>
+            <div>
+                <button class="button" type="button" (click)="onCancel()">annuler</button>
+                <input class="button" type="submit" value="continuer">
+            </div>
+        </div>
+    </form>
+</article>

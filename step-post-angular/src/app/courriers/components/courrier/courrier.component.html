@@ -1,0 +1,21 @@
+<article class="courrier" (click)="onCourrierClick()" [ngStyle]="{'background-color': courrier.active ?  '#E0E0E0' : 'white'
+}">
+    <div>
+        <h4 class="date">{{courrier.date | date}}</h4>
+        <p>Bordereau n° : {{courrier.bordereau}}</p>
+    </div>
+    <div>
+        <span>
+            <p *ngIf="courriersService.etats">
+                Satut du courrier pour {{courrier.civilite | titlecase}} {{courrier.nom | titlecase}}
+                {{courrier.prenom | titlecase}} : {{courriersService.etats[courrier.etat - 1]}}</p>
+        </span>
+        <span>
+            <p>{{type}}</p>
+        </span>
+    </div>
+    <div class="detailsLivraison">
+    </div>
+    <app-details-courrier [detailsCourrier]="detailsCourrier" *ngIf="courrier.active">
+    </app-details-courrier>
+</article>

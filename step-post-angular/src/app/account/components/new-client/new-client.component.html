@@ -1,0 +1,14 @@
+<main>
+    <section>
+        <h4>Création de compte</h4>
+    </section>
+    <section *ngIf="!password">
+        <app-check-mail (email)="onEmailSubmitted($event)" (emailChecked)="onCheckEmail($event)"></app-check-mail>
+    </section>
+    <section *ngIf="emailChecked && !password">
+        <app-new-password (submitted)="onPasswordSubmitted($event)"></app-new-password>
+    </section>
+    <section *ngIf="email && password">
+        <app-update-adresse [email]="email" (submitted)="onAdresseSubmitted($event)"></app-update-adresse>
+    </section>
+</main>

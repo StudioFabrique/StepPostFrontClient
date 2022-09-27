@@ -1,0 +1,20 @@
+<section *ngIf="detailsCourrier && etats" class="detailsLivraison">
+    <article class="timeline">
+        <div *ngFor="let statut of detailsCourrier.statuts">
+            <div class="cercleContainer">
+                <div class="cercle"></div>
+                <div class="statuts">{{etats[statut.statut_id - 1]}}</div>
+                <div class="statuts-date">{{statut.date | date}} </div>
+            </div>
+            <div class="trait"></div>
+        </div>
+    </article>
+    <article class="details">
+        <div>
+            <p>{{detailsCourrier.courrier.civilite | titlecase}} {{detailsCourrier.courrier.prenom | titlecase}}
+                {{detailsCourrier.courrier.nom | titlecase}}</p>
+            <p>{{detailsCourrier.courrier.adresse | titlecase}}</p>
+            <p>{{detailsCourrier.courrier.codePostal}} {{detailsCourrier.courrier.ville | titlecase}}</p>
+        </div>
+    </article>
+</section>

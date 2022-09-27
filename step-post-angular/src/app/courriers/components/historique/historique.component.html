@@ -1,0 +1,63 @@
+<main class="main-historique">
+
+    <app-recherche [filter]="filter" (isLoading)="onSetLoader($event)" (searchedName)="onRechercheNom($event)"
+        (retourNoResults)="onRetour()">
+    </app-recherche>
+
+    <section class="section-courriers-titre">
+        <div *ngIf="!(rechercheNom)">
+            <h3>Historique des envois</h3>
+        </div>
+        <div *ngIf="rechercheNom">
+            <h3>Courrier(s) en cours de distribution pour {{courriers[0].civilite |
+                titlecase}}
+                {{courriers[0].prenom | titlecase}} {{courriers[0].nom | titlecase}}</h3>
+            <h4 (click)="onRetour()">retour</h4>
+        </div>
+    </section>
+    <div *ngIf="loader && !rechercheNom" class="lds-dual-ring"></div>
+    <section class="section-historique" *ngIf="courriersService.etats" @fade>
+        <table *ngIf="(!loader && courriers) || rechercheNom">
+            <thead>
+                <tr>
+                    <th class="en-tete" (click)="onSort(0)">
+                        <p *ngIf="columns[0] !== null">Date&nbsp;&#9663;</p>
+                        <p *ngIf="columns[0] === null">Date</p>
+                    </th>
+                    <th class="en-tete" (click)="onSort(1)">
+                        <p *ngIf="columns[1] !== null">Bordereau&nbsp;&#9663;</p>
+                        <p *ngIf="columns[1] === null">Bordereau</p>
+                    </th>
+                    <th class="en-tete" (click)="onSort(2)">
+                        <p *ngIf="columns[2] !== null">Nom&nbsp;&#9663;</p>
+                        <p *ngIf="columns[2] === null">Nom</p>
+                    </th>
+                    <th class="en-tete" (click)="onSort(3)">
+                        <p *ngIf="columns[3] !== null">Statut&nbsp;&#9663;</p>
+                        <p *ngIf="columns[3] === null">Statut</p>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let courrier of courriers" (click)="onCourrierClick(courrier.bordereau)">
+                    <td>{{courrier.date | date}}</td>
+                    <td>{{courrier.bordereau}}</td>
+                    <td>{{courrier.nom | titlecase}} {{courrier.prenom | titlecase}}</td>
+                    <td>
+                        <div class="cercle" [ngStyle]="{backgroundColor: setColor(courrier.etat)}"></div>
+                        <p> {{courriersService.etats[courrier.etat - 1] | titlecase}}</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div *ngIf="!loader && courriers" class="pages">
+            <button [ngStyle]="{visibility: previous}" (click)="onClickPrevious()"> {{"<"}} </button>
+                    <p>{{courriersService.page + 1}} / {{courriersService.pagesMax}}</p>
+                    <button [ngStyle]="{visibility: next}" (click)="onClickNext()"> {{">"}} </button>
+        </div>
+    </section>
+    <section *ngIf="!loader && !courriers">
+        <app-liste-vide [msg]="msg"></app-liste-vide>
+    </section>
+
+</main>

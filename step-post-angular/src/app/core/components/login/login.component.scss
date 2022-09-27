@@ -1,0 +1,126 @@
+$blue: #140A82;
+$orange: #FF5E1A;
+$green: #24A640;
+
+.connexion-form-main {
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 5vh;
+    padding-bottom: 25vh;
+
+    >.section-connexion-titre {
+        width: 35%;
+        display: flex;
+        justify-content: center;
+
+        >h2:last-child {
+            >a {
+                text-decoration: none;
+                color: $blue;
+            }
+        }
+    }
+
+    /* 
+    >.section-connexion-form {
+        width: 35%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+    } */
+
+    >.section-connexion-form {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        >.form-connexion {
+            width: 70%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            row-gap: 3vh;
+
+            >label {
+                width: 60%;
+                display: flex;
+                flex-direction: column;
+                row-gap: 1vh;
+
+            }
+
+            >input {
+                width: 60%;
+                height: 5vh;
+                padding: 1vw;
+                border: solid 1px #646464;
+                box-shadow: 4px 4px 4px #646464;
+            }
+
+
+            >.message {
+                width: 100%;
+                padding: 0 0 0 .1vw;
+                font-size: .75rem;
+                font-weight: bold;
+                color: red;
+            }
+
+            >div:last-child {
+                width: 60%;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                padding: 1vw;
+
+                >a {
+                    font-size: .85em;
+                    color: $blue;
+                }
+            }
+        }
+    }
+}
+
+
+@media screen and (max-width: 1000px) {
+    .connexion-form-main {
+
+        >.section-connexion-titre,
+        >.section-connexion-form {
+            width: 75%;
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .connexion-form-main {
+
+        >.section-connexion-titre,
+        >.section-connexion-form {
+            width: 90%;
+        }
+
+        >.section-connexion-titre {
+            font-size: .75rem;
+        }
+
+        >.section-connexion-form {
+            font-size: .75rem;
+
+            >.form-connexion {
+                width: 90%;
+
+                >div:first-child {
+                    width: 80%;
+                }
+            }
+        }
+
+    }
+}

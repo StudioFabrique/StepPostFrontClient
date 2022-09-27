@@ -1,0 +1,30 @@
+<main class="main-recherche">
+    <form class="form-recherche" [formGroup]="searchForm">
+        <div>
+            <div>
+                <label>Numéro de bordereau / Nom du destinataire</label>
+                <div class="collection">
+                    <input #searchBox (keyup)="onSearch(searchBox.value)" type="text" id="searchInput"
+                        autocomplete="off" formControlName="searchInput" autofocus>
+                    <div *ngFor="let name of rechercheList">
+                        <p *ngIf="nameList && rechercheList.length !== 0" (click)="onRechercheByName(name)">{{name.nom |
+                            titlecase}} {{name.prenom |
+                            titlecase}}</p>
+                    </div>
+                    <div *ngIf="noNameResults && nameList">
+                        <p>
+                            Aucun courrier trouvé adressé à ce destinataire
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div *ngIf="timeline" @fade>
+        <app-details-recherche (emitter)="onFermer()" [detailsCourrier]="detailsCourrier">
+        </app-details-recherche>
+    </div>
+
+    <app-no-results *ngIf="noResults" @fade (retourNoResults)=" onRetourNoResults($event)"></app-no-results>
+</main>

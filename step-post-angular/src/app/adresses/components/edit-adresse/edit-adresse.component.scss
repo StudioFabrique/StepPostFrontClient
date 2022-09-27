@@ -1,0 +1,33 @@
+$blue: #140a82;
+$orange: #ff5e1a;
+$green: #24a640;
+
+.main-edit-adresse {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 3vh;
+    margin-top: 2vh;
+    margin-bottom: 10vh;
+
+    .section-titre {
+        width: 50vw;
+        display: flex;
+        justify-content: flex-start;
+        column-gap: 1vw;
+
+        >a {
+            >h4:last-child {
+                display: flex;
+                justify-content: center;
+                color: $orange;
+                text-decoration: underline;
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
