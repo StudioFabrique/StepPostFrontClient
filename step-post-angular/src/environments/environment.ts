@@ -11,7 +11,7 @@ export const environment = {
   numberRegex: /^[0-9]*$/,
   passwordRegex:
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-  genericRegex: /^[a-zA-Z0-9\s,.'-+]{0,}$/,
+  genericRegex: /^[a-zA-Z0-9\s,.'-+éàèù]{0,}$/,
 };
 
 /*

@@ -29,6 +29,8 @@ export class BordereauFormComponent implements OnInit {
    * de l'objet 'informations' avec les valeurs du formulaire
    */
   ngOnInit(): void {
+    console.log('dest', this.dest);
+
     this.bordereauForm = this.formBuilder.group({
       type: [null, [Validators.required]],
       telephone: [null, [Validators.pattern(environment.genericRegex)]],
@@ -77,7 +79,11 @@ export class BordereauFormComponent implements OnInit {
         { positionClass: 'toast-bottom-center' }
       );
     } else {
+      console.log('check dest', this.dest);
+
       if (this.bordereauForm.valid) {
+        console.log('coucou', this.dest);
+
         this.bordereau = {
           ...this.bordereau,
           dest: this.dest,

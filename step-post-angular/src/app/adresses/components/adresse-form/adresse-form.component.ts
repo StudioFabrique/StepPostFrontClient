@@ -1,9 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { SecuriteService } from 'src/app/core/services/securite.service';
 import { environment } from 'src/environments/environment';
 import { Destinataire } from '../../models/Destinataire.model';
 import { AdressesService } from '../../services/adresses.service';
@@ -24,20 +23,28 @@ export class AdresseFormComponent implements OnInit {
   isAddForm!: boolean;
   newDest!: Destinataire;
   nouveauCourrier!: boolean;
+  buttonText!: string; // texte à afficher sur le bouton de gauche
 
   constructor(
     private adressesService: AdressesService,
     private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
     private router: Router,
-    private securiteService: SecuriteService,
     private toaster: ToastrService
   ) {}
 
   ngOnInit(): void {
+    //  on check la provenance de l'utilisateur pour adapter le formulaire (ajout ou édition d'adresse)
     this.isAddForm = this.router.url.includes('add') ? true : false;
     this.nouveauCourrier = this.router.url.includes('nouveau-courrier')
       ? true
       : false;
+    if (this.nouveauCourrier) {
+      //  on check la provenance de l'utilisateur pour adapter le texte du bouton tout à gauche
+      this.buttonText = this.route.snapshot.paramMap.get('id')
+        ? 'sauvegarder les modifications'
+        : "enregistrer l'adresse";
+    }
     this.adresseForm = this.formBuilder.group({
       civilite: [null],
       prenom: [null, [Validators.pattern(environment.genericRegex)]],

@@ -156,17 +156,6 @@ export class PreviewComponent implements OnInit {
     });
   }
 
-  onSauvegarder(): void {
-    console.log(this.dest);
-    if (this.dest.telephone !== this.bordereau.telephone) {
-      this.dest.telephone = this.bordereau.telephone;
-    }
-    this.adressesService.updateAdresse(this.dest).subscribe({
-      next: this.handleUpdateResponse.bind(this),
-      error: this.handleError.bind(this),
-    });
-  }
-
   handleError(error: any): void {
     if (error instanceof HttpErrorResponse) {
       if (error.status === 401 || error.status === 403) {
@@ -176,11 +165,5 @@ export class PreviewComponent implements OnInit {
         this.router.navigateByUrl('/adresses');
       }
     }
-  }
-
-  private handleUpdateResponse(response: any): void {
-    this.toaster.success('adresse enregistrée', 'Modifications', {
-      positionClass: 'toast-bottom-center',
-    });
   }
 }
