@@ -2,7 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { debounceTime, tap } from 'rxjs';
+import { tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AccountService } from '../../services/account.service';
 
@@ -44,8 +44,6 @@ export class PasswordResetComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('mailSent : ', this.mailSent);
-
     if (this.mailSent) {
       this.toaster.warning(this.warningMessage, '', {
         positionClass: 'toast-bottom-center',
@@ -72,9 +70,7 @@ export class PasswordResetComponent implements OnInit {
         console.log('probleme serveur');
       }
       if (error.status === 404) {
-        this.toaster.warning('', 'Email inexistante', {
-          positionClass: 'toast-bottom-center',
-        });
+        this.handleResponse(true);
       }
     }
   }

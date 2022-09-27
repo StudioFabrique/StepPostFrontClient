@@ -1,0 +1,28 @@
+<main>
+    <section>
+        <div>
+            <h4>Création du compte associé à l'adresse email suivante :</h4>
+        </div>
+        <div>
+            <h4>{{email}}</h4>
+        </div>
+        <div *ngIf="!accountActivated">
+            <p>Pour finaliser la création de votre compte, veuillez créer un mot de passe composé d'au moins huit
+                caractères, dont une majuscule, une minuscule, un
+                chiffre et un caractère spécial.</p>
+        </div>
+    </section>
+    <section *ngIf="!accountActivated">
+        <app-new-password (submitted)="onSubmitted($event)"></app-new-password>
+    </section>
+    <section *ngIf="accountActivated">
+        <div>
+            <p>Votre compte est maintenant activé, vous pouvez dès à présent profiter des fonctionnalités de
+                l'application
+                Step-Post, nous vous remercions pour votre confiance.</p>
+        </div>
+        <div>
+            <a routerLink="/login">connexion</a>
+        </div>
+    </section>
+</main>

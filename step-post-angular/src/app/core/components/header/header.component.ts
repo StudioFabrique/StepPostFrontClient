@@ -16,7 +16,6 @@ export class HeaderComponent implements OnInit {
   onInscriptionClick(): void {
     this.auth.isLoginPage = false;
     this.router.navigateByUrl('/profil/new-client');
-    console.log(this.auth.isLoginPage);
   }
 
   onLogout(): void {

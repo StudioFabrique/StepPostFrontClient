@@ -1,9 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Observable, tap } from 'rxjs';
+import { tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AuthService } from '../../services/auth.service';
 
@@ -12,7 +12,7 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   loginForm!: FormGroup; //  formulaire de connexion
   emailError!: boolean; //  stock le résultat du test avec l'expression régulière
   passwordError!: boolean; //  stock le resultat du test avec l'expression régulière
@@ -60,6 +60,10 @@ export class LoginComponent implements OnInit {
         )
       )
       .subscribe();
+  }
+
+  ngOnDestroy(): void {
+    this.authService.isLoginPage = false;
   }
 
   /**

@@ -1,0 +1,49 @@
+$blue: #140a82;
+$orange: #ff5e1a;
+$green: #24a640;
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 5vh;
+    margin-top: 50px;
+
+    >section {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        row-gap: 4vh;
+
+        >div {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+
+            >p {
+                width: 60%;
+                font-size: .85em;
+            }
+
+            >a {
+                font-size: 1em;
+                color: $orange;
+            }
+        }
+
+        >div:nth-child(2) {
+            color: $orange;
+        }
+
+        >div:last-child {
+            width: 60%;
+            display: flex;
+            align-items: center;
+            row-gap: 1vh;
+        }
+    }
+
+}

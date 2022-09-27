@@ -8,12 +8,6 @@ import { environment } from 'src/environments/environment';
 export class ClientService {
   constructor(private http: HttpClient) {}
 
-  getDecodedToken(token: string): Observable<Destinataire> {
-    return this.http.get<Destinataire>(
-      `${environment.baseUrl}/client/user/email?token=${token}`
-    );
-  }
-
   /**
    * vérifie que l'email est disponible dans la bdd
    * @param email email saisi par l'utilisateur
@@ -34,6 +28,24 @@ export class ClientService {
     return this.http.post<any>(
       `${environment.baseUrl}/client/user/create-exp`,
       exp
+    );
+  }
+
+  /**
+   * récupère l'adresse email de l'utilisateur qui finalise son compte
+   * @param token token présent dans l'url
+   * @returns email de l'utilisateur qui finalise son compte
+   */
+  getTokenInfos(token: string): Observable<any> {
+    return this.http.get<any>(
+      `${environment.baseUrl}/client/user/get-decoded-token?token=${token}`
+    );
+  }
+
+  accountValidation(password: string, userId: number): Observable<any> {
+    return this.http.post<any>(
+      `${environment.baseUrl}/client/user/account-validation`,
+      { password, userId }
     );
   }
 }

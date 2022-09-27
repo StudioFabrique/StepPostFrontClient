@@ -13,10 +13,12 @@ import { NewPasswordComponent } from './components/new-password/new-password.com
 import { CheckMailComponent } from './components/check-mail/check-mail.component';
 import { PasswordResetComponent } from './components/password-reset/password-reset.component';
 import { ReinitialiserPasswordComponent } from './components/reinitialiser-password/reinitialiser-password.component';
+import { ValidationComponent } from './components/validation/validation.component';
 
 const accountRoutes: Routes = [
   { path: '', component: ProfilComponent, canActivate: [AuthGuard] },
   { path: 'new-client', component: NewClientComponent },
+  { path: 'validation-nouveau-compte', component: ValidationComponent },
   { path: 'password-reset', component: PasswordResetComponent },
   { path: 'reinitialiser-password', component: ReinitialiserPasswordComponent },
 ];
@@ -31,6 +33,7 @@ const accountRoutes: Routes = [
     CheckMailComponent,
     PasswordResetComponent,
     ReinitialiserPasswordComponent,
+    ValidationComponent,
   ],
   imports: [CommonModule, RouterModule.forChild(accountRoutes), SharedModule],
   providers: [AccountService, ClientService],
