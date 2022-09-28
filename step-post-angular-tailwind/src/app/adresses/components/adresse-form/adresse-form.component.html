@@ -1,87 +1,118 @@
-<article class="article-form-adresse">
-    <form class="form-edition" [formGroup]="adresseForm" (submit)="onSubmitForm()">
-        <div>
-            <label>Civilité
-                <select id="civilite" formControlName="civilite" placeholder="Mr">
+<article class="w-80 mx-auto text-xs mb-10">
+    <form class="flex flex-col gap-y-4" [formGroup]="adresseForm" (submit)="onSubmitForm()">
+        <div class="flex items-center justify-between">
+            <label class="flex flex-col">Civilité
+                <select
+                    class="shadow border-stone-300 w-80 md:w-96 p-4 md:p-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="civilite" formControlName="civilite" placeholder="Mr">
                     <option value="">---</option>
                     <option value="mr">Mr</option>
                     <option value="mme">Mme</option>
                 </select>
             </label>
-            <p>( Les champs marqués d'un * sont obligatoires )</p>
         </div>
-        <div>
+        <div class="flex flex-col gap-y-4">
             <label>
-                <div>
-                    <p>Prénom / Service</p>
-                    <p class="obligatoire">*</p>
-                </div>
-                <input type="text" id="prenom" formControlName="prenom" placeholder="Jean">
-            </label>
-            <label>
-                <div>
+                <div class="flex gap-x-2">
                     <p>Nom / Entreprise</p>
-                    <p class="obligatoire">*</p>
+                    <p class="text-red">*</p>
                 </div>
-                <input type="text" id="nom" formControlName="nom" placeholder="Dupont">
+                <input
+                    class="shadow border-stone-300 border w-80 md:w-96 p-4 md:p-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    type="text" id="nom" formControlName="nom" placeholder="Dupont">
             </label>
-        </div>
-        <div>
             <label>
-                <div>
-                    <p>Adresse</p>
-                    <p class="obligatoire">*</p>
+                <div class="flex gap-x-2">
+                    <p>Prénom / Service</p>
+                    <p class="text-red">*</p>
                 </div>
-                <textarea id="adresse" rows="2" formControlName="adresse"
-                    placeholder="12 rue du Président Toto"></textarea>
+                <input
+                    class="shadow border-stone-300 border w-80 md:w-96 p-4 md:p-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    type="text" id="prenom" formControlName="prenom" placeholder="Jean">
             </label>
         </div>
-        <div>
+        <div class="flex flex-col">
+            <label>
+                <div class="flex gap-x-2">
+                    <p>Adresse</p>
+                    <p class="text-red">*</p>
+                </div>
+                <textarea
+                    class="shadow border-stone-300 border w-80 md:w-96 p-4 md:p-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="adresse" rows="2" formControlName="adresse" placeholder="12 rue du Président Toto"></textarea>
+            </label>
+        </div>
+        <div class="flex flex-col">
             <label>
                 <div>
                     <p>Complément d'adresse</p>
                 </div>
-                <textarea id="complement" rows="2" formControlName="complement"
+                <textarea
+                    class="shadow border-stone-300 border w-80 md:w-96 p-4 md:p-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="complement" rows="2" formControlName="complement"
                     placeholder="Chez Mr Jacques Durand"></textarea>
             </label>
         </div>
-        <div>
+        <div class="flex flex-col gap-y-4">
             <label>
-                <div>
+                <div class="flex gap-x-2">
                     <p>Code Postal</p>
-                    <p class="obligatoire">*</p>
+                    <p class="text-red">*</p>
                 </div>
-                <input type="text" id="codePostal" formControlName="codePostal" placeholder="64000">
+                <input
+                    class="shadow border-stone-300 border w-80 md:w-96 p-4 md:p-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    type="text" id="codePostal" formControlName="codePostal" placeholder="64000">
             </label>
             <label>
-                <div>
+                <div class="flex gap-x-2">
                     <p>Ville</p>
-                    <p class="obligatoire">*</p>
+                    <p class="text-red">*</p>
                 </div>
-                <input type="text" id="ville" formControlName="ville" placeholder="Pau">
+                <input
+                    class="shadow border-stone-300 border w-80 md:w-96 p-4 md:p-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    type="text" id="ville" formControlName="ville" placeholder="Pau">
             </label>
         </div>
-        <div>
+        <div class="flex flex-col gap-y-4">
             <label>
                 Téléphone
-                <input type="text" id="telephone" formControlName="telephone" placeholder="0102030405">
+                <input
+                    class="shadow border-stone-300 border w-80 md:w-96 p-4 md:p-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    type="text" id="telephone" formControlName="telephone" placeholder="0102030405">
             </label>
             <label>
                 Email
-                <input type="text" id="email" formControlName="email" placeholder="jean.dupont@exemple.fr">
+                <input
+                    class="shadow border-stone-300 border w-80 md:w-96 p-4 md:p-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    type="text" id="email" formControlName="email" placeholder="jean.dupont@exemple.fr">
             </label>
         </div>
-        <div class="nnc" *ngIf="!nouveauCourrier">
-            <button class="button" type="button" (click)="onCancel()">annuler</button>
-            <input class="button" type="submit" value="envoyer">
+        <div class="flex">
+            <p>( Les champs marqués d'un&nbsp;</p>
+            <p class="text-red">*</p>
+            <p>&nbsp;sont obligatoires )</p>
         </div>
-        <div class="nc" *ngIf="nouveauCourrier">
+        <div class="flex gap-x-2 justify-end" *ngIf="!nouveauCourrier">
+            <button
+                class="shadow-xl select-none p-2 active:translate-x-0.5 active:translate-y-0.5 focus:outline-none focus:shadow-outline text-xs bg-orange text-white font-bold"
+                type="button" (click)="onCancel()">annuler</button>
+            <input
+                class="shadow-xl select-none p-2 active:translate-x-0.5 active:translate-y-0.5 focus:outline-none focus:shadow-outline text-xs bg-blue text-white font-bold"
+                type="submit" value="envoyer">
+        </div>
+        <div class="flex gap-x-2 justify-between" *ngIf="nouveauCourrier">
             <div>
-                <button class="button" type="button" (click)="onSauvegarder()">{{buttonText}}</button>
+                <button
+                    class="shadow-xl select-none p-2 active:translate-x-0.5 active:translate-y-0.5 focus:outline-none focus:shadow-outline text-xs bg-white text-blue font-bold border-blue border"
+                    type="button" (click)="onSauvegarder()">{{buttonText}}</button>
             </div>
-            <div>
-                <button class="button" type="button" (click)="onCancel()">annuler</button>
-                <input class="button" type="submit" value="continuer">
+            <div class="flex gap-x-2">
+                <button
+                    class="shadow-xl select-none p-2 active:translate-x-0.5 active:translate-y-0.5 focus:outline-none focus:shadow-outline text-xs bg-orange text-white font-bold"
+                    type="button" (click)="onCancel()">annuler</button>
+                <input
+                    class="shadow-xl select-none p-2 active:translate-x-0.5 active:translate-y-0.5 focus:outline-none focus:shadow-outline text-xs bg-blue text-white font-bold"
+                    type="submit" value="continuer">
             </div>
         </div>
     </form>

@@ -4,7 +4,6 @@ import { Destinataire } from '../../models/Destinataire.model';
 @Component({
   selector: 'app-destinataire',
   templateUrl: './destinataire.component.html',
-  styleUrls: ['./destinataire.component.scss'],
 })
 export class DestinataireComponent implements OnInit {
   @Input() adresse!: Destinataire; //  informations du destinataire affichées sur la vignette

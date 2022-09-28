@@ -16,7 +16,7 @@ export class AdressesComponent implements OnInit {
   adresseToDelete!: Destinataire; //  adresse sélectionnée pour suppression
   popupDelete: boolean = false; //  true : affiche une modal de confirmation pour la suppression d'une adresse
   loader: boolean = false; // true : affiche le loader
-  msg: string = "Vous n'avez actuellement aucune adresse favorite enregistrée"; //  message affiché si aucune adresse n'est trouvée dans la bdd
+  msg: string = 'Aucune adresse trouvée.'; //  message affiché si aucune adresse n'est trouvée dans la bdd
 
   constructor(
     private adressesService: AdressesService,
