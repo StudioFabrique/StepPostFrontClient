@@ -1,0 +1,25 @@
+.main-edit-adresse {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 3vh;
+  margin-top: 2vh;
+  margin-bottom: 10vh;
+}
+.main-edit-adresse .section-titre {
+  width: 50vw;
+  display: flex;
+  justify-content: flex-start;
+  -moz-column-gap: 1vw;
+       column-gap: 1vw;
+}
+.main-edit-adresse .section-titre > a > h4:last-child {
+  display: flex;
+  justify-content: center;
+  color: #ff5e1a;
+  text-decoration: underline;
+}
+.main-edit-adresse .section-titre > a > h4:last-child:hover {
+  cursor: pointer;
+}/*# sourceMappingURL=edit-adresse.component.css.map */

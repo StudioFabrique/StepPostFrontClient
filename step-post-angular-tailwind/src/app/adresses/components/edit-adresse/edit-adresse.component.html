@@ -1,0 +1,12 @@
+<main class="main-edit-adresse">
+    <section class="section-titre">
+        <h4>Modification d'adresse</h4>
+        <a routerLink="/adresses">
+            <h4>retour</h4>
+        </a>
+    </section>
+    <div *ngIf="loader" class="lds-dual-ring"></div>
+    <section *ngIf="!loader" class="section-edit-adresse">
+        <app-adresse-form *ngIf="dest" [dest]="dest" (submitted)="onSubmitted($event)"></app-adresse-form>
+    </section>
+</main>

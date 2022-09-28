@@ -1,0 +1,15 @@
+.rechercheNom {
+  width: 30vw;
+  display: flex;
+  -moz-column-gap: 1vw;
+       column-gap: 1vw;
+  align-items: center;
+  column-gap: 1vw;
+}
+.rechercheNom > h4:last-child {
+  color: #ff5e1a;
+  text-decoration: underline;
+}
+.rechercheNom > h4:last-child:hover {
+  cursor: pointer;
+}/*# sourceMappingURL=no-results.component.css.map */

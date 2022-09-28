@@ -1,0 +1,20 @@
+$blue: #140a82;
+$orange: #ff5e1a;
+$green: #24a640;
+
+.rechercheNom {
+    width: 30vw;
+    display: flex;
+    column-gap: 1vw;
+    align-items: center;
+    column-gap: 1vw;
+
+    >h4:last-child {
+        color: $orange;
+        text-decoration: underline;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}

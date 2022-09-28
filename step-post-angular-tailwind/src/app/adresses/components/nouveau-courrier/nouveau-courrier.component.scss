@@ -1,0 +1,49 @@
+$blue: #140a82;
+$orange: #ff5e1a;
+$green: #24a640;
+
+
+.main-nc {
+    min-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 3vh;
+    margin-top: 5vh;
+    margin-bottom: 10vh;
+
+    >.section-titre {
+        width: 50vw;
+        display: flex;
+        justify-content: flex-start;
+        column-gap: 1vw;
+
+        >a {
+            >h4:last-child {
+                display: flex;
+                justify-content: center;
+                color: $orange;
+                text-decoration: underline;
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    >.section-bordereau-form {
+        width: 75vw;
+        display: flex;
+        justify-content: center;
+    }
+}
+
+@media print {
+    .main-nc {
+        >.section-titre {
+            display: none;
+        }
+    }
+}

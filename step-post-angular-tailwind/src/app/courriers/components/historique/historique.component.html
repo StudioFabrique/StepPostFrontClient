@@ -1,0 +1,70 @@
+<main class="md:w-full flex flex-col items-center gap-y-5 md:gap-y-10 mb-8">
+    <section class="md:max-w-7xl container mx-auto flex flex col items-center">
+        <app-recherche class="min-w-full" [filter]="filter" (isLoading)="onSetLoader($event)"
+            (searchedName)="onRechercheNom($event)" (retourNoResults)="onRetour()">
+        </app-recherche>
+    </section>
+    <section class="flex justify-center font-bold md:text-lg">
+        <div *ngIf="!(rechercheNom)">
+            <h3>Historique des envois</h3>
+        </div>
+        <div class="flex flex-col items-center justify-center font-bold text-sm p-4 gap-y-1" *ngIf="rechercheNom">
+            <h3>Courrier(s) en cours de distribution pour {{courriers[0].civilite |
+                titlecase}}
+                {{courriers[0].prenom | titlecase}} {{courriers[0].nom | titlecase}}</h3>
+            <h4 class="orange" (click)="onRetour()">retour</h4>
+        </div>
+    </section>
+    <div *ngIf="loader && !rechercheNom" class="lds-dual-ring"></div>
+    <section class="mx-4 flex flex-col items-center gap-y-4 md:max-w-5xl md:container md:mx-auto"
+        *ngIf="courriersService.etats" @fade>
+        <table class="min-w-full table-auto text-xs md:text-lg" *ngIf="(!loader && courriers) || rechercheNom">
+            <thead>
+                <tr class="bg-blue-900 text-white text-left cursor-pointer">
+                    <th class="px-2 md:px-4" (click)="onSort(0)">
+                        <p *ngIf="columns[0] !== null">Date&nbsp;&#9663;</p>
+                        <p *ngIf="columns[0] === null">Date</p>
+                    </th>
+                    <th class="pr-4" (click)="onSort(1)">
+                        <p *ngIf="columns[1] !== null">Bordereau&nbsp;&#9663;</p>
+                        <p *ngIf="columns[1] === null">Bordereau</p>
+                    </th>
+                    <th (click)="onSort(2)">
+                        <p *ngIf="columns[2] !== null">Nom&nbsp;&#9663;</p>
+                        <p *ngIf="columns[2] === null">Nom</p>
+                    </th>
+                    <th (click)="onSort(3)">
+                        <p *ngIf="columns[3] !== null">Statut&nbsp;&#9663;</p>
+                        <p *ngIf="columns[3] === null">Statut</p>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="even:bg-stone-200 px-2 py-2 my auto cursor-pointer" *ngFor="let courrier of courriers"
+                    (click)="onCourrierClick(courrier.bordereau)">
+                    <td class="orange px-2 md:px-4">{{courrier.date | date}}</td>
+                    <td>{{courrier.bordereau}}</td>
+                    <td>{{courrier.nom | titlecase}} {{courrier.prenom | titlecase}}</td>
+                    <td class="flex items-center gap-x-2 px-2 py-2">
+                        <div class="cercle" [ngStyle]="{backgroundColor: setColor(courrier.etat)}"></div>
+                        <p> {{courriersService.etats[courrier.etat - 1] | titlecase}}</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="flex gap-x-2 text-sm items-center" *ngIf="courriers && !loader">
+            <button
+                class="border-2 py-1 px-2 bg-stone-300 text-black rounded cursor-pointer hover:bg-stone-200 active:translate-x-0.5 active:translate-y-0.5"
+                [ngStyle]="{visibility: previous}" (click)="onClickPrevious()"> {{"<"}} </button>
+                    <p class="text-xs">{{courriersService.page + 1}} / {{courriersService.pagesMax}}</p>
+                    <button
+                        class="border-2 py-1 px-2 bg-stone-300 text-black rounded cursor-pointer hover:bg-stone-200 active:translate-x-0.5 active:translate-y-0.5"
+                        [ngStyle]="{visibility: next}" (click)="onClickNext()"> {{">"}}
+                    </button>
+        </div>
+    </section>
+    <section *ngIf="!loader && !courriers">
+        <app-liste-vide [msg]="msg"></app-liste-vide>
+    </section>
+
+</main>

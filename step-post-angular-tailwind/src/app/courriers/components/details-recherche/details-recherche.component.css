@@ -1,0 +1,10 @@
+@media print {
+  .button,
+img {
+    display: none;
+  }
+  .article-details-recherche {
+    display: flex;
+    flex-direction: column;
+  }
+}/*# sourceMappingURL=details-recherche.component.css.map */

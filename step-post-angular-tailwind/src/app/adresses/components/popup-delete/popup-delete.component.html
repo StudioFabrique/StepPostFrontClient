@@ -1,0 +1,20 @@
+<div class="screen"></div>
+<article class="popup">
+    <p>Confirmer la suppression de l'adresse suivante :</p>
+    <div class="adresse">
+        <div *ngIf="loader" classe="lds-dual-ring"></div>
+        <div *ngIf="!loader">
+            <span>
+                <p>{{adresse.civilite | titlecase}}&nbsp;</p>
+                <p>{{adresse.nom | titlecase}}&nbsp;</p>
+                <p>{{adresse.prenom | titlecase}}</p>
+            </span>
+            <p>{{adresse.adresse | titlecase}}</p>
+            <p>{{adresse.codePostal | titlecase}} {{adresse.ville | titlecase}}</p>
+        </div>
+    </div>
+    <div class="popup-buttons">
+        <button class="button" (click)="onCancel()">annuler</button>
+        <button class="button" (click)="onConfirm()">confirmer</button>
+    </div>
+</article>

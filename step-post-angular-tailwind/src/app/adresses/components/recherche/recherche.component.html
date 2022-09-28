@@ -1,0 +1,31 @@
+<section class="flex flex-col gap-y-4">
+    <input
+        class="shadow appearance-none border-stone-300 w-64 md:w-96 p-4 md:p-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        #searchBox (keyup)="onSearch(searchBox.value)" placeholder="Nom du destinataire..." autofocus>
+    <article class="article-recherche-nom" *ngIf="!recherche">
+        <span class="flex items-center gap-x-4 justify-center">
+            <h4>Nouvelle adresse</h4>
+            <a routerLink="/adresses/add">
+                <img class="cursor-pointer w-6" src="assets/img/plus-btn.svg" alt="lien nouvelle adresse">
+            </a>
+        </span>
+    </article>
+
+    <article class="article-recherche-nom" *ngIf="recherche">
+        <div class="bouton-ajouter">
+            <h4>Nouvelle adresse</h4>
+            <a routerLink="/adresses/add">
+                <img src="assets/img/plus-btn.png" alt="lien nouvelle adresse">
+            </a>
+        </div>
+        <div>
+            <span>Résultat de la recherche pour :
+                {{nom | titlecase}}
+            </span>
+        </div>
+
+        <div>
+            <h5 (click)="onRetour()">retour</h5>
+        </div>
+    </article>
+</section>

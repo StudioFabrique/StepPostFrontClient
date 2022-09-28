@@ -1,0 +1,37 @@
+.main-nc {
+  min-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 3vh;
+  margin-top: 5vh;
+  margin-bottom: 10vh;
+}
+.main-nc > .section-titre {
+  width: 50vw;
+  display: flex;
+  justify-content: flex-start;
+  -moz-column-gap: 1vw;
+       column-gap: 1vw;
+}
+.main-nc > .section-titre > a > h4:last-child {
+  display: flex;
+  justify-content: center;
+  color: #ff5e1a;
+  text-decoration: underline;
+}
+.main-nc > .section-titre > a > h4:last-child:hover {
+  cursor: pointer;
+}
+.main-nc > .section-bordereau-form {
+  width: 75vw;
+  display: flex;
+  justify-content: center;
+}
+
+@media print {
+  .main-nc > .section-titre {
+    display: none;
+  }
+}/*# sourceMappingURL=nouveau-courrier.component.css.map */

@@ -1,0 +1,12 @@
+$blue: #140a82;
+$orange: #ff5e1a;
+$green: #24a640;
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 2vh;
+    margin-top: 25px;
+}

@@ -1,0 +1,21 @@
+<article
+    class="cursor-pointer flex flex-col justify-center gap-y-4 md:gap-y-5 border-b-2 border-stone-300 mb-5 hover:shadow-lg p-4"
+    (click)="onCourrierClick()" [ngStyle]="{'background-color': courrier.active ?  '#E0E0E0' : 'white'
+}">
+    <div class="flex md:flex-row md:justify-between flex-col items-center">
+        <h4 class="orange text-sm font-bold md:text-lg">{{courrier.date | date: 'dd MMMM yyyy à hh:mm'}}</h4>
+        <p class="text-xs md:text-lg">Bordereau n° : {{courrier.bordereau}}</p>
+    </div>
+    <div>
+        <span class="flex flex-col md:flex-row md:justify-between items-center justify-center gap-y-1">
+            <p class="text-sm md:text-lg flex justify-start" *ngIf="courriersService.etats">
+                {{type}} pour : {{courrier.civilite | titlecase}} {{courrier.nom | titlecase}}
+                {{courrier.prenom | titlecase}}</p>
+            <p class="text-sm md:text-lg">{{courriersService.etats[courrier.etat - 1]}}</p>
+        </span>
+    </div>
+    <div class="detailsLivraison">
+    </div>
+    <app-details-courrier [detailsCourrier]="detailsCourrier" *ngIf="courrier.active">
+    </app-details-courrier>
+</article>

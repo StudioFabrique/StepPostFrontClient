@@ -1,0 +1,41 @@
+<main>
+    <section *ngIf="!expired">
+        <article>
+            <div>
+                <h4>Création du compte associé à l'adresse email suivante :</h4>
+            </div>
+            <div>
+                <h4>{{email}}</h4>
+            </div>
+        </article>
+        <article *ngIf="!accountActivated">
+            <app-new-password (submitted)="onSubmitted($event)"></app-new-password>
+        </article>
+        <article *ngIf="!accountActivated">
+            <p>Le mot de passe doit être composé :</p>
+            <ul>
+                <li>d'au moins 8 caractères</li>
+                <li>d'une majuscule</li>
+                <li>d'une minuscule</li>
+                <li>d'un chiffre</li>
+                <li>d'un caractère spécial</li>
+            </ul>
+        </article>
+        <article *ngIf="accountActivated">
+            <div>
+                <p>Votre compte est maintenant activé, vous pouvez dès à présent profiter des fonctionnalités de
+                    l'application
+                    Step-Post, nous vous remercions pour votre confiance.</p>
+            </div>
+            <div>
+                <a routerLink="/login">connexion</a>
+            </div>
+        </article>
+    </section>
+    <section *ngIf="expired">
+        <p>Ce lien a expiré.</p>
+        <div>
+            <a routerLink="/login">connexion</a>
+        </div>
+    </section>
+</main>

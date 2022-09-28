@@ -1,0 +1,14 @@
+<article class="min-w-full flex flex-col md:flex-row items-center gap-y-4 mt-5 md:justify-center border-2 p-4">
+    <div class="flex md:flex-col gap-x-2 justify-between items-center">
+        <span class="flex gap-x-2 text-sm">
+            <h4>Courrier n° : {{detailsCourrier.courrier.bordereau}} </h4>
+            <img src="assets/img/icone-print.png" width="24px" height="24px" alt="icone impression" (click)="onPrint()">
+        </span>
+        <button
+            class="button md:text-md md:font-bold text-xs text-white md:px-4 py-2 px-2 focus:outline-none focus:shadow-outline md:mr-5"
+            (click)="onFermer()">Fermer</button>
+    </div>
+    <div class="max-w-3xl flex flex-col md:flex-row items-center container mx-auto md:flex">
+        <app-details-courrier class="min-w-full" [detailsCourrier]="detailsCourrier"></app-details-courrier>
+    </div>
+</article>

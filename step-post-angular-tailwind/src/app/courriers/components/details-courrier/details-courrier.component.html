@@ -1,0 +1,29 @@
+<section *ngIf="detailsCourrier && etats"
+    class="w-min-96 flex flex-col-reverse items-center justify-evenly md:flex-row gap-y-8">
+    <article class="timeline w-max-96  mb-4">
+        <div class="trait" [ngStyle]="{visibility: 'hidden'}"></div>
+        <div *ngFor="let statut of detailsCourrier.statuts">
+            <div class="cercleContainer">
+                <div class="cercle"></div>
+                <div class="statuts">{{etats[statut.statut_id - 1]}}</div>
+                <div class="statuts-date flex flex-col items-center">
+                    <div>{{statut.date | date}} </div>
+                    <div>{{statut.date | date: 'à HH:mm'}}</div>
+                </div>
+            </div>
+            <div class="trait"></div>
+        </div>
+    </article>
+    <article class="w-min-full flex flex-col items-center justify-center">
+        <div>
+            <p class="text-xs md:text-lg">{{detailsCourrier.courrier.civilite | titlecase}}
+                {{detailsCourrier.courrier.prenom |
+                titlecase}}
+                {{detailsCourrier.courrier.nom | titlecase}}</p>
+            <p class=" text-xs md:text-lg">{{detailsCourrier.courrier.adresse | titlecase}}</p>
+            <p class="text-xs md:text-lg">{{detailsCourrier.courrier.codePostal}} {{detailsCourrier.courrier.ville |
+                titlecase}}
+            </p>
+        </div>
+    </article>
+</section>
