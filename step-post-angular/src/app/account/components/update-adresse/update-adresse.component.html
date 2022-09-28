@@ -56,11 +56,12 @@
             </div>
             <input type="text" id="telephone" formControlName="telephone" placeholder="0102030405">
         </label>
-        <label>
+        <label [ngStyle]="{visibility: style}">
             <div>
                 Email
                 <p class="obligatoire">*</p>
             </div>
+            <!-- mise à jour des coordonnées uniquement -->
             <input type="text" id="email" formControlName="email" placeholder="jean.dupont@exemple.fr">
         </label>
     </div>

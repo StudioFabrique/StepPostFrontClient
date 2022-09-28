@@ -1,6 +1,12 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { debounceTime, Observable, Subject, switchMap } from 'rxjs';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  Observable,
+  Subject,
+  switchMap,
+} from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { environment } from 'src/environments/environment';
 import { ClientService } from '../../services/client.service';
@@ -15,6 +21,9 @@ export class CheckMailComponent implements OnInit {
   @Output() email: EventEmitter<string> = new EventEmitter<string>(); //  email choisi par l'utilisateur envoyé au composant parent
   checkTerms$: Subject<string> = new Subject<string>(); //  permet de lancer la recherche automatiquement
   isEmailAvailable!: boolean | undefined; //  true : l'email est disponible dans la bdd
+  failureMsg: string = "Cette adresse email n'est pas disponible";
+  successMsg: string = 'Adresse email disponible';
+  warningMsg: string = "Format d'adresse email invalide";
 
   constructor(
     private auth: AuthService,
@@ -46,9 +55,16 @@ export class CheckMailComponent implements OnInit {
    */
   handleResponse(response: any): void {
     this.isEmailAvailable = response.data;
+    this.email.emit(response.email);
     this.emailChecked.emit(this.isEmailAvailable);
     if (this.isEmailAvailable) {
-      this.email.emit(response.email);
+      this.toaster.success(this.successMsg, '', {
+        positionClass: 'toast-bottom-center',
+      });
+    } else {
+      this.toaster.error(this.failureMsg, '', {
+        positionClass: 'toast-bottom-center',
+      });
     }
   }
 
@@ -59,6 +75,8 @@ export class CheckMailComponent implements OnInit {
    * @param value adresse email saisie par l'utilisateur
    */
   onCheck(value: string): void {
+    this.email.emit(value);
+    console.log('value', value);
     if (environment.mailRegex.test(value)) {
       this.checkTerms$.next(value);
     } else {

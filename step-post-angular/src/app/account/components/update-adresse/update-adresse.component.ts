@@ -21,12 +21,12 @@ export class UpdateAdresseComponent implements OnInit {
   adresseForm!: FormGroup; //  formulaire de modification du mot de passe
   newDest!: Destinataire; // enregistrement des changements apportés dans le formulaire par l'utilisateur
   loader: boolean = false; //  true : affiche le loader
+  style!: string; //  affiche le champ email ou non
 
   constructor(
     private adressesService: AdressesService,
     private auth: AuthService,
     private formBuilder: FormBuilder,
-    private router: Router,
     private toaster: ToastrService
   ) {}
 
@@ -37,6 +37,7 @@ export class UpdateAdresseComponent implements OnInit {
    * enregistré dans la propriété newDest
    */
   ngOnInit(): void {
+    this.style = this.dest ? 'visible' : 'hidden';
     this.adresseForm = this.formBuilder.group({
       prenom: [null, Validators.pattern(environment.genericRegex)],
       nom: [
@@ -80,6 +81,7 @@ export class UpdateAdresseComponent implements OnInit {
       this.adresseForm.patchValue(this.dest);
     } else {
       this.adresseForm.reset();
+      this.adresseForm.patchValue({ email: this.email });
     }
   }
 
@@ -138,7 +140,7 @@ export class UpdateAdresseComponent implements OnInit {
     this.loader = false;
     if (error instanceof HttpErrorResponse) {
       if (error.status === 401 || error.status === 403) {
-        this.router.navigateByUrl('/login');
+        this.auth.logout();
       }
     }
   }

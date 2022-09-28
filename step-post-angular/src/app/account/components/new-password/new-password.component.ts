@@ -38,10 +38,6 @@ export class NewPasswordComponent implements OnInit {
       ?.valueChanges.pipe(
         tap((value) => {
           this.newError = environment.passwordRegex.test(value);
-          this.passwordMatch = this.testPassword(
-            value,
-            this.passwordForm.value.confirmPassword
-          );
         })
       )
       .subscribe();
@@ -50,10 +46,6 @@ export class NewPasswordComponent implements OnInit {
       ?.valueChanges.pipe(
         tap((value) => {
           this.confirmError = environment.passwordRegex.test(value);
-          this.passwordMatch = this.testPassword(
-            this.passwordForm.value.newPassword,
-            value
-          );
         })
       )
       .subscribe();
@@ -75,8 +67,10 @@ export class NewPasswordComponent implements OnInit {
       );
     }
     if (
-      this.passwordForm.value.newPassword ===
-      this.passwordForm.value.confirmPassword
+      this.testPassword(
+        this.passwordForm.value.newPassword,
+        this.passwordForm.value.confirmPassword
+      )
     ) {
       this.submitted.emit(this.passwordForm.value.newPassword);
     } else {
@@ -88,7 +82,7 @@ export class NewPasswordComponent implements OnInit {
     }
   }
 
-  testPassword(p1: string, p2: string) {
+  testPassword(p1: string, p2: string): boolean {
     return p1 === p2 ? true : false;
   }
 }

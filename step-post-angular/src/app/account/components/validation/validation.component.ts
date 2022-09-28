@@ -15,6 +15,7 @@ export class ValidationComponent implements OnInit {
   email!: string;
   userId!: number;
   accountActivated: boolean = false;
+  expired: boolean = true;
 
   constructor(
     private auth: AuthService,
@@ -44,13 +45,14 @@ export class ValidationComponent implements OnInit {
 
   handleError(error: any): void {
     if (error instanceof HttpErrorResponse) {
-      if (error.status === 401 || error.status === 403) {
-        this.auth.logout();
+      if (error.status === 403) {
+        this.expired = true;
       }
     }
   }
 
   handleResponse(response: any): void {
+    this.expired = false;
     this.email = response.email;
     this.userId = response.userId;
     console.log(this.email);
