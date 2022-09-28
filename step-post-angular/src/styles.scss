@@ -33,6 +33,23 @@ body {
     border-bottom: 1px solid $blue;
 }
 
+.nouveau-courrier {
+    padding: .5vw;
+    color: $blue;
+    font-weight: bold;
+    background-color: white;
+    border: 1px solid $blue;
+
+    &:hover {
+        cursor: pointer;
+        filter: brightness(1.25);
+    }
+
+    &:active {
+        transform: translate(2px, 2px);
+    }
+}
+
 .button {
     padding: .5vw;
     color: white;

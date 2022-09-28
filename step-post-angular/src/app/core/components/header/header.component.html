@@ -5,7 +5,7 @@
     <div *ngIf="auth.isLoggedIn">
         <ul>
             <li>
-                <a routerLink="/adresses/nouveau-courrier" class="button">nouveau courrier</a>
+                <a routerLink="/adresses/nouveau-courrier" class="nouveau-courrier">nouveau courrier</a>
             </li>
             <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a routerLink="/courriers">
@@ -40,7 +40,7 @@
     <div *ngIf="!auth.isLoggedIn && auth.isLoginPage">
         <ul>
             <li>
-                <p class="button" (click)="onInscriptionClick()">Inscription</p>
+                <p class="nouveau-courrier" (click)="onInscriptionClick()">Inscription</p>
             </li>
         </ul>
     </div>
