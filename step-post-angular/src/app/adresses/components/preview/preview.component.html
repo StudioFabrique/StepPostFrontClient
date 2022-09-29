@@ -1,9 +1,9 @@
-<main class="main-bordereau">
-    <section class="section-bordereau-exp">
-        <article class="article-exp-left">
-            <div>
-                <img src="assets/img/logo.png" alt="logo step post" />
-                <form [formGroup]="typeForm">
+<main class="w-full flex flex-col items-center gap-y-2">
+    <section class="section-bordereau-exp w-[21cm] h-[90mm] bg-orange flex bg-stone-300 p-4">
+        <article class="article-exp-left w-[50%] flex flex-col justify-between items-start">
+            <div class="flex flex-col items-center gap-y-2">
+                <img class="w-40" src="assets/img/logo.png" alt="logo step post" />
+                <form class="flex items-center gap-x-1" [formGroup]="typeForm">
                     <input type="checkbox" formControlName="lettreAs" (click)="onCheckboxClick()">
                     <label htmlFor="lettre">Lettre AS</label>
                     <input type="checkbox" formControlName="lettreAr" (click)="onCheckboxClick()">
@@ -11,23 +11,23 @@
                     <input type="checkbox" formControlName="colis" (click)="onCheckboxClick()">
                     <label htmlFor="colis">Colis</label>
                 </form>
-                <p>Date et cachet STEP POST</p>
+                <p class="italic text-xs">Date et cachet STEP POST</p>
             </div>
             <div>
-                <p>STEP POST Opérateur Postal</p>
-                <p>Autorisation n°12-0098</p>
-                <p>Technopolis Hélioparc</p>
-                <p>2 av. du Président Pierre Angot 64000 PAU</p>
-                <p>RCS de Pau 434 805 644</p>
+                <p class="text-xs font-bold">STEP POST Opérateur Postal</p>
+                <p class="text-xs">Autorisation n°12-0098</p>
+                <p class="text-xs font-bold">Technopolis Hélioparc</p>
+                <p class="text-xs">2 av. du Président Pierre Angot 64000 PAU</p>
+                <p class="text-xs">RCS de Pau 434 805 644</p>
             </div>
         </article>
-        <article class="article-exp-right">
-            <div>
-                <h2>SIGNEO</h2>
-                <p>Le service recommandé de Step Post</p>
+        <article class="article-exp-right flex flex-col gap-y-16 w-[50%]">
+            <div class="flex flex-col items-end">
+                <h2 class="font-bold">SIGNEO</h2>
+                <p class="text-xs italic">Le service recommandé de Step Post</p>
             </div>
-            <div>
-                <h3>Expéditeur</h3>
+            <div class="flex flex-col items-start mx-auto gap-y-4">
+                <h3 class="font-bold">Expéditeur</h3>
                 <span>
                     <app-displayed-adresse [isExp]="true" [adresse]="exp"></app-displayed-adresse>
                 </span>
@@ -35,34 +35,34 @@
         </article>
     </section>
     <div *ngIf="loader" class="lds-dual-ring"></div>
-    <section class="section-bordereau-dest">
-        <article class="article-dest-left">
-            <div *ngIf="!qrcode">
-                <h5>
+    <section class="section-bordereau-dest w-[21cm] h-[90mm] bg-orange flex bg-stone-300 p-4">
+        <article class="article-dest-left flex flex-col h-full w-[50%]">
+            <div class="flex h-[80%] items-center" *ngIf="!qrcode">
+                <p class="text-xs font-bold">
                     Le QR code et le numéro de bordereau seront générés lors de
                     l'impression.
-                </h5>
+                </p>
 
             </div>
-            <div *ngIf="qrcode">
-                <img [src]="qrcode" alt="QRCode" (load)="onQrCodeLoaded()">
+            <div class="flex items-center h-[75%] items-end justify-center" *ngIf="qrcode">
+                <img class="w-40" [src]="qrcode" alt="QRCode" (load)="onQrCodeLoaded()">
             </div>
-            <div>
+            <div class="flex h-[20%] items-end">
                 <p>Bordereau n°&nbsp;</p>
                 <p *ngIf="!qrcode">-----</p>
                 <p *ngIf="qrcode">{{numBordereau}}</p>
             </div>
         </article>
-        <article class="article-dest-right">
-            <div>
-                <h3>Destinataire</h3>
+        <article class="article-dest-right flex flex-col w-[50%] items-center justify-evenly gap-y-8 my-auto">
+            <div class="flex flex-col gap-y-4">
+                <h3 class="font-bold">Destinataire</h3>
                 <span>
                     <app-displayed-adresse [isExp]="false" [adresse]="dest" [infos]="infos"></app-displayed-adresse>
                 </span>
             </div>
-            <div>
+            <div class="italic text-sm flex px-2 pb-20 bg-white border-black border w-[65%] my-auto justify-around">
                 <p>Signature :</p>
-                <span>
+                <span class="flex">
                     <p>Date :</p>
                     <p> .. / .. / .. </p>
                 </span>

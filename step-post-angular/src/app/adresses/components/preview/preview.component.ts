@@ -2,7 +2,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { Bordereau } from '../../models/bordereau.model';
 import { Destinataire } from '../../models/Destinataire.model';
@@ -11,7 +10,7 @@ import { AdressesService } from '../../services/adresses.service';
 @Component({
   selector: 'app-preview',
   templateUrl: './preview.component.html',
-  styleUrls: ['./preview.component.scss'],
+  styleUrls: ['./preview.component.css'],
 })
 export class PreviewComponent implements OnInit {
   @Input() bordereau!: Bordereau; //  informations affichées sur le bordereau d'expédition
@@ -32,8 +31,7 @@ export class PreviewComponent implements OnInit {
     private adressesService: AdressesService,
     private auth: AuthService,
     private formBuilder: FormBuilder,
-    private router: Router,
-    private toaster: ToastrService
+    private router: Router
   ) {}
 
   /**

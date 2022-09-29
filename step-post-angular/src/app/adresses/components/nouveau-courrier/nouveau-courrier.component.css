@@ -1,0 +1,5 @@
+@media print {
+  section:first-child {
+    display: none;
+  }
+}/*# sourceMappingURL=nouveau-courrier.component.css.map */

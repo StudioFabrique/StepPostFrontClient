@@ -4,7 +4,6 @@ import { Destinataire } from '../../models/Destinataire.model';
 @Component({
   selector: 'app-displayed-adresse',
   templateUrl: './displayed-adresse.component.html',
-  styleUrls: ['./displayed-adresse.component.scss'],
 })
 export class DisplayedAdresseComponent implements OnInit {
   @Input() adresse!: Destinataire; //  adresse à afficher
