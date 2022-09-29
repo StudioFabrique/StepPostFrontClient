@@ -20,7 +20,7 @@
         *ngIf="courriersService.etats" @fade>
         <table class="min-w-full table-auto text-xs md:text-lg" *ngIf="(!loader && courriers) || rechercheNom">
             <thead>
-                <tr class="bg-blue-900 text-white text-left cursor-pointer">
+                <tr class="bg-blue text-white text-left cursor-pointer">
                     <th class="px-2 md:px-4" (click)="onSort(0)">
                         <p *ngIf="columns[0] !== null">Date&nbsp;&#9663;</p>
                         <p *ngIf="columns[0] === null">Date</p>
@@ -42,7 +42,7 @@
             <tbody>
                 <tr class="even:bg-stone-200 px-2 py-2 my auto cursor-pointer" *ngFor="let courrier of courriers"
                     (click)="onCourrierClick(courrier.bordereau)">
-                    <td class="orange px-2 md:px-4">{{courrier.date | date}}</td>
+                    <td class="orange px-2 md:px-4 font-bold">{{courrier.date | date}}</td>
                     <td>{{courrier.bordereau}}</td>
                     <td>{{courrier.nom | titlecase}} {{courrier.prenom | titlecase}}</td>
                     <td class="flex items-center gap-x-2 px-2 py-2">
