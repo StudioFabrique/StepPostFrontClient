@@ -11,7 +11,7 @@ export class AccountService {
 
   checkPassword(password: string): Observable<boolean> {
     return this.http.post<boolean>(
-      `${environment.baseUrl}/client/user/check-password`,
+      `${environment.url.baseUrl}/client/user/check-password`,
       { password }
     );
   }
@@ -27,7 +27,7 @@ export class AccountService {
     newPassword: string
   ): Observable<any> {
     return this.http.post<any>(
-      `${environment.baseUrl}/client/user/update-password`,
+      `${environment.url.baseUrl}/client/user/update-password`,
       { oldPassword: oldPassword, newPassword: newPassword }
     );
   }
@@ -39,7 +39,7 @@ export class AccountService {
    */
   updateClientCoordonnees(value: Destinataire): Observable<any> {
     return this.http.post<any>(
-      `${environment.baseUrl}/client/user/update-coordonnees`,
+      `${environment.url.baseUrl}/client/user/update-coordonnees`,
       { value }
     );
   }
@@ -51,7 +51,7 @@ export class AccountService {
    */
   passwordReset(email: string): Observable<boolean> {
     return this.http.get<boolean>(
-      `${environment.baseUrl}/client/user/password-reset-email?email=${email}`
+      `${environment.url.baseUrl}/client/user/password-reset-email?email=${email}`
     );
   }
 
@@ -62,7 +62,7 @@ export class AccountService {
    */
   passwordUpdate(password: string): Observable<any> {
     return this.http.post<any>(
-      `${environment.baseUrl}/client/user/update-reseted-password`,
+      `${environment.url.baseUrl}/client/user/update-reseted-password`,
       { password }
     );
   }

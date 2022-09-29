@@ -17,7 +17,7 @@ export class AdressesService {
     console.log(destinataire);
 
     return this.http.post<any>(
-      `${environment.baseUrl}/client/adresses`,
+      `${environment.url.baseUrl}/client/adresses`,
       destinataire
     );
   }
@@ -32,7 +32,7 @@ export class AdressesService {
   createNewCourrier(dest: Destinataire, type: number): Observable<any> {
     console.log('dest', dest);
 
-    return this.http.post<any>(`${environment.baseUrl}/client/courriers`, {
+    return this.http.post<any>(`${environment.url.baseUrl}/client/courriers`, {
       adresse: dest,
       type: type,
     });
@@ -45,7 +45,7 @@ export class AdressesService {
    */
   deleteAdresse(id: number): Observable<any> {
     return this.http.delete<any>(
-      `${environment.baseUrl}/client/adresses?id=${id}`
+      `${environment.url.baseUrl}/client/adresses?id=${id}`
     );
   }
 
@@ -55,7 +55,7 @@ export class AdressesService {
    * @returns la liste de tous les destinataires
    */
   getAdresses(): Observable<Destinataire[]> {
-    return this.http.get<any>(`${environment.baseUrl}/client/adresses/`);
+    return this.http.get<any>(`${environment.url.baseUrl}/client/adresses/`);
   }
 
   /**
@@ -68,7 +68,7 @@ export class AdressesService {
   getAdressesByName(value: string): Observable<any[] | unknown[]> {
     return this.http
       .get<any[] | unknown[]>(
-        `${environment.baseUrl}/client/adresses?name=${value}`
+        `${environment.url.baseUrl}/client/adresses?name=${value}`
       )
       .pipe(
         tap((response) => console.log(response)),
@@ -83,7 +83,7 @@ export class AdressesService {
    */
   getAdresseById(id: number | null): Observable<Destinataire> {
     return this.http.get<any>(
-      `${environment.baseUrl}/client/adresses/adresse?id=${id}`
+      `${environment.url.baseUrl}/client/adresses/adresse?id=${id}`
     );
   }
 
@@ -93,7 +93,7 @@ export class AdressesService {
    */
   getCurrentUser(): Observable<Destinataire> {
     return this.http.get<Destinataire>(
-      `${environment.baseUrl}/client/user/current-user`
+      `${environment.url.baseUrl}/client/user/current-user`
     );
   }
 
@@ -106,7 +106,7 @@ export class AdressesService {
    */
   getQrCode(bordereau: string): Observable<any> {
     return this.http.get<any>(
-      `${environment.baseUrl}/client/adresses/qrcode?bordereau=${bordereau}`
+      `${environment.url.baseUrl}/client/adresses/qrcode?bordereau=${bordereau}`
     );
   }
 
@@ -118,7 +118,7 @@ export class AdressesService {
    */
   updateAdresse(destinataire: Destinataire): Observable<Destinataire> {
     return this.http.put<any>(
-      `${environment.baseUrl}/client/adresses?id=${destinataire.id}`,
+      `${environment.url.baseUrl}/client/adresses?id=${destinataire.id}`,
       destinataire
     );
   }

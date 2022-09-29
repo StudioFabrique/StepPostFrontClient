@@ -26,11 +26,17 @@ export class NewPasswordComponent implements OnInit {
     this.passwordForm = this.formBuilder.group({
       newPassword: [
         null,
-        [Validators.required, Validators.pattern(environment.passwordRegex)],
+        [
+          Validators.required,
+          Validators.pattern(environment.regex.passwordRegex),
+        ],
       ],
       confirmPassword: [
         null,
-        [Validators.required, Validators.pattern(environment.passwordRegex)],
+        [
+          Validators.required,
+          Validators.pattern(environment.regex.passwordRegex),
+        ],
       ],
     });
     this.passwordForm
@@ -93,8 +99,8 @@ export class NewPasswordComponent implements OnInit {
     console.log('p2', p2);
 
     if (
-      environment.passwordRegex.test(p1) &&
-      environment.passwordRegex.test(p2) &&
+      environment.regex.passwordRegex.test(p1) &&
+      environment.regex.passwordRegex.test(p2) &&
       p1 === p2
     ) {
       return true;

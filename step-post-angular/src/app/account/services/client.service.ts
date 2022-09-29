@@ -15,7 +15,7 @@ export class ClientService {
    */
   checkEmail(email: string): Observable<boolean> {
     return this.http.get<any>(
-      `${environment.baseUrl}/client/user/check-email?email=${email}`
+      `${environment.url.baseUrl}/client/user/check-email?email=${email}`
     );
   }
 
@@ -26,7 +26,7 @@ export class ClientService {
    */
   createExp(exp: Destinataire): Observable<any> {
     return this.http.post<any>(
-      `${environment.baseUrl}/client/user/create-exp`,
+      `${environment.url.baseUrl}/client/user/create-exp`,
       exp
     );
   }
@@ -38,13 +38,13 @@ export class ClientService {
    */
   getTokenInfos(token: string): Observable<any> {
     return this.http.get<any>(
-      `${environment.baseUrl}/client/user/get-decoded-token?token=${token}`
+      `${environment.url.baseUrl}/client/user/get-decoded-token?token=${token}`
     );
   }
 
   accountValidation(password: string, userId: number): Observable<any> {
     return this.http.post<any>(
-      `${environment.baseUrl}/client/user/account-validation`,
+      `${environment.url.baseUrl}/client/user/account-validation`,
       { password, userId }
     );
   }

@@ -47,26 +47,38 @@ export class AdresseFormComponent implements OnInit {
     }
     this.adresseForm = this.formBuilder.group({
       civilite: [null],
-      prenom: [null, [Validators.pattern(environment.genericRegex)]],
+      prenom: [null, [Validators.pattern(environment.regex.genericRegex)]],
       nom: [
         null,
-        [Validators.required, Validators.pattern(environment.genericRegex)],
+        [
+          Validators.required,
+          Validators.pattern(environment.regex.genericRegex),
+        ],
       ],
       adresse: [
         null,
-        [Validators.required, Validators.pattern(environment.genericRegex)],
+        [
+          Validators.required,
+          Validators.pattern(environment.regex.genericRegex),
+        ],
       ],
-      complement: [null, [Validators.pattern(environment.genericRegex)]],
+      complement: [null, [Validators.pattern(environment.regex.genericRegex)]],
       codePostal: [
         null,
-        [Validators.required, Validators.pattern(environment.numberRegex)],
+        [
+          Validators.required,
+          Validators.pattern(environment.regex.numberRegex),
+        ],
       ],
       ville: [
         null,
-        [Validators.required, Validators.pattern(environment.genericRegex)],
+        [
+          Validators.required,
+          Validators.pattern(environment.regex.genericRegex),
+        ],
       ],
-      telephone: [null, Validators.pattern(environment.genericRegex)],
-      email: [null, [Validators.pattern(environment.mailRegex)]],
+      telephone: [null, Validators.pattern(environment.regex.genericRegex)],
+      email: [null, [Validators.pattern(environment.regex.mailRegex)]],
     });
     this.dest = this.adressesService.testNullProperties(this.dest);
     this.adresseForm.patchValue(this.dest);

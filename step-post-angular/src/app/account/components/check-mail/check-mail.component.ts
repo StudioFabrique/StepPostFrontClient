@@ -77,7 +77,7 @@ export class CheckMailComponent implements OnInit {
   onCheck(value: string): void {
     this.email.emit(value);
     console.log('value', value);
-    if (environment.mailRegex.test(value)) {
+    if (environment.regex.mailRegex.test(value)) {
       this.checkTerms$.next(value);
     } else {
       this.isEmailAvailable = undefined;

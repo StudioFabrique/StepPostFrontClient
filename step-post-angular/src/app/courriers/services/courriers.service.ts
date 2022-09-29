@@ -27,7 +27,7 @@ export class CourriersService {
    */
   getAllCourriers(filter: boolean): Observable<RetourCourrier[]> {
     return this.http.get<RetourCourrier[]>(
-      `${environment.baseUrl}/client/courriers?filter=${filter}&offset=${this.page}&limit=${this.max}`
+      `${environment.url.baseUrl}/client/courriers?filter=${filter}&offset=${this.page}&limit=${this.max}`
     );
   }
 
@@ -35,7 +35,7 @@ export class CourriersService {
     console.log(this.order, this.col, this.page);
 
     return this.http.get<RetourCourrier[]>(
-      `${environment.baseUrl}/client/courriers?filter=${filter}&offset=${this.page}&limit=${this.max}&col=${this.col}&order=${this.order}`
+      `${environment.url.baseUrl}/client/courriers?filter=${filter}&offset=${this.page}&limit=${this.max}&col=${this.col}&order=${this.order}`
     );
   }
 
@@ -46,7 +46,7 @@ export class CourriersService {
    */
   getDetailsCourrier(id: number): Observable<any> {
     return this.http.get<any>(
-      `${environment.baseUrl}/client/courriers/detailscourrier?id=${id}`
+      `${environment.url.baseUrl}/client/courriers/detailscourrier?id=${id}`
     );
   }
 
@@ -55,7 +55,7 @@ export class CourriersService {
    */
   getStatutsList(): any {
     this.http
-      .get<string[]>(`${environment.baseUrl}/client/courriers/statuts`)
+      .get<string[]>(`${environment.url.baseUrl}/client/courriers/statuts`)
       .pipe(
         tap((value) => {
           this.etats = value.map((elem: any) => {

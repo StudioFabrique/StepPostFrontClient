@@ -24,7 +24,7 @@ export class AuthService {
    */
   login(username: string, password: string): Observable<any> {
     return this.http
-      .post<any>(`${environment.baseUrl}/auth/client/login`, {
+      .post<any>(`${environment.url.baseUrl}/auth/client/login`, {
         username: username,
         password: password,
       })
@@ -90,7 +90,7 @@ export class AuthService {
    * récupère le nom de l'utilisateur
    */
   getUsername(): void {
-    this.http.get<any>(`${environment.baseUrl}/auth/username`).subscribe({
+    this.http.get<any>(`${environment.url.baseUrl}/auth/username`).subscribe({
       next: this.handleUsernameResponse.bind(this),
       error: this.handleError.bind(this),
     });

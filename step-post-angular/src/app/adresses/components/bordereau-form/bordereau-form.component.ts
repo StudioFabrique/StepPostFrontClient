@@ -33,8 +33,11 @@ export class BordereauFormComponent implements OnInit {
 
     this.bordereauForm = this.formBuilder.group({
       type: [null, [Validators.required]],
-      telephone: [null, [Validators.pattern(environment.genericRegex)]],
-      instructions: [null, [Validators.pattern(environment.genericRegex)]],
+      telephone: [null, [Validators.pattern(environment.regex.genericRegex)]],
+      instructions: [
+        null,
+        [Validators.pattern(environment.regex.genericRegex)],
+      ],
     });
     this.bordereauForm.patchValue(this.dest);
     this.bordereauForm.valueChanges.subscribe((value) => {

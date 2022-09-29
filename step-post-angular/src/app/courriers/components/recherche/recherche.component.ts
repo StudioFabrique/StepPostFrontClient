@@ -87,11 +87,11 @@ export class RechercheComponent implements OnInit {
   }
 
   onSearch(term: string): void {
-    if (environment.numberRegex.test(term) && term.length > 4) {
+    if (environment.regex.numberRegex.test(term) && term.length > 4) {
       this.rechercheByBordereau(+term);
     } else if (
-      !environment.numberRegex.test(term) &&
-      environment.genericRegex.test(term)
+      !environment.regex.numberRegex.test(term) &&
+      environment.regex.genericRegex.test(term)
     ) {
       this.searchTerms$.next(term);
     } else {

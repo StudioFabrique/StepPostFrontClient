@@ -34,11 +34,14 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.loginForm = this.formBuilder.group({
       email: [
         null,
-        [Validators.required, Validators.pattern(environment.mailRegex)],
+        [Validators.required, Validators.pattern(environment.regex.mailRegex)],
       ],
       password: [
         null,
-        [Validators.required, Validators.pattern(environment.passwordRegex)],
+        [
+          Validators.required,
+          Validators.pattern(environment.regex.passwordRegex),
+        ],
       ],
     });
 
@@ -46,7 +49,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       .get('email')
       ?.valueChanges.pipe(
         tap((value) => {
-          this.emailError = environment.mailRegex.test(value);
+          this.emailError = environment.regex.mailRegex.test(value);
         })
       )
       .subscribe();
@@ -56,7 +59,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       ?.valueChanges.pipe(
         tap(
           (value) =>
-            (this.passwordError = environment.passwordRegex.test(value))
+            (this.passwordError = environment.regex.passwordRegex.test(value))
         )
       )
       .subscribe();

@@ -39,31 +39,46 @@ export class UpdateAdresseComponent implements OnInit {
   ngOnInit(): void {
     this.style = this.dest ? 'visible' : 'hidden';
     this.adresseForm = this.formBuilder.group({
-      prenom: [null, Validators.pattern(environment.genericRegex)],
+      prenom: [null, Validators.pattern(environment.regex.genericRegex)],
       nom: [
         null,
-        [Validators.required, Validators.pattern(environment.genericRegex)],
+        [
+          Validators.required,
+          Validators.pattern(environment.regex.genericRegex),
+        ],
       ],
       adresse: [
         null,
-        [Validators.required, Validators.pattern(environment.genericRegex)],
+        [
+          Validators.required,
+          Validators.pattern(environment.regex.genericRegex),
+        ],
       ],
-      complement: [null, Validators.pattern(environment.genericRegex)],
+      complement: [null, Validators.pattern(environment.regex.genericRegex)],
       codePostal: [
         null,
-        [Validators.required, Validators.pattern(environment.genericRegex)],
+        [
+          Validators.required,
+          Validators.pattern(environment.regex.genericRegex),
+        ],
       ],
       ville: [
         null,
-        [Validators.required, Validators.pattern(environment.genericRegex)],
+        [
+          Validators.required,
+          Validators.pattern(environment.regex.genericRegex),
+        ],
       ],
       telephone: [
         null,
-        [Validators.required, Validators.pattern(environment.genericRegex)],
+        [
+          Validators.required,
+          Validators.pattern(environment.regex.genericRegex),
+        ],
       ],
       email: [
         this.email,
-        [Validators.required, Validators.pattern(environment.mailRegex)],
+        [Validators.required, Validators.pattern(environment.regex.mailRegex)],
       ],
     });
     this.dest = this.adressesService.testNullProperties(this.dest);

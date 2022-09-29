@@ -10,7 +10,7 @@ import { RetourCourrier } from '../models/retour-courrier.model';
 })
 export class RechercheService {
   detailsCourrier$: Subject<DetailsCourrier> = new Subject<DetailsCourrier>();
-  baseUrl: string = environment.baseUrl;
+  baseUrl: string = environment.url.baseUrl;
   constructor(private http: HttpClient) {}
 
   getDetailsCourrier(bordereau: number): void {
@@ -60,7 +60,7 @@ export class RechercheService {
   getNameList(name: string): Observable<any[] | unknown> {
     return this.http
       .get<any | unknown>(
-        `${environment.baseUrl}/client/recherchecourrier/liste-nom?name=${name}`
+        `${this.baseUrl}/client/recherchecourrier/liste-nom?name=${name}`
       )
       .pipe(
         tap((response) => console.log(response)),

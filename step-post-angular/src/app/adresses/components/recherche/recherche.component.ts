@@ -77,7 +77,7 @@ export class RechercheComponent implements OnInit {
    * @returns une liste de destinataires
    */
   private searchTerm(term: string): Observable<any | undefined> {
-    if (environment.genericRegex.test(term)) {
+    if (environment.regex.genericRegex.test(term)) {
       this.isLoading.emit(true);
       return this.adressesService.getAdressesByName(term);
     } else return this.adressesService.getAdressesByName('@@@');

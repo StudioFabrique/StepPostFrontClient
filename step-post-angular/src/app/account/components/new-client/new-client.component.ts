@@ -39,7 +39,7 @@ export class NewClientComponent implements OnInit {
 
   onPasswordSubmitted(password: string): void {
     console.log('email', this.email);
-    if (!environment.mailRegex.test(this.email)) {
+    if (!environment.regex.mailRegex.test(this.email)) {
       this.toaster.warning(this.emailWarningMsg, '', {
         positionClass: 'toast-bottom-center',
       });

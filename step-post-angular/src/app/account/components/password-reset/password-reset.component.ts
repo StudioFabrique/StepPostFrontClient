@@ -29,14 +29,14 @@ export class PasswordResetComponent implements OnInit {
     this.emailForm = this.formBuilder.group({
       email: [
         null,
-        [Validators.required, Validators.pattern(environment.mailRegex)],
+        [Validators.required, Validators.pattern(environment.regex.mailRegex)],
       ],
     });
     this.emailForm
       .get('email')
       ?.valueChanges.pipe(
         tap((value) => {
-          this.isEmailValid = environment.mailRegex.test(value);
+          this.isEmailValid = environment.regex.mailRegex.test(value);
           this.mailSent = false;
         })
       )
