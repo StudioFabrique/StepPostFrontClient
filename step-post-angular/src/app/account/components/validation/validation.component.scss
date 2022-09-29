@@ -40,8 +40,8 @@ main {
                 }
 
                 >a {
+                    text-decoration: none;
                     font-size: 1em;
-                    color: $orange;
                 }
             }
 
@@ -56,6 +56,10 @@ main {
                 row-gap: 1vh;
             }
         }
+    }
+
+    >.expired {
+        margin-top: 100px;
 
         >div {
             width: 100%;
@@ -63,9 +67,10 @@ main {
             justify-content: center;
 
             >a {
-                color: $orange;
+                width: 100%;
+                text-decoration: none;
                 font-size: .85em;
-                text-decoration: underline;
+                text-align: center;
             }
         }
     }

@@ -1,12 +1,14 @@
 <main class="md:w-full flex flex-col items-center gap-y-8">
-    <section class="w-80 text-sm flex justify-between">
-        <h4>Nouvelle adresse</h4>
-        <a routerLink="/adresses">
-            <h4 class="underline cursor-pointer text-orange">retour</h4>
-        </a>
+    <section class="w-80 md:max-w-full container md:text-lg text-sm md:flex md:justify-start">
+        <div class="md:w-full flex justify-between font-bold">
+            <h4>Nouvelle adresse</h4>
+            <a routerLink="/adresses">
+                <h4 class="underline cursor-pointer text-orange">retour</h4>
+            </a>
+        </div>
     </section>
     <div *ngIf="loader" class="lds-dual-ring"></div>
-    <section class="md:max-w-4xl flex container mx-auto">
+    <section class="md:max-w-4xl bg-orange flex container mx-auto">
         <app-adresse-form class="w-full" *ngIf="!loader" (submitted)="onSubmitted($event)"></app-adresse-form>
     </section>
 </main>

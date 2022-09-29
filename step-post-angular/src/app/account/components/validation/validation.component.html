@@ -12,13 +12,13 @@
             <app-new-password (submitted)="onSubmitted($event)"></app-new-password>
         </article>
         <article *ngIf="!accountActivated">
-            <p>Le mot de passe doit être composé :</p>
+            <p>Le mot de passe doit être composé d' :</p>
             <ul>
-                <li>d'au moins 8 caractères</li>
-                <li>d'une majuscule</li>
-                <li>d'une minuscule</li>
-                <li>d'un chiffre</li>
-                <li>d'un caractère spécial</li>
+                <li>- au moins 8 caractères</li>
+                <li>- une majuscule</li>
+                <li>- une minuscule</li>
+                <li>- un chiffre</li>
+                <li>- un caractère spécial</li>
             </ul>
         </article>
         <article *ngIf="accountActivated">
@@ -28,14 +28,14 @@
                     Step-Post, nous vous remercions pour votre confiance.</p>
             </div>
             <div>
-                <a routerLink="/login">connexion</a>
+                <a class="button" routerLink="/login">connexion</a>
             </div>
         </article>
     </section>
-    <section *ngIf="expired">
-        <p>Ce lien a expiré.</p>
+    <section class="expired" *ngIf="expired">
+        <h2>Ce lien a expiré.</h2>
         <div>
-            <a routerLink="/login">connexion</a>
+            <a class="button" routerLink="/login">accueil</a>
         </div>
     </section>
 </main>

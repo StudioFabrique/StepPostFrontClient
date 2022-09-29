@@ -1,4 +1,4 @@
-<main class="md:w-full flex flex-col items-center gap-y-5 md:gap-y-10 mb-8">
+<main class="md:w-full flex flex-col items-center gap-y-5 md:gap-y-10 mb-8 h-[calc(90vh_-_70px)]">
     <section class="md:max-w-7xl container mx-auto flex flex col items-center">
         <app-recherche class="min-w-full" [filter]="filter" (isLoading)="onSetLoader($event)"
             (searchedName)="onRechercheNom($event)" (retourNoResults)="onRetour()">

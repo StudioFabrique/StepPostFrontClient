@@ -1,6 +1,6 @@
-<article class="w-80 md:w-full bg-white mx-auto text-xs md:text-sm mb-10">
-    <form class="bg-orange md:w-full flex flex-col gap-y-4 mx-8" [formGroup]="adresseForm" (submit)="onSubmitForm()">
-        <div class="md:w-full flex items-center justify-between">
+<article class="w-80 md:w-full bg-white mx-auto text-xs md:text-sm mb-10 flex flex-col items-center">
+    <form class="w-full md:w-full flex flex-col gap-y-4 mx-8" [formGroup]="adresseForm" (submit)="onSubmitForm()">
+        <div class="flex items-center justify-between">
             <label class="flex flex-col">Civilité
                 <select
                     class="shadow border-stone-300 w-80 md:w-96 p-4 md:p-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -21,7 +21,7 @@
                     class="shadow border-stone-300 border w-80 md:w-96 p-4 md:p-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     type="text" id="nom" formControlName="nom" placeholder="Dupont">
             </label>
-            <label class="bg-blue">
+            <label>
                 <div class="flex gap-x-2">
                     <p>Prénom / Service</p>
                     <p class="text-red">*</p>
@@ -31,14 +31,14 @@
                     type="text" id="prenom" formControlName="prenom" placeholder="Jean">
             </label>
         </div>
-        <div class="md:w-full flex flex-col">
-            <label class="md:w-full">
-                <div class="md:w-full flex gap-x-2">
+        <div class="flex flex-col">
+            <label class="">
+                <div class="flex gap-x-2">
                     <p>Adresse</p>
                     <p class="text-red">*</p>
                 </div>
                 <textarea
-                    class="shadow border-stone-300 border w-80 md:w-96 p-4 md:p-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    class="shadow border-stone-300 border w-80 md:w-full p-4 md:p-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     id="adresse" rows="2" formControlName="adresse" placeholder="12 rue du Président Toto"></textarea>
             </label>
         </div>
@@ -48,12 +48,12 @@
                     <p>Complément d'adresse</p>
                 </div>
                 <textarea
-                    class="shadow border-stone-300 border w-80 md:w-96 p-4 md:p-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    class="shadow border-stone-300 border w-80 md:w-full p-4 md:p-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     id="complement" rows="2" formControlName="complement"
                     placeholder="Chez Mr Jacques Durand"></textarea>
             </label>
         </div>
-        <div class="flex flex-col gap-y-4">
+        <div class="flex flex-col md:flex-row gap-x-4 md:justify-between gap-y-4">
             <label>
                 <div class="flex gap-x-2">
                     <p>Code Postal</p>
@@ -73,14 +73,14 @@
                     type="text" id="ville" formControlName="ville" placeholder="Pau">
             </label>
         </div>
-        <div class="flex flex-col gap-y-4">
-            <label>
+        <div class="flex flex-col md:flex-row md:gap-x-4 md:justify-between gap-y-4">
+            <label class="flex flex-col">
                 Téléphone
                 <input
                     class="shadow border-stone-300 border w-80 md:w-96 p-4 md:p-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     type="text" id="telephone" formControlName="telephone" placeholder="0102030405">
             </label>
-            <label>
+            <label class="flex flex-col">
                 Email
                 <input
                     class="shadow border-stone-300 border w-80 md:w-96 p-4 md:p-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -94,24 +94,24 @@
         </div>
         <div class="flex gap-x-2 justify-end" *ngIf="!nouveauCourrier">
             <button
-                class="shadow-xl select-none p-2 active:translate-x-0.5 active:translate-y-0.5 focus:outline-none focus:shadow-outline text-xs bg-orange text-white font-bold"
+                class="shadow-xl select-none p-2 md:p-4 active:translate-x-0.5 active:translate-y-0.5 focus:outline-none focus:shadow-outline text-xs md:text-sm md:font-bold bg-orange text-white"
                 type="button" (click)="onCancel()">annuler</button>
             <input
-                class="shadow-xl select-none p-2 active:translate-x-0.5 active:translate-y-0.5 focus:outline-none focus:shadow-outline text-xs bg-blue text-white font-bold"
+                class="shadow-xl select-none p-2 md:p-4 active:translate-x-0.5 active:translate-y-0.5 focus:outline-none focus:shadow-outline text-xs md:text-sm bg-blue text-white md:font-bold"
                 type="submit" value="envoyer">
         </div>
         <div class="flex gap-x-2 justify-between" *ngIf="nouveauCourrier">
             <div>
                 <button
-                    class="shadow-xl select-none p-2 active:translate-x-0.5 active:translate-y-0.5 focus:outline-none focus:shadow-outline text-xs bg-white text-blue font-bold border-blue border"
+                    class="shadow-xl select-none p-2 md:p-4 active:translate-x-0.5 active:translate-y-0.5 focus:outline-none focus:shadow-outline text-xs md:text-sm md:font-bold bg-white text-blue border-blue border"
                     type="button" (click)="onSauvegarder()">{{buttonText}}</button>
             </div>
             <div class="flex gap-x-2">
                 <button
-                    class="shadow-xl select-none p-2 active:translate-x-0.5 active:translate-y-0.5 focus:outline-none focus:shadow-outline text-xs bg-orange text-white font-bold"
+                    class="shadow-xl select-none p-2 md:p-4 active:translate-x-0.5 active:translate-y-0.5 focus:outline-none focus:shadow-outline text-xs md:text-sm md:font-bold bg-orange text-white"
                     type="button" (click)="onCancel()">annuler</button>
                 <input
-                    class="shadow-xl select-none p-2 active:translate-x-0.5 active:translate-y-0.5 focus:outline-none focus:shadow-outline text-xs bg-blue text-white font-bold"
+                    class="shadow-xl select-none p-2 md:p-4 active:translate-x-0.5 active:translate-y-0.5 focus:outline-none focus:shadow-outline text-xs md:text-sm bg-blue text-white md:font-bold"
                     type="submit" value="continuer">
             </div>
         </div>

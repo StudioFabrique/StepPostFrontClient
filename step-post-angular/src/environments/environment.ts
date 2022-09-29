@@ -1,11 +1,12 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
-const localUrl = 'http://localhost:3000/api';
-const remoteUrl = 'https://step-post-nodejs.herokuapp.com/api';
+// const localUrl = 'http://localhost:3000/api';
+//const remoteUrl = 'https://step-post-nodejs.herokuapp.com/api';
 export const environment = {
-  production: false,
-  baseUrl: localUrl,
+  production: true,
+  // baseUrl: 'http://localhost:3000/api',
+  baseUrl: 'https://step-post-nodejs.herokuapp.com/api',
   mailRegex:
     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
   numberRegex: /^[0-9]*$/,
