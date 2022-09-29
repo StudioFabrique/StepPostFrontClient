@@ -1,47 +1,49 @@
-<header>
+<header class="flex justify-between items-center mb-10 mr-8">
     <div>
-        <img src="assets/img/logo.png" alt="logo step post">
+        <img class="w-48 md:w-64 p-5" src="assets/img/logo.png" alt="logo step post">
     </div>
-    <div *ngIf="auth.isLoggedIn">
-        <ul>
-            <li>
-                <a routerLink="/adresses/nouveau-courrier" class="nouveau-courrier">nouveau courrier</a>
-            </li>
-            <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+    <div *ngIf="auth.isLoggedIn"
+        class="flex flex-col-reverse md:flex-row justify-center items-center md:gap-x-4 gap-y-2">
+        <div>
+            <a routerLink="/adresses/nouveau-courrier"
+                class="shadow-5xl select-none px-4 py-2 active:translate-x-0.5 active:translate-y-0.5 focus:outline-none focus:shadow-outline text-xs md:text-sm bg-white text-blue border border-blue font-bold">nouveau
+                courrier</a>
+        </div>
+        <ul class="flex items-center gap-x-2 md:gap-x-10 p-2 cursor-pointer">
+            <li class="pb-2" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a routerLink="/courriers">
-                    <img class="icone" src="assets/img/icone-home.png" alt="icone home">
+                    <img src="assets/img/icone-home.png" width=24px height=auto alt="icone home">
                 </a>
             </li>
-            <li routerLinkActive="active">
+            <li class="pb-2" routerLinkActive="active">
                 <a routerLink="/adresses">
-                    <img class="icone" src="assets/img/icone-favoris.png" alt="icone adresses">
+                    <img class="icone" src="assets/img/icone-favoris.png" width=24px height=auto alt="icone adresses">
                 </a>
             </li>
-            <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <li class="pb-2" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a routerLink="/historique">
-                    <img class="icone" src="assets/img/icone-tableau.png" alt="icone historique">
+                    <img class="icone" src="assets/img/icone-tableau.png" width=24px height=auto alt="icone historique">
                 </a>
             </li>
-            <li *ngIf="!auth.username" routerLinkActive="active">
+            <li class="pb-2" *ngIf="!auth.username" routerLinkActive="active">
                 <a routerLink="/profil">
-                    <img class="icone" src="assets/img/icone-account.png" alt="icone gestion du profil">
+                    <img class="icone" src="assets/img/icone-account.png" width=24px height=auto
+                        alt="icone gestion du profil">
                 </a>
             </li>
-            <li>
+            <li class="pb-2">
                 <p>
-                    <img class="icone" src="assets/img/icone-logout.png" alt="icone déconnexion" (click)="onLogout()">
+                    <img class="icone" src="assets/img/icone-logout.png" width=24px height=auto alt="icone déconnexion"
+                        (click)="onLogout()">
                 </p>
             </li>
-            <li *ngIf="auth.username" routerLinkActive="active">
-                <a class="username" routerLink="/profil">{{auth.username | titlecase}}</a>
+            <li class="pb-2" *ngIf="auth.username" routerLinkActive="active">
+                <a class="text-sm md:text-xl" routerLink="/profil">{{auth.username | titlecase}}</a>
             </li>
         </ul>
     </div>
-    <div *ngIf="!auth.isLoggedIn && auth.isLoginPage">
-        <ul>
-            <li>
-                <p class="nouveau-courrier" (click)="onInscriptionClick()">Inscription</p>
-            </li>
-        </ul>
+    <div *ngIf="auth.isLoginPage">
+        <a class="shadow-5xl select-none p-4 active:translate-x-0.5 active:translate-y-0.5 focus:outline-none focus:shadow-outline text-xs md:text-sm bg-white text-blue border border-blue font-bold"
+            routerLink="/profil/new-client">Inscription</a>
     </div>
 </header>

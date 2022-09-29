@@ -34,8 +34,8 @@ main > section > article > div > p {
   font-size: 0.85em;
 }
 main > section > article > div > a {
+  text-decoration: none;
   font-size: 1em;
-  color: #ff5e1a;
 }
 main > section > article > div:nth-child(2) {
   color: #ff5e1a;
@@ -46,13 +46,17 @@ main > section > article > div:last-child {
   align-items: center;
   row-gap: 1vh;
 }
-main > section > div {
+main > .expired {
+  margin-top: 100px;
+}
+main > .expired > div {
   width: 100%;
   display: flex;
   justify-content: center;
 }
-main > section > div > a {
-  color: #ff5e1a;
+main > .expired > div > a {
+  width: 100%;
+  text-decoration: none;
   font-size: 0.85em;
-  text-decoration: underline;
+  text-align: center;
 }/*# sourceMappingURL=validation.component.css.map */

@@ -11,7 +11,6 @@ import { AuthService } from 'src/app/core/services/auth.service';
 @Component({
   selector: 'app-courriers',
   templateUrl: './courriers.component.html',
-  styleUrls: ['./courriers.component.scss'],
   animations: [fade],
 })
 export class CourriersComponent implements OnInit {
@@ -96,6 +95,17 @@ export class CourriersComponent implements OnInit {
       this.getCourrierActif(id).active = true;
     }
     this.courrierId = id;
+  }
+
+  /**
+   * reset le background-color d'un courrier lorque l'utilisateur lance une recherche
+   * par numéro de bordereau
+   */
+  onResetId(): void {
+    const courrierActif = this.courriers.find((elem) => elem.active === true);
+    if (courrierActif) {
+      courrierActif.active = false;
+    }
   }
 
   /**

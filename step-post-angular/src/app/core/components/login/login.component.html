@@ -1,24 +1,35 @@
-<main class="connexion-form-main">
-    <section *ngIf="!loader" class="section-connexion-titre">
-        <h2>Connexion</h2>
+<main class="flex justify-center flex-col items-center h-[calc(70vh_-_70px)] gap-y-8">
+    <section *ngIf="!loader" class="w-64 md:w-96">
+        <h2 class="flex justify-start md:text-3xl text-xl font-bold">Connexion</h2>
     </section>
-    <section class="section-connexion-form">
+    <section class="flex flex-col">
         <div *ngIf="loader" class="lds-dual-ring"></div>
-        <form *ngIf="!loader" class="form-connexion" [formGroup]="loginForm">
+        <form *ngIf="!loader" class="flex flex-col w-64 md:w-96 gap-y-4" [formGroup]="loginForm">
 
             <!-- email -->
             <label for="email">Email :</label>
-            <input id="email" type="email" formControlName="email" required [testLoginForm]="emailError">
+            <input
+                class="border-stone-300 border-2 w-full p-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="email" type="email" formControlName="email" required [testLoginForm]="emailError">
 
             <!-- password -->
             <label for="password">Mot de Passe :</label>
-            <input id="password" type="password" formControlName="password" required [testLoginForm]="passwordError">
+            <input
+                class="border-stone-300 border-2 w-full p-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="password" type="password" formControlName="password" required [testLoginForm]="passwordError">
 
             <!-- buttons -->
-            <div>
-                <a routerLink="/profil/password-reset">Mot de passe oublié</a>
-                <button class="button" (click)="onSubmitForm()" [disabled]="loginForm.invalid" type="submit">se
-                    connecter</button>
+            <div class="flex justify-between items-baseline w-64 md:w-96 gap-y-5">
+                <span class="flex justify-center w-64 md:w-96">
+                    <a routerLink="/password-reset" class="text-sm underline">Mot de passe oublié</a>
+                </span>
+                <span class="w-64 md:w-96 flex justify-end">
+                    <button
+                        class="shadow-5xl select-none p-4 active:translate-x-0.5 active:translate-y-0.5 focus:outline-none focus:shadow-outline text-xs md:text-sm bg-blue text-white font-bold"
+                        (click)="onSubmitForm()" [disabled]="loginForm.invalid" type="submit">se
+                        connecter
+                    </button>
+                </span>
             </div>
         </form>
     </section>

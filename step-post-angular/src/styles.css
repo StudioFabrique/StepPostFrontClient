@@ -1,6 +1,10 @@
-/* You can add global styles to this file, and also import other style files */ /* based on angular-toastr css https://github.com/Foxandxss/angular-toastr/blob/cb508fe6801d6b288d3afc525bb40fee1b101650/dist/angular-toastr.css */
-/* position */
 @import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* You can add global styles to this file, and also import other style files */
+/* based on angular-toastr css https://github.com/Foxandxss/angular-toastr/blob/cb508fe6801d6b288d3afc525bb40fee1b101650/dist/angular-toastr.css */
+/* position */
 .toast-center-center {
   top: 50%;
   left: 50%;
@@ -246,6 +250,21 @@ body > #root {
 
 .active {
   border-bottom: 1px solid #140A82;
+}
+
+.nouveau-courrier {
+  padding: 0.5vw;
+  color: #140A82;
+  font-weight: bold;
+  background-color: white;
+  border: 1px solid #140A82;
+}
+.nouveau-courrier:hover {
+  cursor: pointer;
+  filter: brightness(1.25);
+}
+.nouveau-courrier:active {
+  transform: translate(2px, 2px);
 }
 
 .button {

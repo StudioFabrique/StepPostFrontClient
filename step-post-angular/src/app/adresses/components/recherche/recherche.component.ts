@@ -15,7 +15,6 @@ import { AdressesService } from '../../services/adresses.service';
 @Component({
   selector: 'app-recherche',
   templateUrl: './recherche.component.html',
-  styleUrls: ['./recherche.component.scss'],
 })
 export class RechercheComponent implements OnInit {
   @Output() retourAdresses: EventEmitter<Destinataire[] | unknown[]> =

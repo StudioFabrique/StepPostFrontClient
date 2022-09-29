@@ -8,7 +8,6 @@ import { CourriersService } from '../../services/courriers.service';
 @Component({
   selector: 'app-courrier',
   templateUrl: './courrier.component.html',
-  styleUrls: ['./courrier.component.scss'],
 })
 export class CourrierComponent implements OnInit {
   @Input() courrier!: RetourCourrier;

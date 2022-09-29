@@ -181,10 +181,7 @@
 .main-bordereau > .section-bordereau-buttons {
   width: 100%;
   display: flex;
-  justify-content: space-between;
-}
-.main-bordereau > .section-bordereau-buttons > div:first-child > button {
-  background-color: #24A640;
+  justify-content: flex-end;
 }
 .main-bordereau > .section-bordereau-buttons > div:last-child > button:first-child {
   background-color: #FF5E1A;

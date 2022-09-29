@@ -1,4 +1,15 @@
-<section class="section-adresse-form">
+<main class="md:w-full flex flex-col items-center gap-y-8">
+    <section class="w-full md:max-w-4xl md:text-lg text-sm md:flex">
+        <div class="min-w-full flex justify-between font-bold">
+            <h4>Nouvelle adresse</h4>
+            <a routerLink="/adresses">
+                <h4 class="underline cursor-pointer text-orange">retour</h4>
+            </a>
+        </div>
+    </section>
     <div *ngIf="loader" class="lds-dual-ring"></div>
-    <app-adresse-form *ngIf="!loader" (submitted)="onSubmitted($event)"></app-adresse-form>
-</section>
+    <section class="md:max-w-4xl flex container mx-auto">
+        <app-adresse-form class="w-full flex" *ngIf="!loader" (submitted)="onSubmitted($event)">
+        </app-adresse-form>
+    </section>
+</main>

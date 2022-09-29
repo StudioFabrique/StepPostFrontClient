@@ -10,7 +10,6 @@ import { AdressesService } from '../../services/adresses.service';
 @Component({
   selector: 'app-adresse-form',
   templateUrl: './adresse-form.component.html',
-  styleUrls: ['./adresse-form.component.scss'],
 })
 export class AdresseFormComponent implements OnInit {
   @Input() dest!: Destinataire;

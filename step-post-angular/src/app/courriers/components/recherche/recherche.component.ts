@@ -20,7 +20,6 @@ import { RechercheService } from '../../services/recherche.service';
 @Component({
   selector: 'app-recherche',
   templateUrl: './recherche.component.html',
-  styleUrls: ['./recherche.component.scss'],
   animations: [fade],
 })
 export class RechercheComponent implements OnInit {

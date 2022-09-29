@@ -1,17 +1,23 @@
-<main class="main-recherche">
-    <form class="form-recherche" [formGroup]="searchForm">
-        <div>
-            <div>
-                <label>Numéro de bordereau / Nom du destinataire</label>
-                <div class="collection">
-                    <input #searchBox (keyup)="onSearch(searchBox.value)" type="text" id="searchInput"
-                        autocomplete="off" formControlName="searchInput" autofocus>
-                    <div *ngFor="let name of rechercheList">
+<article class="w-full flex flex-col items-center gap-y-2">
+    <form class="w-full" [formGroup]="searchForm">
+        <div class="w-full">
+            <div class="flex flex-col items-center w-full gap-y-1">
+                <div class="flex justify-center md:w-84 w-full">
+                    <label class="text-xs md:text-sm">Numéro de bordereau / Nom du destinataire</label>
+                </div>
+                <div class="flex flex-col justify-center items-center">
+                    <input
+                        class="shadow appearance-none border-2 border-stone-300 w-64 md:w-96 p-4 md:p-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        #searchBox (keyup)="onSearch(searchBox.value)" type="text" id="searchInput" autocomplete="off"
+                        formControlName="searchInput" autofocus placeholder="Recherche...">
+                    <div *ngFor="let name of rechercheList"
+                        class="cursor-pointer text-xs md:text-sm flex flex-col justify-center items-start w-64 md:w-full">
                         <p *ngIf="nameList && rechercheList.length !== 0" (click)="onRechercheByName(name)">{{name.nom |
                             titlecase}} {{name.prenom |
                             titlecase}}</p>
                     </div>
-                    <div *ngIf="noNameResults && nameList">
+                    <div *ngIf="noNameResults && nameList"
+                        class="text-xs md:text-sm flex flex-col justify-center items-start w-64 md:w-full">
                         <p>
                             Aucun courrier trouvé adressé à ce destinataire
                         </p>
@@ -21,10 +27,10 @@
         </div>
     </form>
 
-    <div *ngIf="timeline" @fade>
-        <app-details-recherche (emitter)="onFermer()" [detailsCourrier]="detailsCourrier">
+    <div class="md:max-w-5xl flex justify-center container mx-auto" *ngIf="timeline" @fade>
+        <app-details-recherche class="min-w-full" (emitter)="onFermer()" [detailsCourrier]="detailsCourrier">
         </app-details-recherche>
     </div>
 
     <app-no-results *ngIf="noResults" @fade (retourNoResults)=" onRetourNoResults($event)"></app-no-results>
-</main>
+</article>

@@ -7,7 +7,6 @@ import { AdressesService } from '../../services/adresses.service';
 @Component({
   selector: 'app-add-adresse',
   templateUrl: './add-adresse.component.html',
-  styleUrls: ['./add-adresse.component.scss'],
 })
 export class AddAdresseComponent implements OnInit {
   loader: boolean = false; //  true : affiche le loader
