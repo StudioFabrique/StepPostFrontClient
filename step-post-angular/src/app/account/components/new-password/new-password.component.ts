@@ -37,14 +37,10 @@ export class NewPasswordComponent implements OnInit {
       .get('newPassword')
       ?.valueChanges.pipe(
         tap((value) => {
-          if (environment.passwordRegex.test(value)) {
-            this.passwordMatch = this.testPassword(
-              value,
-              this.passwordForm.value.confirmPassword
-            );
-          } else {
-            this.passwordMatch = false;
-          }
+          this.passwordMatch = this.testPassword(
+            value,
+            this.passwordForm.value.confirmPassword
+          );
         })
       )
       .subscribe();
@@ -52,14 +48,10 @@ export class NewPasswordComponent implements OnInit {
       .get('confirmPassword')
       ?.valueChanges.pipe(
         tap((value) => {
-          if (environment.passwordRegex.test(value)) {
-            this.passwordMatch = this.testPassword(
-              value,
-              this.passwordForm.value.newPassword
-            );
-          } else {
-            this.passwordMatch = false;
-          }
+          this.passwordMatch = this.testPassword(
+            value,
+            this.passwordForm.value.newPassword
+          );
         })
       )
       .subscribe();
@@ -97,6 +89,17 @@ export class NewPasswordComponent implements OnInit {
   }
 
   testPassword(p1: string, p2: string): boolean {
-    return p1 === p2 ? true : false;
+    console.log('p1', p1);
+    console.log('p2', p2);
+
+    if (
+      environment.passwordRegex.test(p1) &&
+      environment.passwordRegex.test(p2) &&
+      p1 === p2
+    ) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

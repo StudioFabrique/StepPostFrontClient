@@ -27,7 +27,7 @@ export class ReinitialiserPasswordComponent implements OnInit {
   }
 
   onSubmitted(value: string): void {
-    this.accountService.passwordUpdate(value, this.token).subscribe({
+    this.accountService.passwordUpdate(value).subscribe({
       next: this.handleResponse.bind(this),
       error: this.handleError.bind(this),
     });

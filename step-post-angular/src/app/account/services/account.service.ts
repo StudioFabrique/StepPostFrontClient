@@ -44,15 +44,25 @@ export class AccountService {
     );
   }
 
+  /**
+   * demande au backend d'envoyer un mail contenant un lien pour reset le password de l'utilisateur
+   * @param email string: le backend enverra un mail de reset de password à cette adresse
+   * @returns boolean: true: le mail a bien été envoyé
+   */
   passwordReset(email: string): Observable<boolean> {
     return this.http.get<boolean>(
-      `${environment.baseUrl}/client/user/password-reset?email=${email}`
+      `${environment.baseUrl}/client/user/password-reset-email?email=${email}`
     );
   }
 
-  passwordUpdate(password: string, token: any): Observable<any> {
+  /**
+   * Met à jour le mot de passe de l'utlisateur dans la bdd
+   * @param password string: nouveau mot de passe choisi par l'utilisateur
+   * @returns string: message confirmant le succès de l'opération
+   */
+  passwordUpdate(password: string): Observable<any> {
     return this.http.post<any>(
-      `${environment.baseUrl}/client/user/password-update`,
+      `${environment.baseUrl}/client/user/update-reseted-password`,
       { password }
     );
   }

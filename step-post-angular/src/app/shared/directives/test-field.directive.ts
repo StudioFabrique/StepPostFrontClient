@@ -9,28 +9,34 @@ export class TestFieldDirective {
   constructor(private elementRef: ElementRef) {}
 
   @HostListener('keyup') onChange() {
+    const element1 =
+      this.elementRef.nativeElement.parentNode.parentNode.children[0]
+        .children[1];
+    const element2 =
+      this.elementRef.nativeElement.parentNode.parentNode.children[1]
+        .children[1];
     if (this.value) {
-      this.validField();
+      this.validField([element1, element2]);
     } else {
-      this.notValid();
+      this.notValid([element1, element2]);
     }
   }
 
-  validField() {
-    this.elementRef.nativeElement.style.backgroundImage =
-      "url('/assets/img/icone-check.png')";
-    this.elementRef.nativeElement.style.backgroundRepeat = 'no-repeat';
-    this.elementRef.nativeElement.style.backgroundSize = 'auto';
-    this.elementRef.nativeElement.style.backgroundPosition =
-      'center right 20px';
+  validField(element: any[]) {
+    element.forEach((elem) => {
+      elem.style.backgroundImage = "url('/assets/img/icone-check.png')";
+      elem.style.backgroundRepeat = 'no-repeat';
+      elem.style.backgroundSize = 'auto';
+      elem.style.backgroundPosition = 'center right 20px';
+    });
   }
 
-  notValid() {
-    this.elementRef.nativeElement.style.backgroundImage =
-      "url('/assets/img/icone-uncheck.png')";
-    this.elementRef.nativeElement.style.backgroundRepeat = 'no-repeat';
-    this.elementRef.nativeElement.style.backgroundSize = 'auto';
-    this.elementRef.nativeElement.style.backgroundPosition =
-      'center right 20px';
+  notValid(element: any[]) {
+    element.forEach((elem) => {
+      elem.style.backgroundImage = "url('/assets/img/icone-uncheck.png')";
+      elem.style.backgroundRepeat = 'no-repeat';
+      elem.style.backgroundSize = 'auto';
+      elem.style.backgroundPosition = 'center right 20px';
+    });
   }
 }
