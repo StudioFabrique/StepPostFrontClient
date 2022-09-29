@@ -21,9 +21,9 @@
             [courrier]="courrier" @fade></app-courrier>
 
         <div class="pages" *ngIf="courriers">
-            <button [ngStyle]="{visibility: previous}" (click)="onClickPrevious()"> {{"<"}} </button>
+            <button [ngStyle]="{visibility: courriersService.previous}" (click)="onClickPrevious()"> {{"<"}} </button>
                     <p>{{courriersService.page + 1}} / {{courriersService.pagesMax}}</p>
-                    <button [ngStyle]="{visibility: next}" (click)="onClickNext()"> {{">"}} </button>
+                    <button [ngStyle]="{visibility: courriersService.next}" (click)="onClickNext()"> {{">"}} </button>
         </div>
     </section>
     <section *ngIf="!courriers && !loader">

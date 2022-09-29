@@ -15,6 +15,10 @@ export class CourriersService {
   pagesMax!: number; //  nombre de pages maximum affiché à l'écran
   col!: number; //  pagination : colonne sur laquelle l'utilisateur a cliqué
   order!: boolean | null; // true : 'asc', false : 'desc', ou le contraire
+  previous!: string;
+  next!: string;
+  filter!: boolean;
+  total!: number;
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -31,11 +35,11 @@ export class CourriersService {
     );
   }
 
-  getSortedCourriers(filter: boolean): Observable<RetourCourrier[]> {
+  getSortedCourriers(): Observable<RetourCourrier[]> {
     console.log(this.order, this.col, this.page);
 
     return this.http.get<RetourCourrier[]>(
-      `${environment.url.baseUrl}/client/courriers?filter=${filter}&offset=${this.page}&limit=${this.max}&col=${this.col}&order=${this.order}`
+      `${environment.url.baseUrl}/client/courriers?filter=${this.filter}&offset=${this.page}&limit=${this.max}&col=${this.col}&order=${this.order}`
     );
   }
 
@@ -114,5 +118,14 @@ export class CourriersService {
       value % this.max !== 0
         ? Math.trunc(value / this.max) + 1
         : value / this.max;
+  }
+
+  /**
+   * appele les méthodes qui vont définir le style des boutons du
+   * système de pagination
+   */
+  setButtonsStyle(size: number): void {
+    this.previous = this.setPrevious();
+    this.next = this.setNext(size, this.total);
   }
 }

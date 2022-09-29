@@ -1,7 +1,7 @@
 <main class="main-historique">
 
-    <app-recherche [filter]="filter" (isLoading)="onSetLoader($event)" (searchedName)="onRechercheNom($event)"
-        (retourNoResults)="onRetour()">
+    <app-recherche [filter]="courriersService.filter" (isLoading)="onSetLoader($event)"
+        (searchedName)="onRechercheNom($event)" (retourNoResults)="onRetour()">
     </app-recherche>
 
     <section class="section-courriers-titre">
@@ -51,9 +51,9 @@
             </tbody>
         </table>
         <div *ngIf="!loader && courriers" class="pages">
-            <button [ngStyle]="{visibility: previous}" (click)="onClickPrevious()"> {{"<"}} </button>
+            <button [ngStyle]="{visibility: courriersService.previous}" (click)="onClickPrevious()"> {{"<"}} </button>
                     <p>{{courriersService.page + 1}} / {{courriersService.pagesMax}}</p>
-                    <button [ngStyle]="{visibility: next}" (click)="onClickNext()"> {{">"}} </button>
+                    <button [ngStyle]="{visibility: courriersService.next}" (click)="onClickNext()"> {{">"}} </button>
         </div>
     </section>
     <section *ngIf="!loader && !courriers">

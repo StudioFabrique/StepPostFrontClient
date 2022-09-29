@@ -6,6 +6,7 @@ import { CourriersService } from '../../services/courriers.service';
 import { Router } from '@angular/router';
 import { RetourCourrier } from '../../models/retour-courrier.model';
 import { RechercheService } from '../../services/recherche.service';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-courriers',
@@ -17,18 +18,19 @@ export class CourriersComponent implements OnInit {
   courriers!: RetourCourrier[]; //  liste des courriers affichés à l'écran
   courrierId!: number | null; //  id du courrier dont la timeline est affichée
   detailsCourrier!: DetailsCourrier; //  timeline du courrier sur lequel l'utilisateur a cliqué
-  filter: boolean = false; // argument qui détermine qu'on veut afficher la liste des courriers en cours de distribution
-  next!: string; //  style à appliquer au bouton page suivante
+  //filter: boolean = false; // argument qui détermine qu'on veut afficher la liste des courriers en cours de distribution
+  //next!: string; //  style à appliquer au bouton page suivante
   noResults!: boolean; //  true on affiche dans le dom l'élément "aucuns résultats"
-  previous!: string; //  style à appliquer au bouton page précédente
+  //previous!: string; //  style à appliquer au bouton page précédente
   rechercheNom: boolean = false; //  true : affiche le résultat de la recherche par nom
   timeline: boolean = false; //  true : affiche le résultat d'une recherche par numéro de bordereau
-  total!: number; //  total d'éléments trouvés dans la base de données correspondants aux critères de recherche
+  //total!: number; //  total d'éléments trouvés dans la base de données correspondants aux critères de recherche
   loader: boolean = false; //  true : le spinner est affiché
   msg: string =
     "Vous n'avez actuellement aucun courrier en cours de distribution."; //  message à afficher en cas de liste de courriers vide
 
   constructor(
+    private auth: AuthService,
     public courriersService: CourriersService,
     private rechercheService: RechercheService,
     private router: Router
@@ -40,6 +42,7 @@ export class CourriersComponent implements OnInit {
    * lazy loading
    */
   ngOnInit(): void {
+    this.courriersService.filter = false;
     this.courriersService.page = 0;
     this.courriersService.max = 4;
     if (!this.courriersService.etats) {
@@ -62,7 +65,7 @@ export class CourriersComponent implements OnInit {
     this.loader = false;
     if (error instanceof HttpErrorResponse) {
       if (error.status === 401 || error.status === 403) {
-        this.router.navigateByUrl('/login');
+        this.auth.logout();
       }
     }
   }
@@ -74,9 +77,9 @@ export class CourriersComponent implements OnInit {
   private handleResponse(response: any): void {
     this.loader = false;
     this.courriers = response.data;
-    this.total = response.total;
-    this.courriersService.setPagesMax(this.total);
-    this.setButtonsStyle();
+    this.courriersService.total = response.total;
+    this.courriersService.setPagesMax(this.courriersService.total);
+    this.courriersService.setButtonsStyle(this.courriers.length);
   }
 
   /**
@@ -108,20 +111,21 @@ export class CourriersComponent implements OnInit {
     } else {
       this.getCourriersByName();
     }
-    this.setButtonsStyle();
+    this.courriersService.setButtonsStyle(this.courriers.length);
   }
-
   /**
    * appele les méthodes qui vont définir le style des boutons du
    * système de pagination
    */
+
+  /*
   setButtonsStyle(): void {
-    this.previous = this.courriersService.setPrevious();
-    this.next = this.courriersService.setNext(
+    this.courriersService.previous = this.courriersService.setPrevious();
+    this.courriersService.next = this.courriersService.setNext(
       this.courriers.length,
-      this.total
+      this.courriersService.total
     );
-  }
+  } */
 
   /**
    * écouteur du bouton page suivant, réinitialise la propriété id
@@ -136,7 +140,7 @@ export class CourriersComponent implements OnInit {
     } else {
       this.getCourriersByName();
     }
-    this.setButtonsStyle();
+    this.courriersService.setButtonsStyle(this.courriers.length);
   }
 
   /**
@@ -163,10 +167,12 @@ export class CourriersComponent implements OnInit {
    */
   private getCourriers(): void {
     this.loader = true;
-    this.courriersService.getAllCourriers(this.filter).subscribe({
-      next: this.handleResponse.bind(this),
-      error: this.handleError.bind(this),
-    });
+    this.courriersService
+      .getAllCourriers(this.courriersService.filter)
+      .subscribe({
+        next: this.handleResponse.bind(this),
+        error: this.handleError.bind(this),
+      });
   }
 
   /**
@@ -179,7 +185,7 @@ export class CourriersComponent implements OnInit {
       .rechercheByName(
         this.courriers[0].nom,
         this.courriers[0].prenom,
-        this.filter,
+        this.courriersService.filter,
         this.courriersService.page,
         this.courriersService.max
       )
@@ -191,7 +197,7 @@ export class CourriersComponent implements OnInit {
 
   /**
    * initialise une recherche par nom
-   * @param value string : nom du destinataire la méthode doit récupérer
+   * @param name string : nom du destinataire la méthode doit récupérer
    * la liste des courriers, provient du composant 'recherche'
    */
   onRechercheNom(name: any): void {
@@ -202,7 +208,7 @@ export class CourriersComponent implements OnInit {
       .rechercheByName(
         name.nom,
         name.prenom,
-        this.filter,
+        this.courriersService.filter,
         this.courriersService.page,
         this.courriersService.max
       )

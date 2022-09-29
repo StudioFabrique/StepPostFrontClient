@@ -15,12 +15,12 @@ import { RetourCourrier } from '../../models/retour-courrier.model';
 export class HistoriqueComponent implements OnInit {
   columns: boolean[] | null[] = [null, null, null, null]; //  définit si la colonne est triée par ASC ou DESC
   courriers!: RetourCourrier[]; //  liste des courriers affichés à l'écran
-  filter: boolean = true; // argument qui détermine qu'on veut afficher la liste des courriers en cours de distribution
-  next!: string; //  style à appliquer au bouton page suivante
+  //filter: boolean = true; // argument qui détermine qu'on veut afficher la liste des courriers en cours de distribution
+  //next!: string; //  style à appliquer au bouton page suivante
   noResults!: boolean; //  true on affiche dans le dom l'élément "aucuns résultats"
-  previous!: string; //  style à appliquer au bouton page précédente
+  //previous!: string; //  style à appliquer au bouton page précédente
   rechercheNom: boolean = false; //  true : affiche le résultat de la recherche par nom
-  total!: number; //  total d'éléments trouvés dans la base de données correspondants aux critères de recherche
+  //total!: number; //  total d'éléments trouvés dans la base de données correspondants aux critères de recherche
   loader: boolean = false; //  true : le spinner est affiché
   msg: string = "Vous n'avez actuellement aucun courrier archivé."; //  message à afficher en cas de liste de courriers vide
 
@@ -39,6 +39,7 @@ export class HistoriqueComponent implements OnInit {
     if (!this.courriersService.etats) {
       this.courriersService.getStatutsList();
     }
+    this.courriersService.filter = true;
     this.courriersService.page = 0;
     this.courriersService.max = 10;
     this.courriersService.col = 0;
@@ -66,7 +67,7 @@ export class HistoriqueComponent implements OnInit {
     } else {
       this.getCourriersByName();
     }
-    this.setButtonsStyle();
+    this.courriersService.setButtonsStyle(this.courriers.length);
   }
 
   /**
@@ -81,7 +82,7 @@ export class HistoriqueComponent implements OnInit {
     } else {
       this.getCourriersByName();
     }
-    this.setButtonsStyle();
+    this.courriersService.setButtonsStyle(this.courriers.length);
   }
 
   /**
@@ -151,7 +152,7 @@ export class HistoriqueComponent implements OnInit {
    */
   private getCourriers(): void {
     this.loader = true;
-    this.courriersService.getSortedCourriers(this.filter).subscribe({
+    this.courriersService.getSortedCourriers().subscribe({
       next: this.handleResponse.bind(this),
       error: this.handleError.bind(this),
     });
@@ -176,22 +177,22 @@ export class HistoriqueComponent implements OnInit {
   private handleResponse(response: any): void {
     this.loader = false;
     this.courriers = response.data;
-    this.total = response.total;
-    this.courriersService.setPagesMax(this.total);
-    this.setButtonsStyle();
+    this.courriersService.total = response.total;
+    this.courriersService.setPagesMax(this.courriersService.total);
+    this.courriersService.setButtonsStyle(this.courriers.length);
   }
 
   /**
    * appele les méthodes qui vont définir le style des boutons du
    * système de pagination
-   */
+   */ /* 
   setButtonsStyle(): void {
     this.previous = this.courriersService.setPrevious();
     this.next = this.courriersService.setNext(
       this.courriers.length,
       this.total
     );
-  }
+  } */
 
   /**
    * initialise les propriétés servant a appliquer le style inline
@@ -213,7 +214,7 @@ export class HistoriqueComponent implements OnInit {
       .sortedRechercheByName(
         this.courriers[0].nom,
         this.courriers[0].prenom,
-        this.filter,
+        this.courriersService.filter,
         this.courriersService.page,
         this.courriersService.max,
         this.courriersService.col,
@@ -241,7 +242,7 @@ export class HistoriqueComponent implements OnInit {
       .rechercheByName(
         name.nom,
         name.prenom,
-        this.filter,
+        this.courriersService.filter,
         this.courriersService.page,
         this.courriersService.max
       )
