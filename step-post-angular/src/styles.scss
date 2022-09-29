@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 /* You can add global styles to this file, and also import other style files */
-@import '~ngx-toastr/toastr';
+@import 'ngx-toastr/toastr';
 @import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
 $blue: #140A82;
 $orange: #FF5E1A;

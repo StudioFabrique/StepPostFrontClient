@@ -9,7 +9,6 @@ import { AdressesService } from '../../services/adresses.service';
 @Component({
   selector: 'app-edit-adresse',
   templateUrl: './edit-adresse.component.html',
-  styleUrls: ['./edit-adresse.component.scss'],
 })
 export class EditAdresseComponent implements OnInit {
   dest!: Destinataire; //  l'adresse à éditer qui sera affichée dans le formulaire
