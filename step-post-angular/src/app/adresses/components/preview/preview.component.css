@@ -2,9 +2,6 @@
   @page {
     size: portrait;
   }
-  section:last-child {
-    display: none;
-  }
   main {
     margin-top: 0;
     margin-left: 0;
@@ -12,5 +9,8 @@
   }
   main > section {
     border: 1px solid black;
+  }
+  main > section:last-child {
+    display: none;
   }
 }/*# sourceMappingURL=preview.component.css.map */

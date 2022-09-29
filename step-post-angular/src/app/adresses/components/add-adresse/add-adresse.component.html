@@ -1,5 +1,5 @@
 <main class="md:w-full flex flex-col items-center gap-y-8">
-    <section class="w-full md:max-w-4xl md:text-lg text-sm md:flex">
+    <section class="w-80 md:w-full md:max-w-4xl md:text-lg text-sm md:flex">
         <div class="min-w-full flex justify-between font-bold">
             <h4>Nouvelle adresse</h4>
             <a routerLink="/adresses">
@@ -9,7 +9,7 @@
     </section>
     <div *ngIf="loader" class="lds-dual-ring"></div>
     <section class="md:max-w-4xl flex container mx-auto">
-        <app-adresse-form class="w-full flex" *ngIf="!loader" (submitted)="onSubmitted($event)">
+        <app-adresse-form class="w-full" *ngIf="!loader" (submitted)="onSubmitted($event)">
         </app-adresse-form>
     </section>
 </main>

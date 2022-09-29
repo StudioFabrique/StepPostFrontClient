@@ -3,10 +3,6 @@
         size: portrait;
     }
 
-    section:last-child {
-        display: none;
-    }
-
     main {
         margin-top: 0;
         margin-left: 0;
@@ -14,6 +10,10 @@
 
         >section {
             border: 1px solid black;
+        }
+
+        >section:last-child {
+            display: none;
         }
     }
 }
