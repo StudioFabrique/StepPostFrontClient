@@ -7,7 +7,6 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-new-password',
   templateUrl: './new-password.component.html',
-  styleUrls: ['./new-password.component.scss'],
 })
 export class NewPasswordComponent implements OnInit {
   @Output() submitted: EventEmitter<string> = new EventEmitter<string>(); //  envoie le nouveau mot de passe confirmé au composant parent
@@ -68,17 +67,13 @@ export class NewPasswordComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log(this.passwordForm.value.newPassword);
-    console.log(this.passwordForm.value.confirmPassword);
-
     if (!this.passwordForm.valid) {
       this.toaster.error(
         'Le mot de passe doit avoir une longueur minimum de 8 caractères, il doit comporter une majuscule, une minuscule, un chiffre et un caractère spécial',
         '',
         { timeOut: 10000, positionClass: 'toast-bottom-center' }
       );
-    }
-    if (
+    } else if (
       this.testPassword(
         this.passwordForm.value.newPassword,
         this.passwordForm.value.confirmPassword

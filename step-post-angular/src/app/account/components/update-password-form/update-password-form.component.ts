@@ -10,7 +10,6 @@ import { AccountService } from '../../services/account.service';
 @Component({
   selector: 'app-update-password-form',
   templateUrl: './update-password-form.component.html',
-  styleUrls: ['./update-password-form.component.scss'],
 })
 export class UpdatePasswordFormComponent implements OnInit {
   passwordForm!: FormGroup; //  formulaire reactif
@@ -82,13 +81,7 @@ export class UpdatePasswordFormComponent implements OnInit {
    * en cas d'échec lors d'une tentative de validation du formulaire
    */
   onSubmit(): void {
-    if (!this.passwordRegEx.test(this.passwordForm.value.oldPassword)) {
-      this.toaster.error(
-        'Le mot de passe doit avoir une longueur minimum de 8 caractères, il doit comporter une majuscule, une minuscule, un chiffre et un caractère spécial',
-        '',
-        { timeOut: 10000, positionClass: 'toast-bottom-center' }
-      );
-    } else {
+    if (this.passwordRegEx.test(this.passwordForm.value.oldPassword)) {
       this.accountService
         .checkPassword(this.passwordForm.value.oldPassword)
         .subscribe({

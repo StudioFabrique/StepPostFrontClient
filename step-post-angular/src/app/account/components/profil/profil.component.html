@@ -1,11 +1,11 @@
-<main class="w-full flex flex-col items-center justify-center gap-y-5 md:gap-y-10 mb-8 h-[calc(60vh_-_70px)]">
-    <section class="w-80 flex flex-col gap-y-8 items-center">
+<main class="w-full flex flex-col items-center justify-center gap-y-5 md:gap-y-10 mb-8 mt-20">
+    <section class="w-80 flex flex-col gap-y-8 md:gap-y-16 items-center">
         <div *ngIf="!password && !coordonnees">
             <h5 class="font-bold">Gestion du profil</h5>
         </div>
-        <div *ngIf="password">
-            <h5>Modification du mot de passe</h5>
-            <h5 (click)="onRetour()">retour</h5>
+        <div class="flex flex-col items-center justify-center gap-y-2" *ngIf="password">
+            <h5 class="font-bold">Modification du mot de passe</h5>
+            <h5 class="font-bold text-sm underline text-orange" (click)="onRetour()">retour</h5>
         </div>
         <div *ngIf="coordonnees">
             <h5>Modifications des coordonnées</h5>
@@ -13,7 +13,7 @@
         </div>
         <div *ngIf="loader" class="lds-dual-ring"></div>
         <article class="article-menu" *ngIf="!password && !coordonnees && !loader">
-            <div class="w-64 flex flex-col gap-y-4">
+            <div class="w-64 flex flex-col gap-y-8">
                 <span class="border-b-2 border-blue">
                     <!-- <button class="button" (click)="onPasswordClick()">modifier le mot de passe</button> -->
                     <app-button [fullSize]="true" [text]="'modifier le mot de passe'" (click)="onPasswordClick()">
