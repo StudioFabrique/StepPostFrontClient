@@ -1,7 +1,7 @@
-<main class="main-profil">
-    <section class="section-profil">
+<main class="w-full flex flex-col items-center justify-center gap-y-5 md:gap-y-10 mb-8 h-[calc(60vh_-_70px)]">
+    <section class="w-80 flex flex-col gap-y-8 items-center">
         <div *ngIf="!password && !coordonnees">
-            <h5>Gestion du profil</h5>
+            <h5 class="font-bold">Gestion du profil</h5>
         </div>
         <div *ngIf="password">
             <h5>Modification du mot de passe</h5>
@@ -13,12 +13,16 @@
         </div>
         <div *ngIf="loader" class="lds-dual-ring"></div>
         <article class="article-menu" *ngIf="!password && !coordonnees && !loader">
-            <div>
-                <span>
-                    <button class="button" (click)="onPasswordClick()">modifier le mot de passe</button>
+            <div class="w-64 flex flex-col gap-y-4">
+                <span class="border-b-2 border-blue">
+                    <!-- <button class="button" (click)="onPasswordClick()">modifier le mot de passe</button> -->
+                    <app-button [fullSize]="true" [text]="'modifier le mot de passe'" (click)="onPasswordClick()">
+                    </app-button>
                 </span>
                 <span>
-                    <button class="button" (click)="onCoordonneesClick()">modifier les coordonnées</button>
+                    <!-- <button class="button" (click)="onCoordonneesClick()">modifier les coordonnées</button> -->
+                    <app-button [fullSize]="true" [text]="'modifier les coordonnées'" (click)="onCoordonneesClick()">
+                    </app-button>
                 </span>
             </div>
         </article>

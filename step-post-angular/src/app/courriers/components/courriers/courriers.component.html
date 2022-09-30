@@ -6,7 +6,7 @@
         </app-recherche>
     </section>
 
-    <section class="flex justify-center font-bold md:text-lg">
+    <section class="titre flex justify-center font-bold md:text-lg">
         <div *ngIf="!(rechercheNom)">
             <h3>Envois en cours</h3>
         </div>
@@ -23,7 +23,7 @@
         <app-courrier class="min-w-full" (courrierClickId)="onCourrierClick($event)" *ngFor="let courrier of courriers"
             [courrier]="courrier" @fade></app-courrier>
 
-        <div class="flex gap-x-2 text-sm items-center" *ngIf="courriers && !loader">
+        <div class="button-group flex gap-x-2 text-sm items-center" *ngIf="courriers && !loader">
             <!-- 
             <button
                 class="border-2 py-1 px-2 bg-stone-300 text-black rounded cursor-pointer hover:bg-stone-200 active:translate-x-0.5 active:translate-y-0.5"

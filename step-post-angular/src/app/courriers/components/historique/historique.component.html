@@ -4,7 +4,7 @@
             (searchedName)="onRechercheNom($event)" (retourNoResults)="onRetour()">
         </app-recherche>
     </section>
-    <section class="flex justify-center font-bold md:text-lg">
+    <section class="titre flex justify-center font-bold md:text-lg">
         <div *ngIf="!(rechercheNom)">
             <h3>Historique des envois</h3>
         </div>
@@ -16,7 +16,7 @@
         </div>
     </section>
     <div *ngIf="loader && !rechercheNom" class="lds-dual-ring"></div>
-    <section class="mx-4 flex flex-col items-center gap-y-4 md:max-w-5xl md:container md:mx-auto"
+    <section class="titre mx-4 flex flex-col items-center gap-y-4 md:max-w-5xl md:container md:mx-auto"
         *ngIf="courriersService.etats" @fade>
         <table class="min-w-full table-auto text-xs md:text-lg" *ngIf="(!loader && courriers) || rechercheNom">
             <thead>
@@ -42,7 +42,7 @@
             <tbody>
                 <tr class="even:bg-stone-200 px-2 py-2 my auto cursor-pointer" *ngFor="let courrier of courriers"
                     (click)="onCourrierClick(courrier.bordereau)">
-                    <td class="orange px-2 md:px-4 font-bold">{{courrier.date | date}}</td>
+                    <td class="text-orange px-2 md:px-4 font-bold">{{courrier.date | date}}</td>
                     <td>{{courrier.bordereau}}</td>
                     <td>{{courrier.nom | titlecase}} {{courrier.prenom | titlecase}}</td>
                     <td class="flex items-center gap-x-2 px-2 py-2">
@@ -52,7 +52,7 @@
                 </tr>
             </tbody>
         </table>
-        <div class="flex gap-x-2 text-sm items-center" *ngIf="courriers && !loader">
+        <div class="button-group flex gap-x-2 text-sm items-center" *ngIf="courriers && !loader">
             <!-- 
             <button
                 class="border-2 py-1 px-2 bg-stone-300 text-black rounded cursor-pointer hover:bg-stone-200 active:translate-x-0.5 active:translate-y-0.5"

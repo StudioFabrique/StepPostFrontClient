@@ -11,6 +11,9 @@ import { AuthService } from 'src/app/core/services/auth.service';
 @Component({
   selector: 'app-courriers',
   templateUrl: './courriers.component.html',
+  styles: [
+    '@media print {.titre{ display: none; } .button-group{ display: none; } }',
+  ],
   animations: [fade],
 })
 export class CourriersComponent implements OnInit {

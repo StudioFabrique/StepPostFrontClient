@@ -2,15 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import {
-  debounceTime,
-  distinctUntilChanged,
-  map,
-  Observable,
-  of,
-  Subject,
-  switchMap,
-} from 'rxjs';
+import { debounceTime, Observable, Subject, switchMap } from 'rxjs';
 import { DetailsCourrier } from 'src/app/core/models/details-courrier-model';
 import { SecuriteService } from 'src/app/core/services/securite.service';
 import { environment } from 'src/environments/environment';
@@ -21,6 +13,7 @@ import { RechercheService } from '../../services/recherche.service';
   selector: 'app-recherche',
   templateUrl: './recherche.component.html',
   animations: [fade],
+  styles: ['@media print { form{ display: none } }'],
 })
 export class RechercheComponent implements OnInit {
   @Input() filter!: boolean; //  indicateur pour filtrer les résultats d'une recherche par nom, false : en cours de distribution

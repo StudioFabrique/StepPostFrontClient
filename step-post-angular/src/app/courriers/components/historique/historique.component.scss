@@ -3,3 +3,13 @@
     width: 1vw;
     height: 1vw;
 }
+
+@media print {
+    .titre {
+        display: none;
+    }
+
+    .button-group {
+        display: none;
+    }
+}
