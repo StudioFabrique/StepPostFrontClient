@@ -6,8 +6,14 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class WhiteButtonComponent implements OnInit {
   @Input() text!: string; //  label du bouton
+  @Input() fullSize!: boolean;
+  setFullSize!: string; // le bouton prend toute la largeur du parent
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.fullSize) {
+      this.setFullSize = 'w-full block';
+    }
+  }
 }

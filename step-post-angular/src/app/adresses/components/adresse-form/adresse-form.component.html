@@ -92,29 +92,32 @@
             <p class="text-red">*</p>
             <p>&nbsp;sont obligatoires )</p>
         </div>
-        <div class="flex gap-x-2 justify-end" *ngIf="!nouveauCourrier">
-            <app-button [text]="'annuler'" [bg]="'orange'" (click)="onCancel()"></app-button>
+        <div class="flex flex-col gap-y-2 md:gap-y-0 md:flex-row w-full justify-end md:gap-x-2"
+            *ngIf="!nouveauCourrier">
+            <app-button [fullSize]="true" [text]="'annuler'" [bg]="'orange'" (click)="onCancel()"></app-button>
             <!-- <input
                 class="shadow-xl select-none p-2 md:p-4 active:translate-x-0.5 active:translate-y-0.5 focus:outline-none focus:shadow-outline text-xs md:text-sm bg-blue text-white md:font-bold"
                 type="submit" value="envoyer"> -->
-            <app-button [text]="'envoyer'" (click)="onSubmitForm()"></app-button>
+            <app-button [fullSize]="true" [text]="'envoyer'" (click)="onSubmitForm()"></app-button>
         </div>
-        <div class="flex gap-x-2 justify-between" *ngIf="nouveauCourrier">
-            <div>
+        <div class="w-full md:w-full flex flex-col items-center gap-y-2 md:gap-y-0 md:flex-row md:gap-x-2 md:justify-between"
+            *ngIf="nouveauCourrier">
+            <div class="w-full md:w-fit">
                 <!-- <button
                     class="shadow-xl select-none p-2 md:p-4 active:translate-x-0.5 active:translate-y-0.5 focus:outline-none focus:shadow-outline text-xs md:text-sm md:font-bold bg-white text-blue border-blue border"
                     type="button" (click)="onSauvegarder()">{{buttonText}}</button> -->
-                <app-white-button [text]="buttonText" (click)="onSauvegarder()"></app-white-button>
+                <app-white-button [fullSize]="true" [text]="buttonText" (click)="onSauvegarder()">
+                </app-white-button>
             </div>
-            <div class="flex gap-x-2">
+            <div class="flex flex-col gap-y-2 md:gap-y-0 md:flex-row w-full md:w-fit justify-between md:gap-x-2">
                 <!--  <button
                     class="shadow-xl select-none p-2 md:p-4 active:translate-x-0.5 active:translate-y-0.5 focus:outline-none focus:shadow-outline text-xs md:text-sm md:font-bold bg-orange text-white"
                     type="button" (click)="onCancel()">annuler</button> -->
-                <app-button [text]="'annuler'" [bg]="'orange'" (click)="onCancel()"></app-button>
+                <app-button [fullSize]="true" [text]="'annuler'" [bg]="'orange'" (click)="onCancel()"></app-button>
                 <!-- <input
                     class="shadow-xl select-none p-2 md:p-4 active:translate-x-0.5 active:translate-y-0.5 focus:outline-none focus:shadow-outline text-xs md:text-sm bg-blue text-white md:font-bold"
                     type="submit" value="continuer"> -->
-                <app-button [text]="'continuer'" (click)="onSubmitForm()"></app-button>
+                <app-button [fullSize]="true" [text]="'continuer'" (click)="onSubmitForm()"></app-button>
             </div>
         </div>
     </form>

@@ -1,5 +1,13 @@
 <main class="md:w-full flex flex-col items-center gap-y-8">
-    <section class="w-80 md:w-full md:max-w-4xl md:text-lg text-sm md:flex mx-auto">
+    <section *ngIf="!retourDest" class="w-80 md:w-full md:max-w-4xl md:text-lg text-sm md:flex mx-auto">
+        <div class="w-80 md:min-w-full flex justify-between font-bold">
+            <h4>Imprimer un bordereau d'expédition</h4>
+            <a routerLink="/adresses">
+                <h4 class="underline cursor-pointer text-orange">retour</h4>
+            </a>
+        </div>
+    </section>
+    <section *ngIf="retourDest" class="w-80 md:w-full md:max-w-md md:text-lg text-sm md:flex mx-auto">
         <div class="w-80 md:min-w-full flex justify-between font-bold">
             <h4>Imprimer un bordereau d'expédition</h4>
             <a routerLink="/adresses">
@@ -12,7 +20,7 @@
         <app-adresse-form class="w-full" *ngIf="!bordereauForm" [dest]="dest" (submitted)="onSubmitted($event)">
         </app-adresse-form>
     </section>
-    <section class="section-bordereau-form flex justify-center">
+    <section class="md:max-w-4xl flex justify-center">
         <app-bordereau-form class="w-full" *ngIf="retourDest" [dest]="retourDest"></app-bordereau-form>
     </section>
 </main>

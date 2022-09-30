@@ -8,7 +8,6 @@ import { Destinataire } from '../../models/Destinataire.model';
 @Component({
   selector: 'app-bordereau-form',
   templateUrl: './bordereau-form.component.html',
-  styleUrls: ['./bordereau-form.component.scss'],
 })
 export class BordereauFormComponent implements OnInit {
   @Input() dest!: Destinataire; //  adresse qui doit apparaître sur le bordereai à imprimer

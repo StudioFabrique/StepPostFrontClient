@@ -1,34 +1,38 @@
-<article *ngIf="!preview" class="article-bordereau-form">
-    <form [formGroup]="bordereauForm">
-        <div>
-            <span>
+<article *ngIf="!preview" class="w-80 md:w-full bg-white mx-auto text-sm mb-10 flex flex-col items-center gap-y-8">
+    <form class="flex flex-col items-center justify-center gap-8" [formGroup]="bordereauForm">
+        <div class="flex gap-x-4">
+            <span class="flex items-center gap-x-2">
                 <input type="radio" checked="false" value="0" formControlName="type">
                 <label>Lettre AS</label>
             </span>
-            <span>
+            <span class="flex items-center gap-x-2">
                 <input type="radio" checked="false" value="1" formControlName="type">
                 <label>Lettre AR</label>
             </span>
-            <span>
+            <span class="flex items-center gap-x-2">
                 <input type="radio" checked="false" value="2" formControlName="type">
                 <label>Colis</label>
             </span>
         </div>
         <div>
-            <label>Instructions de livraison
-                <textarea rows="2" formControlName="instructions"></textarea>
+            <label class="flex flex-col">Instructions de livraison
+                <textarea
+                    class="shadow border-stone-300 border w-80 md:w-96 p-4 md:p-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    rows="2" formControlName="instructions"></textarea>
             </label>
         </div>
         <div>
-            <label>Téléphone
-                <input type="text" formControlName="telephone">
+            <label class="flex flex-col">Téléphone
+                <input
+                    class="shadow border-stone-300 border w-80 md:w-96 p-4 md:px-8 py-6 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    type="text" formControlName="telephone">
             </label>
         </div>
     </form>
-    <div>
-        <div class="adresse">
-            <div>
-                <span>
+    <div class="w-full flex flex-col gap-y-4">
+        <div class="text-sm">
+            <div class="flex flex-col p-4 border border-blue">
+                <span class="flex">
                     <p>{{dest.civilite | titlecase}}&nbsp;</p>
                     <p>{{dest.nom | titlecase}}&nbsp;</p>
                     <p>{{dest.prenom | titlecase}}</p>
@@ -38,9 +42,11 @@
                 <p>{{dest.codePostal | titlecase}} {{dest.ville | titlecase}}</p>
             </div>
         </div>
-        <div>
-            <button class="button" type="button" (click)="onCancel()">annuler</button>
-            <input class="button" type="button" value="continuer" (click)="onSubmitForm()">
+        <div class="flex flex-col gap-y-2">
+            <!--     <button class="button" type="button" (click)="onCancel()">annuler</button>
+            <input class="button" type="button" value="continuer" (click)="onSubmitForm()"> -->
+            <app-button [fullSize]="true" [text]="'annuler'" [bg]="'orange'" (click)="onCancel()"></app-button>
+            <app-button [fullSize]="true" [text]="'continuer'" (click)="onSubmitForm()"></app-button>
         </div>
     </div>
 </article>
