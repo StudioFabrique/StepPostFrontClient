@@ -27,7 +27,6 @@ export class DetailsCourrierComponent implements OnInit {
         error: this.handleError.bind(this),
       });
     }
-    console.table(this.etats);
   }
 
   private handleError(error: any): void {

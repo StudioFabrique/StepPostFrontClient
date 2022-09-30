@@ -6,15 +6,15 @@
         </app-recherche>
     </section>
 
-    <section class="titre flex justify-center font-bold md:text-lg">
+    <section class="titre flex justify-center md:text-lg">
         <div *ngIf="!(rechercheNom)">
-            <h3>Envois en cours</h3>
+            <h3 class="font-bold">Envois en cours</h3>
         </div>
-        <div class="flex flex-col items-center justify-center font-bold text-sm p-4 gap-y-1" *ngIf="rechercheNom">
-            <h3 class="md:text-lg">Courrier(s) en cours de distribution pour {{courriers[0].civilite |
-                titlecase}}
+        <div class="flex flex-col items-center justify-center text-sm p-4 gap-y-1" *ngIf="rechercheNom">
+            <h3 class="md:text-lg font-bold">Courrier(s) en cours de distribution pour :</h3>
+            <h3>{{courriers[0].civilite | titlecase}}
                 {{courriers[0].prenom | titlecase}} {{courriers[0].nom | titlecase}}</h3>
-            <h4 class="md:text-lg text-orange underline cursor-pointer" (click)="onRetour()">retour</h4>
+            <h4 class="md:text-lg font-bold text-orange underline cursor-pointer" (click)="onRetour()">retour</h4>
         </div>
     </section>
     <div *ngIf="loader" class="lds-dual-ring"></div>
@@ -30,8 +30,8 @@
                 [ngStyle]="{visibility: courriersService.previous}" (click)="onClickPrevious()"> {{"<"}}
             </button>
         -->
-            <app-button [text]="'<'" [ngStyle]="{visibility: courriersService.previous}" (click)="onClickPrevious()">
-            </app-button>
+            <app-btn-pages [text]="'<'" [ngStyle]="{visibility: courriersService.previous}" (click)="onClickPrevious()">
+            </app-btn-pages>
             <p class="text-xs">{{courriersService.page + 1}} / {{courriersService.pagesMax}}</p>
             <!-- 
             <button
@@ -39,8 +39,8 @@
                 [ngStyle]="{visibility: courriersService.next}" (click)="onClickNext()"> {{">"}}
             </button>
              -->
-            <app-button [text]="'>'" [ngStyle]="{visibility: courriersService.next}" (click)="onClickNext()">
-            </app-button>
+            <app-btn-pages [text]="'>'" [ngStyle]="{visibility: courriersService.next}" (click)="onClickNext()">
+            </app-btn-pages>
         </div>
     </section>
     <section *ngIf="!courriers && !loader">

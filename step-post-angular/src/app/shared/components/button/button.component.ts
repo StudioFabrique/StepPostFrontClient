@@ -17,9 +17,7 @@ export class ButtonComponent implements OnInit {
       this.bg = 'blue';
     }
     if (this.fullSize) {
-      this.setFullSize = 'w-full block py-4';
-    } else {
-      this.setFullSize = 'py-2';
+      this.setFullSize = 'w-full block';
     }
   }
 }

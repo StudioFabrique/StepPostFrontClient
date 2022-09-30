@@ -46,7 +46,7 @@ export class CourriersComponent implements OnInit {
   ngOnInit(): void {
     this.courriersService.filter = false;
     this.courriersService.page = 0;
-    this.courriersService.max = 4;
+    this.courriersService.max = 3;
     if (!this.courriersService.etats) {
       this.courriersService.getStatutsList();
     }

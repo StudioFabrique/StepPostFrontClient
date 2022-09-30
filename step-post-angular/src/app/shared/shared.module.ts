@@ -36,6 +36,7 @@ import { BtnPagesComponent } from './components/btn-pages/btn-pages.component';
     TestFieldDirective,
     ButtonComponent,
     WhiteButtonComponent,
+    BtnPagesComponent,
   ],
 })
 export class SharedModule {}

@@ -13,9 +13,7 @@ export class WhiteButtonComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.fullSize) {
-      this.setFullSize = 'w-full block py-4';
-    } else {
-      this.setFullSize = 'py-2';
+      this.setFullSize = 'w-full block';
     }
   }
 }

@@ -59,8 +59,8 @@
                 [ngStyle]="{visibility: courriersService.previous}" (click)="onClickPrevious()"> {{"<"}}
             </button>
         -->
-            <app-button [text]="'<'" [ngStyle]="{visibility: courriersService.previous}" (click)="onClickPrevious()">
-            </app-button>
+            <app-btn-pages [text]="'<'" [ngStyle]="{visibility: courriersService.previous}" (click)="onClickPrevious()">
+            </app-btn-pages>
             <p class="text-xs">{{courriersService.page + 1}} / {{courriersService.pagesMax}}</p>
             <!-- 
             <button
@@ -68,8 +68,8 @@
                 [ngStyle]="{visibility: courriersService.next}" (click)="onClickNext()"> {{">"}}
             </button>
              -->
-            <app-button [text]="'>'" [ngStyle]="{visibility: courriersService.next}" (click)="onClickNext()">
-            </app-button>
+            <app-btn-pages [text]="'>'" [ngStyle]="{visibility: courriersService.next}" (click)="onClickNext()">
+            </app-btn-pages>
         </div>
     </section>
     <section *ngIf="!loader && !courriers">

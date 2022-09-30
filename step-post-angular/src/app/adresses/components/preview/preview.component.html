@@ -1,4 +1,4 @@
-<main class="w-full flex flex-col items-center gap-y-2">
+<main class="w-full flex flex-col items-center gap-y-2 mb-10">
     <section class="section-bordereau-exp w-[21cm] h-[90mm] bg-orange flex bg-stone-300 p-4">
         <article class="article-exp-left w-[50%] flex flex-col justify-between items-start">
             <div class="flex flex-col items-center gap-y-2">
@@ -69,10 +69,12 @@
             </div>
         </article>
     </section>
-    <section class="section-bordereau-buttons">
-        <div>
-            <button class="button" (click)="onRetour()">retour</button>
-            <button class="button" (click)="onPrint()">imprimer</button>
+    <section class="w-[21cm] section-bordereau-buttons flex justify-end mt-8">
+        <div class="flex gap-x-4">
+            <!-- <button class="button" (click)="onRetour()">retour</button>
+            <button class="button" (click)="onPrint()">imprimer</button> -->
+            <app-button [text]="'retour'" [bg]="'orange'" (click)="onRetour()"></app-button>
+            <app-button [text]="'imprimer'" (click)="onPrint()"></app-button>
         </div>
     </section>
     <app-popup-confirmation *ngIf="popup" (fermerPopup)="onFermerPopup()" (confirmer)="onConfirmerPopup()" [msg]="msg">
