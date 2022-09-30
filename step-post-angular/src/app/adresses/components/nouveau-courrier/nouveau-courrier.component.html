@@ -12,7 +12,7 @@
         <app-adresse-form class="w-full" *ngIf="!bordereauForm" [dest]="dest" (submitted)="onSubmitted($event)">
         </app-adresse-form>
     </section>
-    <section class="section-bordereau-form">
+    <section class="section-bordereau-form flex justify-center">
         <app-bordereau-form class="w-full" *ngIf="retourDest" [dest]="retourDest"></app-bordereau-form>
     </section>
 </main>

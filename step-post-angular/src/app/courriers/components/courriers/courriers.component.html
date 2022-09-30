@@ -11,10 +11,10 @@
             <h3>Envois en cours</h3>
         </div>
         <div class="flex flex-col items-center justify-center font-bold text-sm p-4 gap-y-1" *ngIf="rechercheNom">
-            <h3>Courrier(s) en cours de distribution pour {{courriers[0].civilite |
+            <h3 class="md:text-lg">Courrier(s) en cours de distribution pour {{courriers[0].civilite |
                 titlecase}}
                 {{courriers[0].prenom | titlecase}} {{courriers[0].nom | titlecase}}</h3>
-            <h4 class="orange underline cursor-pointer" (click)="onRetour()">retour</h4>
+            <h4 class="md:text-lg text-orange underline cursor-pointer" (click)="onRetour()">retour</h4>
         </div>
     </section>
     <div *ngIf="loader" class="lds-dual-ring"></div>

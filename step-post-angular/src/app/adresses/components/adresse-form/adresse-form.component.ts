@@ -89,8 +89,10 @@ export class AdresseFormComponent implements OnInit {
   onCancel(): void {
     if (this.isAddForm) {
       this.router.navigateByUrl('/adresses');
-    } else {
+    } else if (this.dest) {
       this.adresseForm.patchValue(this.dest);
+    } else {
+      this.adresseForm.reset();
     }
   }
 

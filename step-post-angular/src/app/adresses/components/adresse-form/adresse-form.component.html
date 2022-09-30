@@ -93,26 +93,28 @@
             <p>&nbsp;sont obligatoires )</p>
         </div>
         <div class="flex gap-x-2 justify-end" *ngIf="!nouveauCourrier">
-            <button
-                class="shadow-xl select-none p-2 md:p-4 active:translate-x-0.5 active:translate-y-0.5 focus:outline-none focus:shadow-outline text-xs md:text-sm md:font-bold bg-orange text-white"
-                type="button" (click)="onCancel()">annuler</button>
-            <input
+            <app-button [text]="'annuler'" [bg]="'orange'" (click)="onCancel()"></app-button>
+            <!-- <input
                 class="shadow-xl select-none p-2 md:p-4 active:translate-x-0.5 active:translate-y-0.5 focus:outline-none focus:shadow-outline text-xs md:text-sm bg-blue text-white md:font-bold"
-                type="submit" value="envoyer">
+                type="submit" value="envoyer"> -->
+            <app-button [text]="'envoyer'" (click)="onSubmitForm()"></app-button>
         </div>
         <div class="flex gap-x-2 justify-between" *ngIf="nouveauCourrier">
             <div>
-                <button
+                <!-- <button
                     class="shadow-xl select-none p-2 md:p-4 active:translate-x-0.5 active:translate-y-0.5 focus:outline-none focus:shadow-outline text-xs md:text-sm md:font-bold bg-white text-blue border-blue border"
-                    type="button" (click)="onSauvegarder()">{{buttonText}}</button>
+                    type="button" (click)="onSauvegarder()">{{buttonText}}</button> -->
+                <app-white-button [text]="buttonText" (click)="onSauvegarder()"></app-white-button>
             </div>
             <div class="flex gap-x-2">
-                <button
+                <!--  <button
                     class="shadow-xl select-none p-2 md:p-4 active:translate-x-0.5 active:translate-y-0.5 focus:outline-none focus:shadow-outline text-xs md:text-sm md:font-bold bg-orange text-white"
-                    type="button" (click)="onCancel()">annuler</button>
-                <input
+                    type="button" (click)="onCancel()">annuler</button> -->
+                <app-button [text]="'annuler'" [bg]="'orange'" (click)="onCancel()"></app-button>
+                <!-- <input
                     class="shadow-xl select-none p-2 md:p-4 active:translate-x-0.5 active:translate-y-0.5 focus:outline-none focus:shadow-outline text-xs md:text-sm bg-blue text-white md:font-bold"
-                    type="submit" value="continuer">
+                    type="submit" value="continuer"> -->
+                <app-button [text]="'continuer'" (click)="onSubmitForm()"></app-button>
             </div>
         </div>
     </form>
