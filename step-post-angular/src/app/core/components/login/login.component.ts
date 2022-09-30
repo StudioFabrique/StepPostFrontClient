@@ -73,13 +73,15 @@ export class LoginComponent implements OnInit, OnDestroy {
    * envoie les credentials au backend via une requête http/post
    */
   onSubmitForm() {
-    this.loader = true;
-    this.authService
-      .login(this.loginForm.value.email, this.loginForm.value.password)
-      .subscribe({
-        next: this.successHandler.bind(this),
-        error: this.errorHandler.bind(this),
-      });
+    if (this.loginForm.valid) {
+      this.loader = true;
+      this.authService
+        .login(this.loginForm.value.email, this.loginForm.value.password)
+        .subscribe({
+          next: this.successHandler.bind(this),
+          error: this.errorHandler.bind(this),
+        });
+    }
   }
 
   /**

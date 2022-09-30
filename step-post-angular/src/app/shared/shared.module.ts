@@ -6,6 +6,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { ListeVideComponent } from './components/liste-vide/liste-vide.component';
 import { InputFocusDirective } from './directives/input-focus.directive';
 import { TestFieldDirective } from './directives/test-field.directive';
+import { ButtonComponent } from './components/button/button.component';
+import { WhiteButtonComponent } from './components/white-button/white-button.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +15,8 @@ import { TestFieldDirective } from './directives/test-field.directive';
     LoginFormDirective,
     ListeVideComponent,
     InputFocusDirective,
+    ButtonComponent,
+    WhiteButtonComponent,
   ],
   imports: [
     CommonModule,
@@ -28,6 +32,8 @@ import { TestFieldDirective } from './directives/test-field.directive';
     ToastrModule,
     ListeVideComponent,
     TestFieldDirective,
+    ButtonComponent,
+    WhiteButtonComponent,
   ],
 })
 export class SharedModule {}

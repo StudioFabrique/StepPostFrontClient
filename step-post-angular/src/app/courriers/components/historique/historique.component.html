@@ -53,14 +53,23 @@
             </tbody>
         </table>
         <div class="flex gap-x-2 text-sm items-center" *ngIf="courriers && !loader">
+            <!-- 
             <button
                 class="border-2 py-1 px-2 bg-stone-300 text-black rounded cursor-pointer hover:bg-stone-200 active:translate-x-0.5 active:translate-y-0.5"
-                [ngStyle]="{visibility: courriersService.previous}" (click)="onClickPrevious()"> {{"<"}} </button>
-                    <p class="text-xs">{{courriersService.page + 1}} / {{courriersService.pagesMax}}</p>
-                    <button
-                        class="border-2 py-1 px-2 bg-stone-300 text-black rounded cursor-pointer hover:bg-stone-200 active:translate-x-0.5 active:translate-y-0.5"
-                        [ngStyle]="{visibility: courriersService.next}" (click)="onClickNext()"> {{">"}}
-                    </button>
+                [ngStyle]="{visibility: courriersService.previous}" (click)="onClickPrevious()"> {{"<"}}
+            </button>
+        -->
+            <app-button [text]="'<'" [ngStyle]="{visibility: courriersService.previous}" (click)="onClickPrevious()">
+            </app-button>
+            <p class="text-xs">{{courriersService.page + 1}} / {{courriersService.pagesMax}}</p>
+            <!-- 
+            <button
+                class="border-2 py-1 px-2 bg-stone-300 text-black rounded cursor-pointer hover:bg-stone-200 active:translate-x-0.5 active:translate-y-0.5"
+                [ngStyle]="{visibility: courriersService.next}" (click)="onClickNext()"> {{">"}}
+            </button>
+             -->
+            <app-button [text]="'>'" [ngStyle]="{visibility: courriersService.next}" (click)="onClickNext()">
+            </app-button>
         </div>
     </section>
     <section *ngIf="!loader && !courriers">

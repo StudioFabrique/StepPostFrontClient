@@ -24,11 +24,15 @@
                     <a routerLink="/password-reset" class="text-sm underline">Mot de passe oublié</a>
                 </span>
                 <span class="w-64 md:w-96 flex justify-end">
+                    <!-- 
                     <button
                         class="shadow-5xl select-none p-4 active:translate-x-0.5 active:translate-y-0.5 focus:outline-none focus:shadow-outline text-xs md:text-sm bg-blue text-white font-bold"
                         (click)="onSubmitForm()" [disabled]="loginForm.invalid" type="submit">se
                         connecter
                     </button>
+                     -->
+                    <app-button [text]="'se connecter'" type="submit" (click)="onSubmitForm()">
+                    </app-button>
                 </span>
             </div>
         </form>

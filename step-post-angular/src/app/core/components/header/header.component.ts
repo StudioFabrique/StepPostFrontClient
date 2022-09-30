@@ -18,6 +18,10 @@ export class HeaderComponent implements OnInit {
     this.router.navigateByUrl('/profil/new-client');
   }
 
+  onNouveauCourrierClick(): void {
+    this.router.navigateByUrl('/adresses/nouveau-courrier');
+  }
+
   onLogout(): void {
     this.auth.logout();
   }
