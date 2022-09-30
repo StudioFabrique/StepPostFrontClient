@@ -8,7 +8,7 @@ import { AdressesService } from '../../services/adresses.service';
 @Component({
   selector: 'app-nouveau-courrier',
   templateUrl: './nouveau-courrier.component.html',
-  styleUrls: ['./nouveau-courrier.component.scss'],
+  styles: ['@media print { section:first-child { display: none; } } '],
 })
 export class NouveauCourrierComponent implements OnInit {
   dest!: Destinataire; // destinataire à qui l'utilisateur souhaite envoyer un courrier
