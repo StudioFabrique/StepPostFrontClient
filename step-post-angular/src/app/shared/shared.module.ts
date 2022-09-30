@@ -8,6 +8,7 @@ import { InputFocusDirective } from './directives/input-focus.directive';
 import { TestFieldDirective } from './directives/test-field.directive';
 import { ButtonComponent } from './components/button/button.component';
 import { WhiteButtonComponent } from './components/white-button/white-button.component';
+import { BtnPagesComponent } from './components/btn-pages/btn-pages.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { WhiteButtonComponent } from './components/white-button/white-button.com
     InputFocusDirective,
     ButtonComponent,
     WhiteButtonComponent,
+    BtnPagesComponent,
   ],
   imports: [
     CommonModule,
