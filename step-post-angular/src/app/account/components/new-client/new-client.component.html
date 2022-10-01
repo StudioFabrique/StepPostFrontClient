@@ -1,14 +1,16 @@
-<main>
+<main class="w-full flex flex-col items-center gap-y-8">
     <section>
-        <h4>Création de compte</h4>
+        <h4 class="font-bold">Création de compte</h4>
     </section>
-    <section *ngIf="!password || !emailChecked">
-        <app-check-mail (email)="onEmailSubmitted($event)" (emailChecked)="onCheckEmail($event)"></app-check-mail>
+    <section class="md:max-w-md container mx-auto" *ngIf="!password || !emailChecked">
+        <app-check-mail class="w-full" (email)="onEmailSubmitted($event)" (emailChecked)="onCheckEmail($event)">
+        </app-check-mail>
     </section>
-    <section *ngIf="!password || !emailChecked">
-        <app-new-password (submitted)="onPasswordSubmitted($event)"></app-new-password>
+    <section class="md:max-w-md container mx-auto" *ngIf="!password || !emailChecked">
+        <app-new-password class="w-full" (submitted)="onPasswordSubmitted($event)"></app-new-password>
     </section>
-    <section *ngIf="password && emailChecked">
-        <app-update-adresse [email]="email" (submitted)="onAdresseSubmitted($event)"></app-update-adresse>
+    <section class="md:max-w-2xl container mx-auto" *ngIf="password && emailChecked">
+        <app-update-adresse class="w-full" [email]="email" (submitted)="onAdresseSubmitted($event)">
+        </app-update-adresse>
     </section>
 </main>

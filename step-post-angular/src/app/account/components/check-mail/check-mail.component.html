@@ -1,9 +1,11 @@
-<section>
-    <article>
+<section class="w-full flex flex-col items-center md:text-sm ">
+    <article class="md:w-full">
         <div>
-            <label>Entrez votre email svp :</label>
+            <label>Adresse email :</label>
             <div>
-                <input type="email" #mailBox (keyup)="onCheck(mailBox.value)" autofocus>
+                <input
+                    class="shadow border-stone-300 border w-80 md:w-full p-4 md:p-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    type="email" #mailBox (keyup)="onCheck(mailBox.value)" autofocus>
             </div>
             <!--    <div [ngStyle]="{visibility: visibility}" class="message-statut">
                 <span>
