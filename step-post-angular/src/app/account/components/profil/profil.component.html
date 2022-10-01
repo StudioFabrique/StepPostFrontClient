@@ -7,9 +7,9 @@
             <h5 class="font-bold">Modification du mot de passe</h5>
             <h5 class="font-bold text-sm underline text-orange" (click)="onRetour()">retour</h5>
         </div>
-        <div *ngIf="coordonnees">
+        <div class="flex flex-col items-center font-bold" *ngIf="coordonnees">
             <h5>Modifications des coordonnées</h5>
-            <h5 (click)="onRetour()">retour</h5>
+            <h5 class="text-orange underline" (click)="onRetour()">retour</h5>
         </div>
         <div *ngIf="loader" class="lds-dual-ring"></div>
         <article class="article-menu" *ngIf="!password && !coordonnees && !loader">
@@ -29,8 +29,8 @@
         <article class="md:max-w-md container mx-auto" *ngIf="password">
             <app-update-password-form class="min-w-full"></app-update-password-form>
         </article>
-        <article class="bg-orange md:max-w-5xl container mx-auto" *ngIf="coordonnees">
-            <app-update-adresse class="bg-red w-full" [dest]="user" (submitted)="onAdresseSubmitted($event)">
+        <article class="md:max-w-2xl container mx-auto" *ngIf="coordonnees">
+            <app-update-adresse class="w-full" [dest]="user" (submitted)="onAdresseSubmitted($event)">
             </app-update-adresse>
         </article>
     </section>

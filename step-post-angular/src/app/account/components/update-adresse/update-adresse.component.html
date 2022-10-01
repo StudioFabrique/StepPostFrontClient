@@ -1,73 +1,102 @@
-<form class="form-update" [formGroup]="adresseForm">
-    <div>
-        <label>
-            <div>
-                <p>Prénom / Service</p>
+<section class="w-80 md:w-full bg-white mx-auto text-sm mb-10 flex flex-col items-center">
+    <form class="w-full flex flex-col gap-y-8 mx-8" [formGroup]="adresseForm">
+        <article class="flex flex-col gap-y-4">
+            <div class="flex flex-col gap-y-4 items-center md:flex-row md:justify-between">
+                <label class="flex flex-col">
+                    <div class="flex gap-x-2">
+                        <p>Nom / Entreprise</p>
+                        <p class="text-red">*</p>
+                    </div>
+                    <input
+                        class="shadow border-stone-300 border w-80 p-4 md:p-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        type="text" id="nom" formControlName="nom" placeholder="Dupont">
+                </label>
+                <label>
+                    <div class="flex gap-x-2">
+                        <p>Prénom / Service</p>
+                        <p class="text-red">*</p>
+                    </div>
+                    <input
+                        class="shadow border-stone-300 border w-80 p-4 md:p-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        type="text" id="prenom" formControlName="prenom" placeholder="Jean">
+                </label>
             </div>
-            <input type="text" id="prenom" formControlName="prenom" placeholder="Jean">
-        </label>
-        <label>
             <div>
-                <p>Nom / Entreprise</p>
-                <p class="obligatoire">*</p>
+                <label class="flex flex-col">
+                    <div class="flex gap-x-2">
+                        <p>Adresse</p>
+                        <p class="text-red">*</p>
+                    </div>
+                    <textarea
+                        class="shadow border-stone-300 border w-80 md:w-full p-4 md:p-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        id="adresse" rows="2" formControlName="adresse"
+                        placeholder="12 rue du Président Toto"></textarea>
+                </label>
             </div>
-            <input type="text" id="nom" formControlName="nom" placeholder="Dupont">
-        </label>
-    </div>
-    <div>
-        <label>
             <div>
-                <p>Adresse</p>
-                <p class="obligatoire">*</p>
+                <label class="flex flex-col">
+                    <div>
+                        <p>Complément d'adresse</p>
+                    </div>
+                    <textarea
+                        class="shadow border-stone-300 border w-80 md:w-full p-4 md:p-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        id="complement" rows="2" formControlName="complement"
+                        placeholder="Chez Mr Jacques Durand"></textarea>
+                </label>
             </div>
-            <textarea id="adresse" rows="2" formControlName="adresse" placeholder="12 rue du Président Toto"></textarea>
-        </label>
-    </div>
-    <div>
-        <label>
-            <div>
-                <p>Complément d'adresse</p>
+            <div class="flex flex-col gap-y-4 md:flex-row md:justify-between">
+                <label class="flex flex-col">
+                    <div class="flex gap-x-2">
+                        <p>Code Postal</p>
+                        <p class="text-red">*</p>
+                    </div>
+                    <input
+                        class="shadow border-stone-300 border w-80 p-4 md:p-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        type="text" id="codePostal" formControlName="codePostal" placeholder="64000">
+                </label>
+                <label class="flex flex-col">
+                    <div class="flex gap-x-2">
+                        <p>Ville</p>
+                        <p class="text-red">*</p>
+                    </div>
+                    <input
+                        class="shadow border-stone-300 border w-80 p-4 md:p-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        type="text" id="ville" formControlName="ville" placeholder="Pau">
+                </label>
             </div>
-            <textarea id="complement" rows="2" formControlName="complement"
-                placeholder="Chez Mr Jacques Durand"></textarea>
-        </label>
-    </div>
-    <div>
-        <label>
-            <div>
-                <p>Code Postal</p>
-                <p class="obligatoire">*</p>
+            <div class="flex flex-col gap-y-4 md:flex-row md:justify-between">
+                <label class="flex flex-col">
+                    <div class="flex gap-x-2">
+                        Téléphone
+                        <p class="text-red">*</p>
+                    </div>
+                    <input
+                        class="shadow border-stone-300 border w-80 p-4 md:p-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        type="text" id="telephone" formControlName="telephone" placeholder="0102030405">
+                </label>
+                <label class="flex flex-col" [ngStyle]="{visibility: style}">
+                    <div class="flex gap-x-2">
+                        Email
+                        <p class="text-red">*</p>
+                    </div>
+                    <!-- mise à jour des coordonnées uniquement -->
+                    <input
+                        class="shadow border-stone-300 border w-80 p-4 md:p-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        type="text" id="email" formControlName="email" placeholder="jean.dupont@exemple.fr">
+                </label>
             </div>
-            <input type="text" id="codePostal" formControlName="codePostal" placeholder="64000">
-        </label>
-        <label>
-            <div>
-                <p>Ville</p>
-                <p class="obligatoire">*</p>
+            <div class="flex">
+                <p>Les champs marqués d'un&nbsp;</p>
+                <p class="text-red">*</p>
+                <p>&nbsp;sont obligatoires</p>
             </div>
-            <input type="text" id="ville" formControlName="ville" placeholder="Pau">
-        </label>
-    </div>
-    <div>
-        <label>
-            <div>
-                Téléphone
-                <p class="obligatoire">*</p>
+        </article>
+        <div *ngIf="loader" class="lds-dual-ring"></div>
+        <article class="md:flex md:justify-end">
+            <div class="flex flex-col gap-y-8 md:flex-row md:gap-x-4 md:w-fit" *ngIf="!loader">
+                <app-button [fullSize]="true" [text]="'annuler'" [bg]="'orange'" (click)="onCancel()"></app-button>
+                <app-button [fullSize]="true" [text]="'enregistrer'" (click)="onSubmit()"></app-button>
             </div>
-            <input type="text" id="telephone" formControlName="telephone" placeholder="0102030405">
-        </label>
-        <label [ngStyle]="{visibility: style}">
-            <div>
-                Email
-                <p class="obligatoire">*</p>
-            </div>
-            <!-- mise à jour des coordonnées uniquement -->
-            <input type="text" id="email" formControlName="email" placeholder="jean.dupont@exemple.fr">
-        </label>
-    </div>
-    <div *ngIf="loader" class="lds-dual-ring"></div>
-    <div *ngIf="!loader">
-        <button class="button" (click)="onCancel()">annuler</button>
-        <button class="button" (click)="onSubmit()">enregistrer</button>
-    </div>
-</form>
+        </article>
+    </form>
+</section>

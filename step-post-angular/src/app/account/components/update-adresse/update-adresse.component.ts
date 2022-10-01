@@ -11,7 +11,6 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-update-adresse',
   templateUrl: './update-adresse.component.html',
-  styleUrls: ['./update-adresse.component.scss'],
 })
 export class UpdateAdresseComponent implements OnInit {
   @Input() email!: string;

@@ -16,12 +16,12 @@ export class ProfilComponent implements OnInit {
   password: boolean = false; //  true : affiche le composant pour la modification du mot de passe
   coordonnees: boolean = false; //  true : affiche le composant pour la modification des coordonnées
   loader: boolean = false; //  true : affiche le loader
+  errorMsg: string = 'Cette adresse email est indisponible';
 
   constructor(
     private accountService: AccountService,
     private adressesService: AdressesService,
     private auth: AuthService,
-    private router: Router,
     private toaster: ToastrService
   ) {}
 
@@ -61,6 +61,11 @@ export class ProfilComponent implements OnInit {
     if (error instanceof HttpErrorResponse) {
       if (error.status === 401 || error.status === 403) {
         this.auth.logout();
+      }
+      if (error.status === 503) {
+        this.toaster.error(this.errorMsg, '', {
+          positionClass: 'toast-bottom-center',
+        });
       }
     }
   }
