@@ -8,7 +8,6 @@ import { ClientService } from '../../services/client.service';
 @Component({
   selector: 'app-new-client',
   templateUrl: './new-client.component.html',
-  styleUrls: ['./new-client.component.scss'],
 })
 export class NewClientComponent implements OnInit {
   emailChecked: boolean = false;

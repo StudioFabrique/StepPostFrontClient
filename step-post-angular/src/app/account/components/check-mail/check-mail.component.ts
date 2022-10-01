@@ -1,12 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import {
-  debounceTime,
-  distinctUntilChanged,
-  Observable,
-  Subject,
-  switchMap,
-} from 'rxjs';
+import { debounceTime, Observable, Subject, switchMap } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { environment } from 'src/environments/environment';
 import { ClientService } from '../../services/client.service';
@@ -14,7 +8,6 @@ import { ClientService } from '../../services/client.service';
 @Component({
   selector: 'app-check-mail',
   templateUrl: './check-mail.component.html',
-  styleUrls: ['./check-mail.component.scss'],
 })
 export class CheckMailComponent implements OnInit {
   @Output() emailChecked: EventEmitter<boolean> = new EventEmitter<boolean>(); // indique au parent qu'il peut afficher la suite du form
