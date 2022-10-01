@@ -1,6 +1,6 @@
 <main class="md:w-full flex flex-col items-center gap-y-5 md:gap-y-10 mb-8 h-[calc(90vh_-_70px)]">
     <section class="md:max-w-7xl container mx-auto flex flex col items-center">
-        <app-recherche class="min-w-full" [filter]="courriersService.filter" (isLoading)="onSetLoader($event)"
+        <app-recherche class="min-w-full" [noResults]="noResults" (isLoading)="onSetLoader($event)"
             (searchedName)="onRechercheNom($event)" (retourNoResults)="onRetour()">
         </app-recherche>
     </section>
@@ -12,7 +12,7 @@
             <h3>Courrier(s) en cours de distribution pour {{courriers[0].civilite |
                 titlecase}}
                 {{courriers[0].prenom | titlecase}} {{courriers[0].nom | titlecase}}</h3>
-            <h4 class="orange" (click)="onRetour()">retour</h4>
+            <h4 class="text-orange cursor-pointer underline" (click)="onRetour()">retour</h4>
         </div>
     </section>
     <div *ngIf="loader && !rechercheNom" class="lds-dual-ring"></div>

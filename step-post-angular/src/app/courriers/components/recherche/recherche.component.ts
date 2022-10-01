@@ -17,12 +17,12 @@ import { RechercheService } from '../../services/recherche.service';
 })
 export class RechercheComponent implements OnInit {
   @Input() filter!: boolean; //  indicateur pour filtrer les résultats d'une recherche par nom, false : en cours de distribution
+  @Input() noResults!: boolean; //  true : affiche le composant 'no-results'
   @Output() retourNoResults: EventEmitter<boolean> =
     new EventEmitter<boolean>(); //  true : indique au composant parent qu'aucun résultat n'a été trouvé
   @Output() searchedName: EventEmitter<string> = new EventEmitter<string>();
   @Output() isLoading: EventEmitter<boolean> = new EventEmitter<boolean>(); //  envoie une valeur au composant parent pour gérer le loader
   detailsCourrier!: DetailsCourrier; //  timeline + adresse quasi complète du pour le courrier
-  noResults: boolean = false; //  true : affiche le composant 'no-results'
   numberRegEx: RegExp = /^[0-9]*$/; //  expression régulière pour tester si une chaîne de caractères ne contient que des chiffres
   searchForm!: FormGroup; //  formulaire de recherche par nom ou numéro de bordereau
   timeline: boolean = false; //  true : affiche le résultat d'une recherche par numéro de bordereau
@@ -138,12 +138,8 @@ export class RechercheComponent implements OnInit {
         this.router.navigateByUrl('/login');
       }
       if (error.status === 404) {
-        if (this.timeline === true) {
-          this.timeline = false;
-        }
-        if (this.noResults === false) {
-          this.noResults = true;
-        }
+        this.timeline = false;
+        this.noResults = true;
       }
     }
     this.isLoading.emit(false);

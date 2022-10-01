@@ -20,13 +20,9 @@ export class CourriersComponent implements OnInit {
   courriers!: RetourCourrier[]; //  liste des courriers affichés à l'écran
   courrierId!: number | null; //  id du courrier dont la timeline est affichée
   detailsCourrier!: DetailsCourrier; //  timeline du courrier sur lequel l'utilisateur a cliqué
-  //filter: boolean = false; // argument qui détermine qu'on veut afficher la liste des courriers en cours de distribution
-  //next!: string; //  style à appliquer au bouton page suivante
   noResults!: boolean; //  true on affiche dans le dom l'élément "aucuns résultats"
-  //previous!: string; //  style à appliquer au bouton page précédente
   rechercheNom: boolean = false; //  true : affiche le résultat de la recherche par nom
   timeline: boolean = false; //  true : affiche le résultat d'une recherche par numéro de bordereau
-  //total!: number; //  total d'éléments trouvés dans la base de données correspondants aux critères de recherche
   loader: boolean = false; //  true : le spinner est affiché
   msg: string =
     "Vous n'avez actuellement aucun courrier en cours de distribution."; //  message à afficher en cas de liste de courriers vide
@@ -68,6 +64,9 @@ export class CourriersComponent implements OnInit {
     if (error instanceof HttpErrorResponse) {
       if (error.status === 401 || error.status === 403) {
         this.auth.logout();
+      }
+      if (error.status === 404) {
+        this.noResults = true;
       }
     }
   }

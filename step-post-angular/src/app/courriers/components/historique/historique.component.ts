@@ -17,7 +17,7 @@ export class HistoriqueComponent implements OnInit {
   courriers!: RetourCourrier[]; //  liste des courriers affichés à l'écran
   //filter: boolean = true; // argument qui détermine qu'on veut afficher la liste des courriers en cours de distribution
   //next!: string; //  style à appliquer au bouton page suivante
-  noResults!: boolean; //  true on affiche dans le dom l'élément "aucuns résultats"
+  noResults: boolean = false; //  true on affiche dans le dom l'élément "aucuns résultats"
   //previous!: string; //  style à appliquer au bouton page précédente
   rechercheNom: boolean = false; //  true : affiche le résultat de la recherche par nom
   //total!: number; //  total d'éléments trouvés dans la base de données correspondants aux critères de recherche
@@ -166,6 +166,8 @@ export class HistoriqueComponent implements OnInit {
         this.router.navigateByUrl('/login');
       } else if (error.status === 404) {
         this.rechercheNom = false;
+        this.noResults = true;
+        console.log('coucou');
       }
     }
   }
