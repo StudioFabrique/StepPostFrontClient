@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { ClientService } from '../../services/client.service';
@@ -8,7 +8,6 @@ import { ClientService } from '../../services/client.service';
 @Component({
   selector: 'app-validation',
   templateUrl: './validation.component.html',
-  styleUrls: ['./validation.component.scss'],
 })
 export class ValidationComponent implements OnInit {
   token!: string;
@@ -21,6 +20,7 @@ export class ValidationComponent implements OnInit {
     private auth: AuthService,
     private clientService: ClientService,
     private route: ActivatedRoute,
+    private router: Router,
     private toaster: ToastrService
   ) {}
 
@@ -34,6 +34,10 @@ export class ValidationComponent implements OnInit {
       next: this.handleResponse.bind(this),
       error: this.handleError.bind(this),
     });
+  }
+
+  onConnexionClick(): void {
+    this.router.navigateByUrl('/login');
   }
 
   onSubmitted(value: string): void {

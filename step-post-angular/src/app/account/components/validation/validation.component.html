@@ -1,18 +1,18 @@
-<main>
-    <section *ngIf="!expired">
-        <article>
+<main class="w-full flex flex-col items-center">
+    <section class="w-80 md:w-full flex flex-col items-center gap-y-8 md:gap-y-16" *ngIf="!expired">
+        <article class="flex flex-col items-center gap-y-8">
             <div>
-                <h4>Création du compte associé à l'adresse email suivante :</h4>
+                <h4 class="font-bold text-justify">Création du compte associé à l'adresse email suivante :</h4>
             </div>
             <div>
-                <h4>{{email}}</h4>
+                <h4 class="text-orange font-bold">{{email}}</h4>
             </div>
         </article>
-        <article *ngIf="!accountActivated">
-            <app-new-password (submitted)="onSubmitted($event)"></app-new-password>
+        <article class="md:max-w-md container mx-auto" *ngIf="!accountActivated">
+            <app-new-password class="min-w-full" (submitted)="onSubmitted($event)"></app-new-password>
         </article>
-        <article *ngIf="!accountActivated">
-            <p>Le mot de passe doit être composé d' :</p>
+        <article class="flex flex-col items-center gap-y-2 text-xs md:text-sm" *ngIf="!accountActivated">
+            <p class="font-bold">Le mot de passe doit être composé d' :</p>
             <ul>
                 <li>- au moins 8 caractères</li>
                 <li>- une majuscule</li>
@@ -21,21 +21,23 @@
                 <li>- un caractère spécial</li>
             </ul>
         </article>
-        <article *ngIf="accountActivated">
+        <article class="md:w-96 flex flex-col items-center gap-y-8" *ngIf="accountActivated">
             <div>
-                <p>Votre compte est maintenant activé, vous pouvez dès à présent profiter des fonctionnalités de
+                <p class="text-sm text-justify">Votre compte est maintenant activé, vous pouvez dès à présent profiter
+                    des
+                    fonctionnalités de
                     l'application
                     Step-Post, nous vous remercions pour votre confiance.</p>
             </div>
-            <div>
-                <a class="button" routerLink="/login">connexion</a>
+            <div class="w-full flex justify-center md:fit">
+                <app-button [fullSize]="true" [text]="'connexion'" (click)="onConnexionClick()"></app-button>
             </div>
         </article>
     </section>
-    <section class="expired" *ngIf="expired">
+    <section class="w-80 flex flex-col items-center gap-y-8 my-auto" *ngIf="expired">
         <h2>Ce lien a expiré.</h2>
-        <div>
-            <a class="button" routerLink="/login">accueil</a>
+        <div class="w-full flex md:w-fit md:justify-end">
+            <app-button [fullSize]="true" [text]="'accueil'" (click)="onConnexionClick()"></app-button>
         </div>
     </section>
 </main>
