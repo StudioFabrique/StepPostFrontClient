@@ -15,6 +15,7 @@ export class ValidationComponent implements OnInit {
   userId!: number;
   accountActivated: boolean = false;
   expired: boolean = true;
+  displayOk!: boolean;
 
   constructor(
     private auth: AuthService,
@@ -53,13 +54,14 @@ export class ValidationComponent implements OnInit {
         this.expired = true;
       }
     }
+    this.displayOk = true;
   }
 
   handleResponse(response: any): void {
     this.expired = false;
     this.email = response.email;
     this.userId = response.userId;
-    console.log(this.email);
+    this.displayOk = true;
   }
 
   handleValidationResponse(response: any): void {
