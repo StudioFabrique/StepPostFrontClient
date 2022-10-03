@@ -1,9 +1,9 @@
 <article class="w-80 md:w-full bg-white mx-auto text-sm mb-10 flex flex-col items-center">
-    <form class="w-full flex flex-col gap-y-4 mx-8" [formGroup]="adresseForm">
+    <form class="w-full flex flex-col gap-y-4 md:gap-y-8 mx-8" [formGroup]="adresseForm">
         <div class="flex items-center justify-between">
             <label class="flex flex-col">Civilité
                 <select
-                    class="shadow border-stone-300 w-80 md:w-96 p-4 md:p-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    class="shadow border-stone-300 w-80 md:w-96 p-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     id="civilite" formControlName="civilite" placeholder="Mr">
                     <option value="">---</option>
                     <option value="mr">Mr</option>
@@ -18,7 +18,7 @@
                     <p class="text-red">*</p>
                 </div>
                 <input
-                    class="shadow border-stone-300 border w-80 md:w-96 p-4 md:p-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    class="shadow border-stone-300 border w-80 md:w-96 p-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     type="text" id="nom" formControlName="nom" placeholder="Dupont">
             </label>
             <label>
@@ -27,7 +27,7 @@
                     <p class="text-red">*</p>
                 </div>
                 <input
-                    class="shadow border-stone-300 border w-80 md:w-96 p-4 md:p-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    class="shadow border-stone-300 border w-80 md:w-96 p-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     type="text" id="prenom" formControlName="prenom" placeholder="Jean">
             </label>
         </div>
@@ -38,7 +38,7 @@
                     <p class="text-red">*</p>
                 </div>
                 <textarea
-                    class="shadow border-stone-300 border w-80 md:w-full p-4 md:p-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    class="shadow border-stone-300 border w-80 md:w-full p-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     id="adresse" rows="2" formControlName="adresse" placeholder="12 rue du Président Toto"></textarea>
             </label>
         </div>
@@ -48,7 +48,7 @@
                     <p>Complément d'adresse</p>
                 </div>
                 <textarea
-                    class="shadow border-stone-300 border w-80 md:w-full p-4 md:p-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    class="shadow border-stone-300 border w-80 md:w-full p-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     id="complement" rows="2" formControlName="complement"
                     placeholder="Chez Mr Jacques Durand"></textarea>
             </label>
@@ -60,7 +60,7 @@
                     <p class="text-red">*</p>
                 </div>
                 <input
-                    class="shadow border-stone-300 border w-80 md:w-96 p-4 md:p-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    class="shadow border-stone-300 border w-80 md:w-96 p-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     type="text" id="codePostal" formControlName="codePostal" placeholder="64000">
             </label>
             <label>
@@ -69,7 +69,7 @@
                     <p class="text-red">*</p>
                 </div>
                 <input
-                    class="shadow border-stone-300 border w-80 md:w-96 p-4 md:p-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    class="shadow border-stone-300 border w-80 md:w-96 p-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     type="text" id="ville" formControlName="ville" placeholder="Pau">
             </label>
         </div>
@@ -77,13 +77,13 @@
             <label class="flex flex-col">
                 Téléphone
                 <input
-                    class="shadow border-stone-300 border w-80 md:w-96 p-4 md:p-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    class="shadow border-stone-300 border w-80 md:w-96 p-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     type="text" id="telephone" formControlName="telephone" placeholder="0102030405">
             </label>
             <label class="flex flex-col">
                 Email
                 <input
-                    class="shadow border-stone-300 border w-80 md:w-96 p-4 md:p-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    class="shadow border-stone-300 border w-80 md:w-96 p-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     type="text" id="email" formControlName="email" placeholder="jean.dupont@exemple.fr">
             </label>
         </div>

@@ -6,7 +6,7 @@
     </section>
     <div *ngIf="loader" class="lds-dual-ring"></div>
     <section *ngIf="!loader"
-        class="max-w-5xl flex flex-wrap justify-center md:justify-start gap-x-4 gap-y-4 container mx-auto">
+        class="max-w-7xl flex flex-wrap justify-center md:justify-center gap-x-0 gap-y-4 container mx-auto">
         <app-destinataire class="min-w-32" *ngFor="let adresse of adresses" [adresse]="adresse"
             (retourAdresse)="onRetourAdresse($event)"></app-destinataire>
     </section>
