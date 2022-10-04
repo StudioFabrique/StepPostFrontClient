@@ -9,7 +9,7 @@
     <section class="md:max-w-md container mx-auto" *ngIf="!password || !emailChecked">
         <app-new-password class="w-full" (submitted)="onPasswordSubmitted($event)"></app-new-password>
     </section>
-    <section class="md:max-w-2xl container mx-auto" *ngIf="password && emailChecked">
+    <section class="md:max-w-4xl container mx-auto" *ngIf="password && emailChecked">
         <app-update-adresse class="w-full" [email]="email" (submitted)="onAdresseSubmitted($event)">
         </app-update-adresse>
     </section>
