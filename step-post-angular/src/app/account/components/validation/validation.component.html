@@ -8,7 +8,7 @@
                 <h4 class="text-orange font-bold">{{email}}</h4>
             </div>
         </article>
-        <article class="md:max-w-md container mx-auto" *ngIf="!accountActivated">
+        <article class="md:max-w-md md:container mmx-auto" *ngIf="!accountActivated">
             <app-new-password class="min-w-full" (submitted)="onSubmitted($event)"></app-new-password>
         </article>
         <article class="flex flex-col items-center gap-y-2 text-xs md:text-sm" *ngIf="!accountActivated">
@@ -29,14 +29,14 @@
                     l'application
                     Step-Post, nous vous remercions pour votre confiance.</p>
             </div>
-            <div class="w-full flex justify-center md:fit">
+            <div class="w-full flex justify-center md:fit container mx:auto">
                 <app-button [fullSize]="true" [text]="'connexion'" (click)="onConnexionClick()"></app-button>
             </div>
         </article>
     </section>
     <section class="w-80 flex flex-col items-center gap-y-8 my-auto" *ngIf="expired">
         <h2>Ce lien a expiré.</h2>
-        <div class="w-full flex md:w-fit md:justify-end">
+        <div class="w-full flex md:w-fit justify-center container mx:auto">
             <app-button [fullSize]="true" [text]="'accueil'" (click)="onConnexionClick()"></app-button>
         </div>
     </section>

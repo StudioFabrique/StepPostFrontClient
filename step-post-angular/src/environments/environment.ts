@@ -5,9 +5,9 @@
 //const remoteUrl = 'https://step-post-nodejs.herokuapp.com/api';
 export const environment = {
   production: true,
-  // baseUrl: 'http://localhost:3000/api',
   url: {
     baseUrl: 'https://step-post-nodejs.herokuapp.com/api',
+    //baseUrl: 'http://localhost:3000/api',
   },
   regex: {
     mailRegex:
