@@ -50,7 +50,7 @@ export class RechercheComponent implements OnInit {
     });
     this.searchTerms$
       .pipe(
-        debounceTime(500),
+        debounceTime(1000),
         switchMap((term: string) => this.searchTerm(term))
       )
       .subscribe({
