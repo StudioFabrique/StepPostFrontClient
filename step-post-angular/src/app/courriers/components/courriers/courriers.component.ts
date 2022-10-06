@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { fade } from '../../animations/animations';
 import { DetailsCourrier } from '../../../core/models/details-courrier-model';
 import { CourriersService } from '../../services/courriers.service';
-import { Router } from '@angular/router';
 import { RetourCourrier } from '../../models/retour-courrier.model';
 import { RechercheService } from '../../services/recherche.service';
 import { AuthService } from 'src/app/core/services/auth.service';
@@ -30,8 +29,7 @@ export class CourriersComponent implements OnInit {
   constructor(
     private auth: AuthService,
     public courriersService: CourriersService,
-    private rechercheService: RechercheService,
-    private router: Router
+    private rechercheService: RechercheService
   ) {}
 
   /**
