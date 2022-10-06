@@ -10,8 +10,12 @@
         <app-destinataire class="min-w-32" *ngFor="let adresse of adresses" [adresse]="adresse"
             (retourAdresse)="onRetourAdresse($event)"></app-destinataire>
     </section>
-    <app-popup-delete *ngIf="popupDelete" [adresse]="adresseToDelete" (fermerPopup)="onFermerPopup()">
-    </app-popup-delete>
+    <section>
+        <app-modal-two-buttons *ngIf="popupDelete" [adresse]="adresseToDelete" (fermerPopup)="onFermerPopup()">
+        </app-modal-two-buttons>
+    </section>
+    <!--     <app-popup-delete *ngIf="popupDelete" [adresse]="adresseToDelete" (fermerPopup)="onFermerPopup()">
+    </app-popup-delete> -->
     <section *ngIf="!loader && adresses.length === 0">
         <app-liste-vide [msg]="msg"></app-liste-vide>
     </section>

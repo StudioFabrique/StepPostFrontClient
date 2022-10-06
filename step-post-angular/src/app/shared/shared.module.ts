@@ -9,6 +9,7 @@ import { TestFieldDirective } from './directives/test-field.directive';
 import { ButtonComponent } from './components/button/button.component';
 import { WhiteButtonComponent } from './components/white-button/white-button.component';
 import { BtnPagesComponent } from './components/btn-pages/btn-pages.component';
+import { ModalTwoButtonsComponent } from './components/modal-two-buttons/modal-two-buttons.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { BtnPagesComponent } from './components/btn-pages/btn-pages.component';
     ButtonComponent,
     WhiteButtonComponent,
     BtnPagesComponent,
+    ModalTwoButtonsComponent,
   ],
   imports: [
     CommonModule,
@@ -37,6 +39,7 @@ import { BtnPagesComponent } from './components/btn-pages/btn-pages.component';
     ButtonComponent,
     WhiteButtonComponent,
     BtnPagesComponent,
+    ModalTwoButtonsComponent,
   ],
 })
 export class SharedModule {}
