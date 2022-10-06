@@ -8,7 +8,6 @@ import { AccountService } from '../../services/account.service';
 @Component({
   selector: 'app-reinitialiser-password',
   templateUrl: './reinitialiser-password.component.html',
-  styleUrls: ['./reinitialiser-password.component.scss'],
 })
 export class ReinitialiserPasswordComponent implements OnInit {
   token!: string | null;
