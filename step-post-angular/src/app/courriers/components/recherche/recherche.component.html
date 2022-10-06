@@ -32,5 +32,5 @@
         </app-details-recherche>
     </div>
 
-    <app-no-results *ngIf="noResults" @fade (retourNoResults)=" onRetourNoResults($event)"></app-no-results>
+    <app-no-results *ngIf="noResults" @fade (retourNoResults)="onRetourNoResults($event)"></app-no-results>
 </article>

@@ -1,10 +1,14 @@
 <main class="md:w-full flex flex-col items-center gap-y-5 md:gap-y-10 mb-8">
 
+    <!-- recherche de courrier -->
+
     <section class="md:max-w-7xl container mx-auto flex flex col items-center">
         <app-recherche class="min-w-full" [noResults]="noResults" (isLoading)="onSetLoader($event)"
             (searchedName)="onRechercheNom($event)" (retourNoResults)="onRetour()" (resetId)="onResetId()">
         </app-recherche>
     </section>
+
+    <!-- message spécifique à la recherche par nom -->
 
     <section class="titre flex justify-center md:text-lg">
         <div *ngIf="!(rechercheNom)">
@@ -17,32 +21,33 @@
             <h4 class="md:text-lg font-bold text-orange underline cursor-pointer" (click)="onRetour()">retour</h4>
         </div>
     </section>
+
+    <!-- loader -->
+
     <div *ngIf="loader" class="lds-dual-ring"></div>
+
+    <!-- affichage des courriers -->
+
     <section *ngIf="!loader && courriers"
         class="md:max-w-5xl flex flex-col justify-center items-center container mx-auto">
         <app-courrier class="min-w-full" (courrierClickId)="onCourrierClick($event)" *ngFor="let courrier of courriers"
             [courrier]="courrier" @fade></app-courrier>
 
+        <!-- boutons liés à la pagination -->
+
         <div class="button-group flex gap-x-2 text-sm items-center" *ngIf="courriers && !loader">
-            <!-- 
-            <button
-                class="border-2 py-1 px-2 bg-stone-300 text-black rounded cursor-pointer hover:bg-stone-200 active:translate-x-0.5 active:translate-y-0.5"
-                [ngStyle]="{visibility: courriersService.previous}" (click)="onClickPrevious()"> {{"<"}}
-            </button>
-        -->
+
             <app-btn-pages [text]="'<'" [ngStyle]="{visibility: courriersService.previous}" (click)="onClickPrevious()">
             </app-btn-pages>
             <p class="text-xs">{{courriersService.page + 1}} / {{courriersService.pagesMax}}</p>
-            <!-- 
-            <button
-                class="border-2 py-1 px-2 bg-stone-300 text-black rounded cursor-pointer hover:bg-stone-200 active:translate-x-0.5 active:translate-y-0.5"
-                [ngStyle]="{visibility: courriersService.next}" (click)="onClickNext()"> {{">"}}
-            </button>
-             -->
+
             <app-btn-pages [text]="'>'" [ngStyle]="{visibility: courriersService.next}" (click)="onClickNext()">
             </app-btn-pages>
         </div>
     </section>
+
+    <!-- message affiché en l'absence de courrier en cours de distribution -->
+
     <section *ngIf="!courriers && !loader">
         <app-liste-vide [msg]="msg"></app-liste-vide>
     </section>

@@ -5,6 +5,7 @@ import { fade } from '../../animations/animations';
 import { CourriersService } from '../../services/courriers.service';
 import { RechercheService } from '../../services/recherche.service';
 import { RetourCourrier } from '../../models/retour-courrier.model';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-historique',
@@ -25,6 +26,7 @@ export class HistoriqueComponent implements OnInit {
   msg: string = "Vous n'avez actuellement aucun courrier archivé."; //  message à afficher en cas de liste de courriers vide
 
   constructor(
+    private auth: AuthService,
     public courriersService: CourriersService,
     private rechercheService: RechercheService,
     private router: Router
@@ -154,7 +156,7 @@ export class HistoriqueComponent implements OnInit {
     this.loader = true;
     this.courriersService.getSortedCourriers().subscribe({
       next: this.handleResponse.bind(this),
-      error: this.handleError.bind(this),
+      error: this.handleGetCourriersError.bind(this),
     });
   }
 
@@ -172,6 +174,15 @@ export class HistoriqueComponent implements OnInit {
     }
   }
 
+  private handleGetCourriersError(error: any): void {
+    this.loader = false;
+    if (error instanceof HttpErrorResponse) {
+      if (error.status === 401 || error.status === 403) {
+        this.auth.logout();
+      }
+    }
+  }
+
   /**
    * gestion de la réponse de la requête http qui récupère la liste des courriers à afficher
    * @param response {total: nbre d'objets trouvés dans par la requête sql, data: RetourCourrier[]}
@@ -182,28 +193,6 @@ export class HistoriqueComponent implements OnInit {
     this.courriersService.total = response.total;
     this.courriersService.setPagesMax(this.courriersService.total);
     this.courriersService.setButtonsStyle(this.courriers.length);
-  }
-
-  /**
-   * appele les méthodes qui vont définir le style des boutons du
-   * système de pagination
-   */ /* 
-  setButtonsStyle(): void {
-    this.previous = this.courriersService.setPrevious();
-    this.next = this.courriersService.setNext(
-      this.courriers.length,
-      this.total
-    );
-  } */
-
-  /**
-   * initialise les propriétés servant a appliquer le style inline
-   * @param value boolean : résultats des méthodes setPrevious() et
-   * setNext()
-   * @returns string : style à appliquer aux boutons du système de pagination
-   */
-  private testButtons(value: boolean): string {
-    return value ? 'visible' : 'hidden';
   }
 
   /**

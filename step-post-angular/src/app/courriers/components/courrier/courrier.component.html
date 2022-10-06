@@ -11,7 +11,7 @@
             <p class="text-sm md:text-lg flex justify-start" *ngIf="courriersService.etats">
                 {{type}} pour : {{courrier.civilite | titlecase}} {{courrier.nom | titlecase}}
                 {{courrier.prenom | titlecase}}</p>
-            <p class="text-sm md:text-lg">{{courriersService.etats[courrier.etat - 1]}}</p>
+            <p class="text-sm md:text-lg font-bold md:font-normal">{{courriersService.etats[courrier.etat - 1]}}</p>
         </span>
     </div>
     <div class="detailsLivraison">

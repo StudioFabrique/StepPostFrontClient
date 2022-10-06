@@ -69,6 +69,15 @@ export class CourriersComponent implements OnInit {
     }
   }
 
+  private handleGetCourriersError(error: any): void {
+    this.loader = false;
+    if (error instanceof HttpErrorResponse) {
+      if (error.status === 401 || error.status === 403) {
+        this.auth.logout();
+      }
+    }
+  }
+
   /**
    * gestion de la réponse de la requête http qui récupère la liste des courriers à afficher
    * @param response {total: nbre d'objets trouvés dans par la requête sql, data: RetourCourrier[]}
@@ -181,7 +190,7 @@ export class CourriersComponent implements OnInit {
       .getAllCourriers(this.courriersService.filter)
       .subscribe({
         next: this.handleResponse.bind(this),
-        error: this.handleError.bind(this),
+        error: this.handleGetCourriersError.bind(this),
       });
   }
 

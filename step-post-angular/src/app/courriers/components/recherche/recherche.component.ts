@@ -4,7 +4,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { debounceTime, Observable, Subject, switchMap } from 'rxjs';
 import { DetailsCourrier } from 'src/app/core/models/details-courrier-model';
-import { SecuriteService } from 'src/app/core/services/securite.service';
 import { environment } from 'src/environments/environment';
 import { fade } from '../../animations/animations';
 import { RechercheService } from '../../services/recherche.service';
@@ -34,8 +33,7 @@ export class RechercheComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private rechercheService: RechercheService,
-    private router: Router,
-    private securiteService: SecuriteService
+    private router: Router
   ) {}
 
   /**

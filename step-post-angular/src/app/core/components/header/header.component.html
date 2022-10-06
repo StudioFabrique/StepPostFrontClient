@@ -3,7 +3,7 @@
         <img class="w-48 md:w-64 p-5" src="assets/img/logo.png" alt="logo step post">
     </div>
     <div *ngIf="auth.isLoggedIn"
-        class="flex flex-col-reverse md:flex-row justify-center items-center md:gap-x-4 gap-y-2">
+        class="flex flex-col-reverse md:flex-row justify-center items-center md:gap-x-4 md:gap-y-2">
         <div>
             <app-white-button [text]="'nouveau courrrier'" (click)="onNouveauCourrierClick()"></app-white-button>
         </div>
@@ -35,10 +35,10 @@
                         (click)="onLogout()">
                 </p>
             </li>
-            <li class="pb-2" *ngIf="auth.username" routerLinkActive="active">
-                <a class="text-sm md:text-xl" routerLink="/profil">{{auth.username | titlecase}}</a>
-            </li>
         </ul>
+        <div class="pb-2" *ngIf="auth.username" routerLinkActive="active">
+            <a class="text-xs  md:text-lg" routerLink="/profil">{{auth.username | titlecase}}</a>
+        </div>
     </div>
     <div *ngIf="auth.isLoginPage">
         <app-white-button [text]="'inscription'" (click)="onInscriptionClick()"></app-white-button>
