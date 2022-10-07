@@ -98,7 +98,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       }
     );
     this.loader = false;
-    this.router.navigateByUrl('/');
+    this.router.navigateByUrl('/courriers');
   }
 
   /**

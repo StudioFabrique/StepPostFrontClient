@@ -15,6 +15,11 @@ import { SharedModule } from '../shared/shared.module';
 const coreRoutes: Routes = [
   { path: '', redirectTo: 'courriers', pathMatch: 'full' },
   {
+    path: 'courriers',
+    loadChildren: () =>
+      import('../courriers/courriers.module').then((m) => m.CourriersModule),
+  },
+  {
     path: 'profil',
     loadChildren: () =>
       import('../account/account.module').then((m) => m.AccountModule),
@@ -31,12 +36,12 @@ const coreRoutes: Routes = [
   declarations: [LoginComponent, HeaderComponent],
   imports: [
     CommonModule,
-    HttpClientModule,
-    AccountModule,
-    AdressesModule,
-    CourriersModule,
     RouterModule.forChild(coreRoutes),
+    HttpClientModule,
     SharedModule,
+    AdressesModule,
+    AccountModule,
+    CourriersModule,
   ],
   providers: [
     httpInterceptorProviders,
