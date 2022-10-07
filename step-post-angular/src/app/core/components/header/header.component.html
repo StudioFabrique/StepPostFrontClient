@@ -1,4 +1,4 @@
-<header class="flex justify-between items-center mb-10 mr-4">
+<header class="flex flex-col md:flex-row justify-center md:justify-between items-center mb-10 mr-4">
     <div>
         <img class="w-48 md:w-64 p-5" src="assets/img/logo.png" alt="logo step post">
     </div>
@@ -35,10 +35,10 @@
                         (click)="onLogout()">
                 </p>
             </li>
+            <li class="pb-2" *ngIf="auth.username" routerLinkActive="active">
+                <a class="text-sm  md:text-lg" routerLink="/profil">{{auth.username | titlecase}}</a>
+            </li>
         </ul>
-        <div class="pb-2" *ngIf="auth.username" routerLinkActive="active">
-            <a class="text-xs  md:text-lg" routerLink="/profil">{{auth.username | titlecase}}</a>
-        </div>
     </div>
     <div *ngIf="auth.isLoginPage">
         <app-white-button [text]="'inscription'" (click)="onInscriptionClick()"></app-white-button>
