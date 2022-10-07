@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router, UrlSegmentGroup } from '@angular/router';
+import { CanActivate } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from './services/auth.service';
 
@@ -9,7 +9,6 @@ import { AuthService } from './services/auth.service';
 export class AuthGuard implements CanActivate {
   constructor(
     public authService: AuthService,
-    private router: Router,
     private toaster: ToastrService
   ) {}
 
@@ -24,7 +23,7 @@ export class AuthGuard implements CanActivate {
     this.toaster.error('Connexion', 'Le jeton de session a expiré', {
       positionClass: 'toast-bottom-center',
     });
-    this.router.navigate(['/login']);
+    this.authService.logout();
     return false;
   }
 }

@@ -8,11 +8,15 @@ import { AdressesService } from 'src/app/adresses/services/adresses.service';
 @Component({
   selector: 'app-modal-two-buttons',
   templateUrl: './modal-two-buttons.component.html',
+  styles: ['@media print { * { display: none } }'],
 })
 export class ModalTwoButtonsComponent implements OnInit {
-  @Input() adresse!: Destinataire; //  adresse qui doit être effacée
-  @Output() fermerPopup: EventEmitter<void> = new EventEmitter<void>(); //  informe le parent qu'il doit annuler l'affichage de la popup
-  loader: boolean = false; //  true : affiche le loader
+  @Input() leftLabel!: string; //  label bouton de gauche
+  @Input() rightLabel!: string; //  label bouton de droite
+  @Input() msg!: string; //  msg affiché dans la modal
+  @Output() closeModal: EventEmitter<void> = new EventEmitter<void>(); //  click sur l'icône fermer da la modal
+  @Output() leftClick: EventEmitter<void> = new EventEmitter<void>(); // click bouton de gauche
+  @Output() rightClick: EventEmitter<void> = new EventEmitter<void>(); //  click bouton de droite
 
   constructor(
     private adressesService: AdressesService,
@@ -22,53 +26,15 @@ export class ModalTwoButtonsComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  /**
-   * initialise la fermeture de la popup
-   */
-  onCancel(): void {
-    this.fermerPopup.emit();
+  onCloseModal(): void {
+    this.closeModal.emit();
   }
 
-  /**
-   * confirme la suppression de l'adresse
-   */
-  onConfirm(): void {
-    if (this.adresse.id !== undefined) {
-      this.loader = true;
-      this.adressesService.deleteAdresse(this.adresse.id).subscribe({
-        next: this.handleResponse.bind(this),
-        error: this.handleError.bind(this),
-      });
-    }
+  onLeftClick(): void {
+    this.leftClick.emit();
   }
 
-  /**
-   * gestion des erreurs d'authentification
-   * @param error erreur retournée par le backend
-   */
-  handleError(error: any): void {
-    this.loader = false;
-    if (error instanceof HttpErrorResponse) {
-      if (error.status === 401 || error.status === 403) {
-        this.router.navigateByUrl('/login');
-      }
-    }
-  }
-
-  /**
-   * gestion de la réponse de la suppression de l'adresse
-   * @param response réposne retournée par le backend
-   */
-  handleResponse(response: any): void {
-    this.loader = false;
-    this.fermerPopup.emit();
-    this.adresse = this.adressesService.testNullProperties(this.adresse);
-    this.toaster.warning(
-      `${this.adresse.prenom} ${this.adresse.nom}`,
-      'Adresse supprimée',
-      {
-        positionClass: 'toast-bottom-center',
-      }
-    );
+  onRightClick(): void {
+    this.rightClick.emit();
   }
 }

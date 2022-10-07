@@ -14,9 +14,10 @@ import { AdressesService } from '../../services/adresses.service';
 export class AdressesComponent implements OnInit {
   adresses!: Destinataire[]; //  liste des destinataires affichés à l'écran
   adresseToDelete!: Destinataire; //  adresse sélectionnée pour suppression
-  popupDelete: boolean = false; //  true : affiche une modal de confirmation pour la suppression d'une adresse
+  displayModal: boolean = false; //  true : affiche une modal de confirmation pour la suppression d'une adresse
   loader: boolean = false; // true : affiche le loader
   msg: string = 'Aucune adresse trouvée.'; //  message affiché si aucune adresse n'est trouvée dans la bdd
+  modalMsg: string = 'Etes-vous sûr de vouloir supprimer cette adresse ?';
 
   constructor(
     private adressesService: AdressesService,
@@ -36,10 +37,6 @@ export class AdressesComponent implements OnInit {
    * la suppression d'una adresse et rafraîchit l'affichage
    * de la liste destinataires
    */
-  onFermerPopup(): void {
-    this.popupDelete = false;
-    this.getAdresses();
-  }
 
   /**
    * annule l'affichage des informations liées à la recherche d'une adresse
@@ -54,7 +51,7 @@ export class AdressesComponent implements OnInit {
    */
   onRetourAdresse(adresse: Destinataire): void {
     this.adresseToDelete = adresse;
-    this.popupDelete = true;
+    this.displayModal = true;
   }
 
   /**
@@ -109,5 +106,48 @@ export class AdressesComponent implements OnInit {
   private handleResponse(response: any): void {
     this.loader = false;
     this.adresses = response;
+  }
+
+  //  delete adresse
+
+  /**
+   * initialise la fermeture de la popup
+   */
+  onCloseModal(): void {
+    this.displayModal = false;
+  }
+
+  onLeftClick(): void {
+    this.onCloseModal();
+  }
+
+  /**
+   * confirme la suppression de l'adresse
+   */
+  onRightClick(): void {
+    if (this.adresseToDelete.id !== undefined) {
+      this.loader = true;
+      this.adressesService.deleteAdresse(this.adresseToDelete.id).subscribe({
+        next: this.handleDeleteResponse.bind(this),
+        error: this.handleError.bind(this),
+      });
+    }
+  }
+
+  /**
+   * gestion de la réponse de la suppression de l'adresse
+   * @param response réposne retournée par le backend
+   */
+  handleDeleteResponse(response: any): void {
+    this.loader = false;
+    this.onCloseModal();
+    this.toaster.warning(
+      `${this.adresseToDelete.prenom} ${this.adresseToDelete.nom}`,
+      'Adresse supprimée',
+      {
+        positionClass: 'toast-bottom-center',
+      }
+    );
+    this.getAdresses();
   }
 }

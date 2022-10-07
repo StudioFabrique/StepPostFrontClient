@@ -7,7 +7,6 @@ import { RechercheComponent } from './components/recherche/recherche.component';
 import { AddAdresseComponent } from './components/add-adresse/add-adresse.component';
 import { AuthGuard } from '../core/auth.guard';
 import { EditAdresseComponent } from './components/edit-adresse/edit-adresse.component';
-import { PopupDeleteComponent } from './components/popup-delete/popup-delete.component';
 import { NouveauCourrierComponent } from './components/nouveau-courrier/nouveau-courrier.component';
 import { BordereauFormComponent } from './components/bordereau-form/bordereau-form.component';
 import { PreviewComponent } from './components/preview/preview.component';
@@ -49,7 +48,6 @@ const adressesRoutes: Routes = [
     DestinataireComponent,
     RechercheComponent,
     EditAdresseComponent,
-    PopupDeleteComponent,
     NouveauCourrierComponent,
     BordereauFormComponent,
     PreviewComponent,

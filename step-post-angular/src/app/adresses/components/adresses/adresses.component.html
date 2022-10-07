@@ -11,7 +11,8 @@
             (retourAdresse)="onRetourAdresse($event)"></app-destinataire>
     </section>
     <section>
-        <app-modal-two-buttons *ngIf="popupDelete" [adresse]="adresseToDelete" (fermerPopup)="onFermerPopup()">
+        <app-modal-two-buttons *ngIf="displayModal" [leftLabel]="'annuler'" [rightLabel]="'confirmer'" [msg]="modalMsg"
+            (closeModal)="onCloseModal()" (leftClick)="onLeftClick()" (rightClick)="onRightClick()">
         </app-modal-two-buttons>
     </section>
     <!--     <app-popup-delete *ngIf="popupDelete" [adresse]="adresseToDelete" (fermerPopup)="onFermerPopup()">

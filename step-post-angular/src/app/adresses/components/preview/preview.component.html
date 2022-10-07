@@ -69,14 +69,16 @@
             </div>
         </article>
     </section>
-    <section class="w-[21cm] section-bordereau-buttons flex justify-end mt-8">
+    <section class="buttons-group w-[21cm] flex justify-end mt-8">
         <div class="flex gap-x-4">
-            <!-- <button class="button" (click)="onRetour()">retour</button>
-            <button class="button" (click)="onPrint()">imprimer</button> -->
             <app-button [text]="'retour'" [bg]="'orange'" (click)="onRetour()"></app-button>
             <app-button [text]="'imprimer'" (click)="onPrint()"></app-button>
         </div>
     </section>
-    <app-popup-confirmation *ngIf="popup" (fermerPopup)="onFermerPopup()" (confirmer)="onConfirmerPopup()" [msg]="msg">
-    </app-popup-confirmation>
+
+    <!-- modal de confirmation -->
+
+    <app-modal-two-buttons *ngIf="popup" [msg]="msg" [leftLabel]="'annuler'" [rightLabel]="'confirmer'"
+        (closeModal)="onFermerPopup()" (leftClick)="onFermerPopup()" (rightClick)="onConfirmerPopup()">
+    </app-modal-two-buttons>
 </main>
