@@ -13,12 +13,6 @@ import { AccountModule } from '../account/account.module';
 import { SharedModule } from '../shared/shared.module';
 
 const coreRoutes: Routes = [
-  { path: '', redirectTo: 'courriers', pathMatch: 'full' },
-  {
-    path: 'courriers',
-    loadChildren: () =>
-      import('../courriers/courriers.module').then((m) => m.CourriersModule),
-  },
   {
     path: 'profil',
     loadChildren: () =>
