@@ -78,10 +78,10 @@ export class CourrierComponent implements OnInit {
     let value;
     switch (type) {
       case 0:
-        value = 'Lettre AS';
+        value = 'Lettre Suivie';
         break;
       case 1:
-        value = 'Lettre AR';
+        value = 'Lettre Recommandée AR';
         break;
       default:
         value = 'Colis';

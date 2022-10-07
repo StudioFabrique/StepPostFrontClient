@@ -3,6 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 @Component({
   selector: 'app-button',
   templateUrl: './button.component.html',
+  styles: ['@media print { button { display: none; } }'],
 })
 export class ButtonComponent implements OnInit {
   @Input() bg!: string; //  background-color si différent du "bleu Step"

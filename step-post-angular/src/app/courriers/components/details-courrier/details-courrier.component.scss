@@ -135,7 +135,7 @@ $green: #24A640;
         flex-direction: column;
         row-gap: 3vh;
         justify-content: center;
-        align-items: c;
+        align-items: center
     }
 
     .details {
@@ -162,5 +162,11 @@ $green: #24A640;
 
     .detailsLivraison {
         font-size: 1.5rem;
+    }
+
+    >section {
+        >article:nth-child(2) {
+            font-size: 2em;
+        }
     }
 }

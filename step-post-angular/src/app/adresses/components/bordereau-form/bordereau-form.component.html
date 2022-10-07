@@ -1,28 +1,28 @@
 <article *ngIf="!preview"
     class="w-80 md:w-full bg-white text-sm mb-10 flex flex-col md:flex-row md:justify-center items-center mx-auto md:gap-x-8 gap-y-8">
     <form class="md:w-80 flex flex-col items-center justify-center gap-y-8" [formGroup]="bordereauForm">
-        <div class="w-full justify-center flex gap-x-4">
+        <div class="w-full justify-center flex flex-col gap-x-4 gap-y-4 md:gap-y-0">
             <span class="flex items-center gap-x-2">
                 <input type="radio" checked="false" value="0" formControlName="type">
-                <label>Lettre AS</label>
+                <label>Lettre Suivie</label>
             </span>
             <span class="flex items-center gap-x-2">
                 <input type="radio" checked="false" value="1" formControlName="type">
-                <label>Lettre AR</label>
+                <label>Lettre Recommandée AR</label>
             </span>
             <span class="flex items-center gap-x-2">
                 <input type="radio" checked="false" value="2" formControlName="type">
                 <label>Colis</label>
             </span>
         </div>
-        <div>
+        <div class="w-full">
             <label class="flex flex-col">Instructions de livraison
                 <textarea
                     class="shadow border-stone-300 border w-80 md:w-64 p-4 md:p-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     rows="2" formControlName="instructions"></textarea>
             </label>
         </div>
-        <div>
+        <div class="w-full">
             <label class="flex flex-col">Téléphone
                 <input
                     class="shadow border-stone-300 border w-80 md:w-64 p-4 md:px-8 py-6 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
