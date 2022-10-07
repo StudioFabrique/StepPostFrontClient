@@ -48,8 +48,8 @@
 
     <!-- message affiché en l'absence de courrier en cours de distribution -->
 
-    <section *ngIf="!courriers && !loader" class="md:max-w-md flex justify-center container mx-auto">
-        <app-liste-vide class="w-full" [msg]="msg"></app-liste-vide>
+    <section *ngIf="!courriers && !loader">
+        <app-liste-vide [msg]="msg"></app-liste-vide>
     </section>
 
 </main>

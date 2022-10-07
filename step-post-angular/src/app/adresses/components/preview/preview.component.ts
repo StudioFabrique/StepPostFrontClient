@@ -10,7 +10,7 @@ import { AdressesService } from '../../services/adresses.service';
 @Component({
   selector: 'app-preview',
   templateUrl: './preview.component.html',
-  styleUrls: ['./preview.component.css'],
+  styleUrls: ['./preview.component.scss'],
 })
 export class PreviewComponent implements OnInit {
   @Input() bordereau!: Bordereau; //  informations affichées sur le bordereau d'expédition

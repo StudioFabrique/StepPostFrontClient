@@ -50,11 +50,12 @@ export class CheckMailComponent implements OnInit {
     this.isEmailAvailable = response.data;
     this.email.emit(response.email);
     this.emailChecked.emit(this.isEmailAvailable);
+    /* 
     if (this.isEmailAvailable) {
       this.toaster.success(this.successMsg, '', {
         positionClass: 'toast-bottom-center',
       });
-    } else {
+    } */ if (!this.isEmailAvailable) {
       this.toaster.error(this.failureMsg, '', {
         positionClass: 'toast-bottom-center',
       });
