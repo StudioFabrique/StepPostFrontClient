@@ -3,14 +3,13 @@
     size: portrait;
   }
   main {
-    margin-top: 0;
-    margin-left: 0;
+    margin: auto;
     row-gap: 0;
   }
   main > section {
     border: 1px solid black;
   }
-  main > section:last-child {
+  main > section:nth-child(3) {
     display: none;
   }
 }/*# sourceMappingURL=preview.component.css.map */

@@ -30,7 +30,7 @@ $green: #24A640;
 .trait {
     display: flex;
     width: 100%;
-    height: .25vw;
+    height: 5px;
     background-color: $green;
 }
 
@@ -81,32 +81,6 @@ $green: #24A640;
     font-size: .75rem;
 }
 
-
-@media screen and (max-width: 1700px) {
-    .trait {
-        width: 100%;
-    }
-}
-
-@media screen and (max-width: 1500px) {
-    .trait {
-        width: 100%;
-    }
-}
-
-@media screen and (max-width: 1400px) {
-    .trait {
-        width: 100%;
-    }
-}
-
-
-@media screen and (max-width: 1200px) {
-    .trait {
-        width: 100%;
-    }
-}
-
 @media screen and (max-width: 1000px) {
     .statuts {
         font-size: .5rem;
@@ -120,16 +94,10 @@ $green: #24A640;
         font-size: .75rem;
     }
 
-    .trait {
-        width: 7vw;
-    }
 
 }
 
 @media screen and (max-width: 600px) {
-    .trait {
-        width: 15vw;
-    }
 
     .detailsLivraison {
         flex-direction: column;
@@ -148,6 +116,10 @@ $green: #24A640;
 
     .statuts {
         top: -300%;
+    }
+
+    .trait {
+        height: 1px;
     }
 }
 

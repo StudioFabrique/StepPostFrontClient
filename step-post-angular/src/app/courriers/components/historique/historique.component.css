@@ -2,4 +2,13 @@
   border-radius: 50%;
   width: 1vw;
   height: 1vw;
+}
+
+@media print {
+  .titre {
+    display: none;
+  }
+  .button-group {
+    display: none;
+  }
 }/*# sourceMappingURL=historique.component.css.map */
