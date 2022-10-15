@@ -36,8 +36,6 @@ export class CourriersService {
   }
 
   getSortedCourriers(): Observable<RetourCourrier[]> {
-    console.log(this.order, this.col, this.page);
-
     return this.http.get<RetourCourrier[]>(
       `${environment.url.baseUrl}/client/courriers?filter=${this.filter}&offset=${this.page}&limit=${this.max}&col=${this.col}&order=${this.order}`
     );

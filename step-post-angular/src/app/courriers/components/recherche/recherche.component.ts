@@ -2,7 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { debounceTime, Observable, Subject, switchMap } from 'rxjs';
+import { debounceTime, Observable, Subject, switchMap, map } from 'rxjs';
 import { DetailsCourrier } from 'src/app/core/models/details-courrier-model';
 import { environment } from 'src/environments/environment';
 import { fade } from '../../animations/animations';
@@ -48,13 +48,10 @@ export class RechercheComponent implements OnInit {
     });
     this.searchTerms$
       .pipe(
-        debounceTime(1000),
-        switchMap((term: string) => this.searchTerm(term))
+        debounceTime(500),
+        map((term: string) => this.searchTerm(term))
       )
-      .subscribe({
-        next: this.handleRechercheNameResponse.bind(this),
-        error: this.handleError.bind(this),
-      });
+      .subscribe();
     this.rechercheService.updateDetailsCourrier().subscribe((response) => {
       this.noResults = false;
       this.detailsCourrier = response;
@@ -62,34 +59,8 @@ export class RechercheComponent implements OnInit {
     });
   }
 
-  handleRechercheNameResponse(response: any[]): void {
-    this.rechercheList = response;
-    if (response.length === 0) {
-      this.noNameResults = true;
-    } else {
-      this.noNameResults = false;
-    }
-  }
-
-  searchTerm(term: string): Observable<any | undefined> {
-    this.nameList = true;
-    return this.rechercheService.getNameList(term);
-  }
-
   onSearch(term: string): void {
-    if (environment.regex.numberRegex.test(term) && term.length > 4) {
-      this.rechercheByBordereau(+term);
-    } else if (
-      !environment.regex.numberRegex.test(term) &&
-      environment.regex.genericRegex.test(term)
-    ) {
-      this.searchTerms$.next(term);
-    } else {
-      this.nameList = false;
-    }
-    if (term.length === 0) {
-      this.noNameResults = false;
-    }
+    this.searchTerms$.next(term);
   }
 
   /**
@@ -98,6 +69,17 @@ export class RechercheComponent implements OnInit {
    */
   onFermer(): void {
     this.timeline = false;
+  }
+
+  /**
+   * initialise la recherche des courriers associés à un
+   * destinataire
+   * @param name nom du destinataire
+   */
+  onRechercheByName(name: any): void {
+    this.searchedName.emit(name);
+    this.searchForm.reset();
+    this.nameList = false;
   }
 
   /**
@@ -113,6 +95,8 @@ export class RechercheComponent implements OnInit {
    * @param response réception des informations détaillées d'un courrier
    */
   private handleBordereauResponse(response: any): void {
+    console.log('coucou', response);
+
     if (this.noResults === true) {
       this.noResults = false;
     }
@@ -157,13 +141,41 @@ export class RechercheComponent implements OnInit {
   }
 
   /**
-   * initialise la recherche des courriers associés à un
-   * destinataire
-   * @param name nom du destinataire
+   *
+   * @param response retour du backend
    */
-  onRechercheByName(name: any): void {
-    this.searchedName.emit(name);
-    this.searchForm.reset();
-    this.nameList = false;
+  private handleRechercheNameResponse(response: any): void {
+    this.isLoading.emit(false);
+    this.rechercheList = response;
+    if (response.length === 0) {
+      this.noNameResults = true;
+    } else {
+      this.noNameResults = false;
+    }
+  }
+
+  private searchTerm(term: string): void {
+    if (environment.regex.numberRegex.test(term) && term.length > 4) {
+      this.rechercheByBordereau(+term);
+      this.noNameResults = false;
+    } else {
+      this.nameList = false;
+      if (term.length === 0) {
+        this.noNameResults = false;
+      } else {
+        this.nameList = true;
+        this.getNameList(term);
+      }
+    }
+  }
+
+  private getNameList(term: string): void {
+    if (environment.regex.genericRegex.test(term)) {
+      this.isLoading.emit(true);
+      this.rechercheService.getNameList(term).subscribe({
+        next: this.handleRechercheNameResponse.bind(this),
+        error: this.handleError.bind(this),
+      });
+    }
   }
 }

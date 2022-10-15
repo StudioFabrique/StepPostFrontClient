@@ -126,6 +126,10 @@ $green: #24A640;
 @media print {
     .timeline {
         margin-top: 50px;
+
+        >.trait {
+            height: 1px;
+        }
     }
 
     .statuts {
@@ -133,7 +137,7 @@ $green: #24A640;
     }
 
     .detailsLivraison {
-        font-size: 1.5rem;
+        font-size: 2rem;
     }
 
     >section {
