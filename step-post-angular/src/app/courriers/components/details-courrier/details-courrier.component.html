@@ -1,6 +1,5 @@
-<section *ngIf="detailsCourrier && etats"
-    class="w-min-96 flex flex-col-reverse items-center justify-evenly md:flex-row gap-y-8">
-    <article class="timeline w-max-96  mb-4">
+<section *ngIf="detailsCourrier && etats">
+    <article class="timeline">
         <div class="trait" [ngStyle]="{visibility: 'hidden'}"></div>
         <div *ngFor="let statut of detailsCourrier.statuts">
             <div class="cercleContainer">
