@@ -1,44 +1,20 @@
-<header class="flex flex-col md:flex-row justify-center md:justify-between items-center mb-10 mr-4">
+<header class="relative flex justify-between items-center mb-10 mr-4">
     <div>
         <img class="w-48 md:w-64 p-5" src="assets/img/logo.png" alt="logo step post">
     </div>
-    <div *ngIf="auth.isLoggedIn"
-        class="hidden md:flex flex-col-reverse md:flex-row justify-center items-center md:gap-x-4 md:gap-y-2">
-        <div>
+    <div *ngIf="auth.isLoggedIn" class="flex justify-center items-center md:gap-x-4 md:gap-y-2">
+        <div class="hidden md:flex">
             <app-white-button [text]="'nouveau courrrier'" (click)="onNouveauCourrierClick()"></app-white-button>
         </div>
-        <ul class="flex items-center gap-x-2 md:gap-x-10 p-2 cursor-pointer">
-            <li class="pb-2" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                <a routerLink="/courriers">
-                    <img src="assets/img/icone-home.png" width=24px height=auto alt="icone home">
-                </a>
-            </li>
-            <li class="pb-2" routerLinkActive="active">
-                <a routerLink="/adresses">
-                    <img class="icone" src="assets/img/icone-favoris.png" width=24px height=auto alt="icone adresses">
-                </a>
-            </li>
-            <li class="pb-2" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                <a routerLink="/historique">
-                    <img class="icone" src="assets/img/icone-tableau.png" width=24px height=auto alt="icone historique">
-                </a>
-            </li>
-            <li class="pb-2" *ngIf="!auth.username" routerLinkActive="active">
-                <a routerLink="/profil">
-                    <img class="icone" src="assets/img/icone-account.png" width=24px height=auto
-                        alt="icone gestion du profil">
-                </a>
-            </li>
-            <li class="pb-2">
-                <p>
-                    <img class="icone" src="assets/img/icone-logout.png" width=24px height=auto alt="icone déconnexion"
-                        (click)="onLogout()">
-                </p>
-            </li>
-            <li class="pb-2" *ngIf="auth.username" routerLinkActive="active">
-                <a class="text-sm  md:text-lg" routerLink="/profil">{{auth.username | titlecase}}</a>
-            </li>
-        </ul>
+        <div class="hidden md:flex">
+            <app-liste-liens></app-liste-liens>
+        </div>
+        <div class="flex md:hidden" (click)="onBurgerClick()">
+            <img src="assets/img/Burger.svg" alt="icone menu burger">
+        </div>
+        <div *ngIf="burger">
+            <app-liste-lien-mobile (close)="onBurgerClick()"></app-liste-lien-mobile>
+        </div>
     </div>
     <div *ngIf="auth.isLoginPage">
         <app-white-button [text]="'inscription'" (click)="onInscriptionClick()"></app-white-button>

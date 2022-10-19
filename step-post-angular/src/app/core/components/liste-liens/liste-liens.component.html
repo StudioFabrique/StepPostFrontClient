@@ -1,0 +1,31 @@
+<ul class="flex items-center gap-x-2 md:gap-x-10 p-2 cursor-pointer">
+    <li class="pb-2" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <a routerLink="/courriers">
+            <img src="assets/img/icone-home.png" width=24px height=auto alt="icone home">
+        </a>
+    </li>
+    <li class="pb-2" routerLinkActive="active">
+        <a routerLink="/adresses">
+            <img class="icone" src="assets/img/icone-favoris.png" width=24px height=auto alt="icone adresses">
+        </a>
+    </li>
+    <li class="pb-2" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <a routerLink="/historique">
+            <img class="icone" src="assets/img/icone-tableau.png" width=24px height=auto alt="icone historique">
+        </a>
+    </li>
+    <li class="pb-2" *ngIf="!auth.username" routerLinkActive="active">
+        <a routerLink="/profil">
+            <img class="icone" src="assets/img/icone-account.png" width=24px height=auto alt="icone gestion du profil">
+        </a>
+    </li>
+    <li class="pb-2">
+        <p>
+            <img class="icone" src="assets/img/icone-logout.png" width=24px height=auto alt="icone déconnexion"
+                (click)="onLogout()">
+        </p>
+    </li>
+    <li class="pb-2" *ngIf="auth.username" routerLinkActive="active">
+        <a class="text-sm  md:text-lg" routerLink="/profil">{{auth.username | titlecase}}</a>
+    </li>
+</ul>

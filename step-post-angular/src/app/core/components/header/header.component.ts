@@ -1,14 +1,17 @@
+import { slideIn } from './../../animations/animations';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styles: ['@media print { header { display: none } }'],
+  animations: [slideIn],
 })
 export class HeaderComponent implements OnInit {
+  burger!: boolean;
+
   constructor(public auth: AuthService, private router: Router) {}
 
   ngOnInit(): void {}
@@ -22,7 +25,8 @@ export class HeaderComponent implements OnInit {
     this.router.navigateByUrl('/adresses/nouveau-courrier');
   }
 
-  onLogout(): void {
-    this.auth.logout();
+  onBurgerClick(): void {
+    this.burger = !this.burger;
+    console.log(this.burger);
   }
 }

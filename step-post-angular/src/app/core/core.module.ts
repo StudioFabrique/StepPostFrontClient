@@ -11,6 +11,9 @@ import { registerLocaleData } from '@angular/common';
 import * as fr from '@angular/common/locales/fr';
 import { AccountModule } from '../account/account.module';
 import { SharedModule } from '../shared/shared.module';
+import { ListeLiensComponent } from './components/liste-liens/liste-liens.component';
+import { ListeLienMobileComponent } from './components/liste-lien-mobile/liste-lien-mobile.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const coreRoutes: Routes = [
   {
@@ -27,9 +30,15 @@ const coreRoutes: Routes = [
 ];
 
 @NgModule({
-  declarations: [LoginComponent, HeaderComponent],
+  declarations: [
+    LoginComponent,
+    HeaderComponent,
+    ListeLiensComponent,
+    ListeLienMobileComponent,
+  ],
   imports: [
     CommonModule,
+    BrowserAnimationsModule,
     RouterModule.forChild(coreRoutes),
     HttpClientModule,
     SharedModule,
