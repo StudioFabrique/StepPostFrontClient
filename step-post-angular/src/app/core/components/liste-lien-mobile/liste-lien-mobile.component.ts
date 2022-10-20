@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/core/services/auth.service';
 import { slideIn } from './../../animations/animations';
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 
@@ -11,11 +12,15 @@ export class ListeLienMobileComponent implements OnInit {
   @Output() close = new EventEmitter<void>();
   @Input() isOpen!: boolean;
 
-  constructor() {}
+  constructor(private auth: AuthService) {}
 
   ngOnInit(): void {}
 
   onClose(): void {
     this.close.emit();
+  }
+
+  onLogout(): void {
+    this.auth.logout();
   }
 }
