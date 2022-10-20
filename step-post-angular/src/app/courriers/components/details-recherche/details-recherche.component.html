@@ -5,11 +5,13 @@
             <h4>Courrier n° : {{detailsCourrier.courrier.bordereau}} </h4>
             <img class="cursor-pointer" src="assets/img/icone-print.png" width="24px" height="24px"
                 alt="icone impression" (click)="onPrint()">
+            <img *ngIf="isHistorique" class="cursor-pointer w-4" src="assets/img/Stylo.svg"
+                alt="icone afficher signature" (click)="onSignature()">
         </span>
-
         <app-button [text]="'fermer'" (click)="onFermer()"></app-button>
     </div>
     <div class="max-w-3xl flex flex-col md:flex-row items-center container mx-auto md:flex">
         <app-details-courrier class="min-w-full" [detailsCourrier]="detailsCourrier"></app-details-courrier>
     </div>
 </article>
+<app-modal-signature *ngIf="modal" [signature]="signature" (close)="onCloseSignature()"></app-modal-signature>

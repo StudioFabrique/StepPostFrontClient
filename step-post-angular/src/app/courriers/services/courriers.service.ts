@@ -1,6 +1,6 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { RetourCourrier } from '../models/retour-courrier.model';
@@ -20,7 +20,7 @@ export class CourriersService {
   filter!: boolean;
   total!: number;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private auth: AuthService, private http: HttpClient) {}
 
   /**
    *
@@ -125,5 +125,18 @@ export class CourriersService {
   setButtonsStyle(size: number): void {
     this.previous = this.setPrevious();
     this.next = this.setNext(size, this.total);
+  }
+
+  /**
+   * requête get pour récupérer le fichier image de la signature d'un
+   * courrier distribué
+   *
+   * @param courrierId id du courrier dont on veut voir la signature
+   * @returns réponse serveur
+   */
+  getSignature(courrierId: number): Observable<any> {
+    return this.http.get<any>(
+      `${environment.url.baseUrl}/client/courriers/signature?courrierId=${courrierId}`
+    );
   }
 }

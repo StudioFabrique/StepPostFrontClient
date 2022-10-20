@@ -10,6 +10,7 @@ import { ButtonComponent } from './components/button/button.component';
 import { WhiteButtonComponent } from './components/white-button/white-button.component';
 import { BtnPagesComponent } from './components/btn-pages/btn-pages.component';
 import { ModalTwoButtonsComponent } from './components/modal-two-buttons/modal-two-buttons.component';
+import { ModalSignatureComponent } from './components/modal-signature/modal-signature.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { ModalTwoButtonsComponent } from './components/modal-two-buttons/modal-t
     WhiteButtonComponent,
     BtnPagesComponent,
     ModalTwoButtonsComponent,
+    ModalSignatureComponent,
   ],
   imports: [
     CommonModule,
@@ -40,6 +42,7 @@ import { ModalTwoButtonsComponent } from './components/modal-two-buttons/modal-t
     WhiteButtonComponent,
     BtnPagesComponent,
     ModalTwoButtonsComponent,
+    ModalSignatureComponent,
   ],
 })
 export class SharedModule {}
