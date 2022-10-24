@@ -24,7 +24,6 @@ export class RechercheComponent implements OnInit {
   detailsCourrier!: DetailsCourrier; //  timeline + adresse quasi complète du courrier
   numberRegEx: RegExp = /^[0-9]*$/; //  expression régulière pour tester si une chaîne de caractères ne contient que des chiffres
   searchForm!: FormGroup; //  formulaire de recherche par nom ou numéro de bordereau
-  timeline: boolean = false; //  true : affiche le résultat d'une recherche par numéro de bordereau
   searchTerms$: Subject<string> = new Subject<string>();
   rechercheList!: any[];
   nameList: boolean = false;
@@ -68,7 +67,7 @@ export class RechercheComponent implements OnInit {
    * par numéro de bordereau
    */
   onFermer(): void {
-    this.timeline = false;
+    this.rechercheService.timeline = false;
   }
 
   /**
@@ -101,9 +100,7 @@ export class RechercheComponent implements OnInit {
       this.noResults = false;
     }
     this.detailsCourrier = response;
-    if (this.timeline === false) {
-      this.timeline = true;
-    }
+    this.rechercheService.timeline = true;
     this.searchForm.reset();
     this.isLoading.emit(false);
   }
@@ -120,7 +117,7 @@ export class RechercheComponent implements OnInit {
         this.router.navigateByUrl('/login');
       }
       if (error.status === 404) {
-        this.timeline = false;
+        this.rechercheService.timeline = false;
         this.noResults = true;
       }
     }

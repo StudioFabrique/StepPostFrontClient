@@ -38,6 +38,7 @@ export class CourriersComponent implements OnInit {
    * lazy loading
    */
   ngOnInit(): void {
+    this.rechercheService.timeline = false;
     this.courriersService.filter = false;
     this.courriersService.page = 0;
     this.courriersService.max = 5;

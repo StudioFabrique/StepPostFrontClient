@@ -38,6 +38,7 @@ export class HistoriqueComponent implements OnInit {
    * lazy loading
    */
   ngOnInit(): void {
+    this.rechercheService.timeline = false;
     if (!this.courriersService.etats) {
       this.courriersService.getStatutsList();
     }

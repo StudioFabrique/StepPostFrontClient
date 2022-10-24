@@ -1,7 +1,6 @@
 import { RechercheService } from './../../services/recherche.service';
 import { CourriersService } from './../../services/courriers.service';
 import { AuthService } from 'src/app/core/services/auth.service';
-import { Router } from '@angular/router';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DetailsCourrier } from 'src/app/core/models/details-courrier-model';
 import { fade } from '../../animations/animations';
@@ -22,13 +21,10 @@ export class DetailsRechercheComponent implements OnInit {
   constructor(
     private auth: AuthService,
     private courriersService: CourriersService,
-    private rechercheService: RechercheService,
-    private router: Router
+    private rechercheService: RechercheService
   ) {}
 
   ngOnInit(): void {
-    console.log('coucou');
-
     this.isDistributed = this.rechercheService.testForSignature(
       this.detailsCourrier
     )
