@@ -21,7 +21,7 @@ export class RechercheComponent implements OnInit {
     new EventEmitter<boolean>(); //  true : indique au composant parent qu'aucun résultat n'a été trouvé
   @Output() searchedName: EventEmitter<string> = new EventEmitter<string>();
   @Output() isLoading: EventEmitter<boolean> = new EventEmitter<boolean>(); //  envoie une valeur au composant parent pour gérer le loader
-  detailsCourrier!: DetailsCourrier; //  timeline + adresse quasi complète du pour le courrier
+  detailsCourrier!: DetailsCourrier; //  timeline + adresse quasi complète du courrier
   numberRegEx: RegExp = /^[0-9]*$/; //  expression régulière pour tester si une chaîne de caractères ne contient que des chiffres
   searchForm!: FormGroup; //  formulaire de recherche par nom ou numéro de bordereau
   timeline: boolean = false; //  true : affiche le résultat d'une recherche par numéro de bordereau
@@ -32,7 +32,7 @@ export class RechercheComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private rechercheService: RechercheService,
+    public rechercheService: RechercheService,
     private router: Router
   ) {}
 
@@ -55,7 +55,7 @@ export class RechercheComponent implements OnInit {
     this.rechercheService.updateDetailsCourrier().subscribe((response) => {
       this.noResults = false;
       this.detailsCourrier = response;
-      this.timeline = true;
+      this.rechercheService.timeline = true;
     });
   }
 

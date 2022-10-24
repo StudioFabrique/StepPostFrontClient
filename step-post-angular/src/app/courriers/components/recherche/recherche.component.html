@@ -27,7 +27,7 @@
         </div>
     </form>
 
-    <div class="md:max-w-5xl flex justify-center container mx-auto" *ngIf="timeline" @fade>
+    <div class="md:max-w-5xl flex justify-center container mx-auto" *ngIf="rechercheService.timeline">
         <app-details-recherche class="min-w-full" (emitter)="onFermer()" [detailsCourrier]="detailsCourrier">
         </app-details-recherche>
     </div>

@@ -54,6 +54,8 @@ export class HistoriqueComponent implements OnInit {
    * @param courrier sur lequel l'utilisateur a cliqué
    */
   onCourrierClick(courrier: number): void {
+    console.log(this.rechercheService.timeline);
+    this.rechercheService.timeline = false;
     this.rechercheService.getDetailsCourrier(courrier);
   }
 

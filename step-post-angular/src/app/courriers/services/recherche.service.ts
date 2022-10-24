@@ -11,6 +11,8 @@ import { RetourCourrier } from '../models/retour-courrier.model';
 export class RechercheService {
   detailsCourrier$: Subject<DetailsCourrier> = new Subject<DetailsCourrier>();
   baseUrl: string = environment.url.baseUrl;
+  timeline!: boolean;
+
   constructor(private http: HttpClient) {}
 
   getDetailsCourrier(bordereau: number): void {
@@ -22,6 +24,7 @@ export class RechercheService {
   }
 
   rechercheByBordereau(bordereau: number): Observable<DetailsCourrier> {
+    this.timeline = false;
     return this.http.get<any>(
       `${this.baseUrl}/client/recherchecourrier/bordereau?bordereau=${bordereau}`
     );
@@ -70,5 +73,15 @@ export class RechercheService {
 
   handleError(value: any) {
     return of(value);
+  }
+
+  testForSignature(courrier: DetailsCourrier): boolean {
+    const statuts = courrier.statuts;
+    console.log(statuts[statuts.length - 1].statut_id);
+
+    if (statuts[statuts.length - 1].statut_id === 5) {
+      return true;
+    }
+    return false;
   }
 }

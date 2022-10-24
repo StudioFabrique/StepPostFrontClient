@@ -1,3 +1,4 @@
+import { RechercheService } from './../../services/recherche.service';
 import { CourriersService } from './../../services/courriers.service';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { Router } from '@angular/router';
@@ -14,18 +15,25 @@ import { fade } from '../../animations/animations';
 export class DetailsRechercheComponent implements OnInit {
   @Input() detailsCourrier!: DetailsCourrier; //  adresse du destinataire + timeline
   @Output() emitter: EventEmitter<boolean> = new EventEmitter<boolean>(); //  indique au composant parent qu'il ne doit plus afficher ce composant
-  isHistorique!: boolean;
+  isDistributed!: boolean;
   signature!: any;
   modal!: boolean;
 
   constructor(
     private auth: AuthService,
     private courriersService: CourriersService,
+    private rechercheService: RechercheService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.isHistorique = this.router.url.includes('historique') ? true : false;
+    console.log('coucou');
+
+    this.isDistributed = this.rechercheService.testForSignature(
+      this.detailsCourrier
+    )
+      ? true
+      : false;
   }
 
   /**
