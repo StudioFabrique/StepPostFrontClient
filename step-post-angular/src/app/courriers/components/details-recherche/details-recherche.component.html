@@ -13,5 +13,10 @@
     <div class="max-w-3xl flex flex-col md:flex-row items-center container mx-auto md:flex">
         <app-details-courrier class="min-w-full" [detailsCourrier]="detailsCourrier"></app-details-courrier>
     </div>
+    <div class="min-w-full justify-end hidden print:flex mr-40" *ngIf="signature && isPrinting">
+        <img class="signature w-40" [src]="signature" (load)="onLoad()" alt="signature du destinataire">
+    </div>
 </article>
 <app-modal-signature *ngIf="modal" [signature]="signature" (close)="onCloseSignature()"></app-modal-signature>
+<app-modal-one-button *ngIf="noSignature" [msg]="'Aucune signature trouvée pour ce courrier'" [btnLabel]="'fermer'"
+    (closeModal)="onCloseModal()"></app-modal-one-button>
