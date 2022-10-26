@@ -10,11 +10,13 @@ import { AuthService } from '../../services/auth.service';
   animations: [slideIn],
 })
 export class HeaderComponent implements OnInit {
-  burger!: boolean;
+  burger: boolean = false;
 
   constructor(public auth: AuthService, private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.burger);
+  }
 
   onInscriptionClick(): void {
     this.auth.isLoginPage = false;
@@ -27,6 +29,5 @@ export class HeaderComponent implements OnInit {
 
   onBurgerClick(): void {
     this.burger = !this.burger;
-    console.log(this.burger);
   }
 }

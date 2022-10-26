@@ -10,7 +10,7 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 })
 export class ListeLienMobileComponent implements OnInit {
   @Output() close = new EventEmitter<void>();
-  @Input() isOpen!: boolean;
+  @Input() isOpen: boolean = false;
 
   constructor(private auth: AuthService) {}
 
