@@ -16,6 +16,11 @@
     <div class="min-w-full justify-end hidden print:flex mr-40" *ngIf="signature && isPrinting">
         <img class="signature w-40" [src]="signature" (load)="onLoad()" alt="signature du destinataire">
     </div>
+    <div *ngIf="detailsCourrier.statuts[detailsCourrier.statuts.length - 1].statut_id > 1">
+        <p class="hidden print:flex text-xs md:text-lg">
+            Ce document atteste que Step Post à bien pris en charge votre courrier.
+        </p>
+    </div>
 </article>
 <app-modal-signature *ngIf="modal" [signature]="signature" (close)="onCloseSignature()"></app-modal-signature>
 <app-modal-one-button *ngIf="noSignature" [msg]="'Aucune signature trouvée pour ce courrier'" [btnLabel]="'fermer'"
