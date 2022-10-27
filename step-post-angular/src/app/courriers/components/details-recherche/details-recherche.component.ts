@@ -53,6 +53,7 @@ export class DetailsRechercheComponent implements OnInit {
 
   onLoad(): void {
     window.print();
+    this.isPrinting = false;
   }
 
   /**
@@ -85,8 +86,6 @@ export class DetailsRechercheComponent implements OnInit {
   }
 
   private handleIsPrintingResponse(response: any): void {
-    console.log(this.signature);
-
     this.signature = response;
     this.isPrinting = true;
   }
