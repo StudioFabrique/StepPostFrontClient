@@ -89,7 +89,6 @@ export class LoginComponent implements OnInit, OnDestroy {
    * @param response contient le token
    */
   successHandler(response: any): void {
-    this.authService.username = response.username;
     this.toaster.success(
       `Bienvenue ${response.username.toUpperCase()}`,
       'Connexion réussie',

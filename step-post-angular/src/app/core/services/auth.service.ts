@@ -33,6 +33,7 @@ export class AuthService {
           this.token = response.token;
           if (this.token) {
             this.setIsLoggedIn(true);
+            this.username = response.username;
           } else {
             this.setIsLoggedIn(false);
           }
