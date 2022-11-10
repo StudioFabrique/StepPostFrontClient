@@ -100,17 +100,28 @@ export class AdresseFormComponent implements OnInit {
     if (this.newDest !== undefined) {
       if (this.dest) {
         this.newDest = { ...this.newDest, id: this.dest.id };
-      }
-      if (this.adresseForm.valid) {
-        this.updateAdresse();
+        if (this.adresseForm.valid) {
+          this.updateAdresse();
+        } else {
+          this.toasterInvalidForm();
+        }
       } else {
-        this.toasterInvalidForm();
+        if (this.adresseForm.valid) {
+          this.createAdresse();
+        }
       }
     } else {
       this.toaster.warning('Aucun changement détecté', 'Modifications', {
         positionClass: 'toast-bottom-center',
       });
     }
+  }
+
+  private createAdresse(): void {
+    this.adressesService.addAdresse(this.newDest).subscribe({
+      next: this.handleUpdateResponse.bind(this),
+      error: this.handleError.bind(this),
+    });
   }
 
   private updateAdresse(): void {
@@ -132,7 +143,7 @@ export class AdresseFormComponent implements OnInit {
   }
 
   private handleUpdateResponse(response: any): void {
-    this.toaster.success('adresse enregistrée', 'Modifications', {
+    this.toaster.success('adresse enregistrée', '', {
       positionClass: 'toast-bottom-center',
     });
   }
