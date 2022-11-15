@@ -1,10 +1,10 @@
-<section *ngIf="detailsCourrier && etats">
+<section *ngIf="detailsCourrier && courriersService.etats">
     <article class="timeline">
         <div class="trait" [ngStyle]="{visibility: 'hidden'}"></div>
         <div *ngFor="let statut of detailsCourrier.statuts">
             <div class="cercleContainer">
                 <div class="cercle"></div>
-                <div class="statuts">{{etats[statut.statut_id - 1]}}</div>
+                <div class="statuts">{{courriersService.setEtat(statut.statut_id)}}</div>
                 <div class="statuts-date">
                     <div>{{statut.date | date}} </div>
                 </div>

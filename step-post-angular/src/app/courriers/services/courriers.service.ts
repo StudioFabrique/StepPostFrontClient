@@ -57,12 +57,11 @@ export class CourriersService {
    */
   getStatutsList(): any {
     this.http
-      .get<string[]>(`${environment.url.baseUrl}/client/courriers/statuts`)
+      .get<any[]>(`${environment.url.baseUrl}/client/courriers/statuts`)
       .pipe(
         tap((value) => {
-          this.etats = value.map((elem: any) => {
-            return elem.etat;
-          });
+          this.etats = value;
+          console.table(this.etats);
         })
       )
       .subscribe();
@@ -138,5 +137,12 @@ export class CourriersService {
     return this.http.get<any>(
       `${environment.url.baseUrl}/client/courriers/signature?courrierId=${courrierId}`
     );
+  }
+
+  setEtat(value: number): string {
+    const statut: any = this.etats.find(
+      (item: any) => item.statutCode === value
+    );
+    return statut.etat;
   }
 }

@@ -6,8 +6,8 @@
 export const environment = {
   production: true,
   url: {
-    //baseUrl: 'https://step-post-nodejs.herokuapp.com/api',
-    baseUrl: 'http://localhost:3000/api',
+    baseUrl: 'https://step-post-nodejs.herokuapp.com/api',
+    //baseUrl: 'http://localhost:3000/api',
   },
   regex: {
     mailRegex:

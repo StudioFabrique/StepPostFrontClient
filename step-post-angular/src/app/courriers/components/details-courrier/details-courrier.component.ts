@@ -11,36 +11,15 @@ import { CourriersService } from '../../services/courriers.service';
 })
 export class DetailsCourrierComponent implements OnInit {
   @Input() detailsCourrier!: DetailsCourrier;
-  etats!: string[];
 
   constructor(
-    private courriersService: CourriersService,
+    public courriersService: CourriersService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
-    if (this.courriersService.etats) {
-      this.etats = this.courriersService.etats;
-    } else {
-      this.courriersService.getStatutsList().subscribe({
-        next: this.handleResponse.bind(this),
-        error: this.handleError.bind(this),
-      });
+    if (!this.courriersService.etats) {
+      this.courriersService.getStatutsList().subscribe();
     }
-  }
-
-  private handleError(error: any): void {
-    if (error instanceof HttpErrorResponse) {
-      if (error.status === 401 || error.status === 403) {
-        this.router.navigateByUrl('/login');
-      }
-    }
-  }
-
-  private handleResponse(response: any) {
-    this.etats = response.map((elem: any) => {
-      return elem.etat;
-    });
-    console.table(this.etats);
   }
 }

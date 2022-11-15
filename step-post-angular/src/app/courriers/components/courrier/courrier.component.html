@@ -14,7 +14,7 @@
                 {{type}} </p>
         </span>
         <span class="flex flex-col md:flex-row items-center justify-center gap-y-1">
-            <p *ngIf="courriersService.etats" class="text-sm md:text-lg">{{courriersService.etats[courrier.etat - 1]}}
+            <p *ngIf="courriersService.etats" class="text-sm md:text-lg">{{courriersService.setEtat(courrier.etat)}}
             </p>
         </span>
     </div>

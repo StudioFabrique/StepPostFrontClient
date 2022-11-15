@@ -47,7 +47,7 @@
                     <td>{{courrier.nom | titlecase}} {{courrier.prenom | titlecase}}</td>
                     <td class="flex items-center gap-x-2 p-2">
                         <div class="cercle" [ngStyle]="{backgroundColor: setColor(courrier.etat)}"></div>
-                        <p> {{courriersService.etats[courrier.etat - 1] | titlecase}}</p>
+                        <p> {{courriersService.setEtat(courrier.etat) | titlecase}}</p>
                     </td>
                 </tr>
             </tbody>
