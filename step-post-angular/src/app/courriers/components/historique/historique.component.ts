@@ -181,7 +181,6 @@ export class HistoriqueComponent implements OnInit {
     this.loader = false;
     if (error instanceof HttpErrorResponse) {
       if (error.status === 401 || error.status === 403) {
-        this.auth.logout();
       }
     }
   }

@@ -59,9 +59,6 @@ export class ProfilComponent implements OnInit {
   handleError(error: any): void {
     this.loader = false;
     if (error instanceof HttpErrorResponse) {
-      if (error.status === 401 || error.status === 403) {
-        this.auth.logout();
-      }
       if (error.status === 503) {
         this.toaster.error(this.errorMsg, '', {
           positionClass: 'toast-bottom-center',

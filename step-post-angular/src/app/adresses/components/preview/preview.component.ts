@@ -50,7 +50,6 @@ export class PreviewComponent implements OnInit {
     this.loader = true;
     this.adressesService.getCurrentUser().subscribe({
       next: this.handleResponse.bind(this),
-      error: this.auth.handleError.bind(this),
     });
     this.infos = {
       instructions: this.bordereau.instructions,
@@ -95,7 +94,6 @@ export class PreviewComponent implements OnInit {
         .createNewCourrier(this.bordereau.dest, this.bordereau.type)
         .subscribe({
           next: this.handleImpressionResponse.bind(this),
-          error: this.auth.handleError.bind(this),
         });
     } else {
       this.popup = true;
@@ -150,15 +148,11 @@ export class PreviewComponent implements OnInit {
     this.numBordereau = response.data.bordereau;
     this.adressesService.getQrCode(this.numBordereau).subscribe({
       next: this.handleQrcodeRespone.bind(this),
-      error: this.auth.handleError.bind(this),
     });
   }
 
   handleError(error: any): void {
     if (error instanceof HttpErrorResponse) {
-      if (error.status === 401 || error.status === 403) {
-        this.router.navigateByUrl('/login');
-      }
       if (error.status === 404) {
         this.router.navigateByUrl('/adresses');
       }

@@ -75,14 +75,6 @@ export class AuthService {
     }
   }
 
-  handleError(error: Error): void {
-    if (error instanceof HttpErrorResponse) {
-      if (error.status === 401 || error.status === 403) {
-        this.logout();
-      }
-    }
-  }
-
   handleUsernameResponse(response: string): void {
     this.username = response;
   }
@@ -93,7 +85,6 @@ export class AuthService {
   getUsername(): void {
     this.http.get<any>(`${environment.url.baseUrl}/auth/username`).subscribe({
       next: this.handleUsernameResponse.bind(this),
-      error: this.handleError.bind(this),
     });
   }
 }

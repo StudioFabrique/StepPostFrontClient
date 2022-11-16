@@ -91,11 +91,6 @@ export class DetailsRechercheComponent implements OnInit {
   }
 
   private handleIsPrintingError(error: any): void {
-    if (error instanceof HttpErrorResponse) {
-      if (error.status === 401 || error.status === 403) {
-        this.auth.logout();
-      }
-    }
     window.print();
   }
 
@@ -106,9 +101,7 @@ export class DetailsRechercheComponent implements OnInit {
 
   private handleError(error: any): void {
     if (error instanceof HttpErrorResponse) {
-      if (error.status === 401 || error.status === 403) {
-        this.auth.logout();
-      } else if (error.status === 404) {
+      if (error.status === 404) {
         this.noSignature = true;
       }
     }

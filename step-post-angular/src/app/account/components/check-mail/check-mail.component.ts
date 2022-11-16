@@ -37,7 +37,6 @@ export class CheckMailComponent implements OnInit {
       )
       .subscribe({
         next: this.handleResponse.bind(this),
-        error: this.auth.handleError.bind(this),
       });
   }
 

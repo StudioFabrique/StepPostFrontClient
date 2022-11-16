@@ -59,7 +59,6 @@ export class NewClientComponent implements OnInit {
     };
     this.clientService.createExp(this.expediteur).subscribe({
       next: this.handleResponse.bind(this),
-      error: this.auth.handleError.bind(this),
     });
   }
 
