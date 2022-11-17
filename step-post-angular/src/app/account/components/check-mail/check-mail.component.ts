@@ -60,7 +60,6 @@ export class CheckMailComponent implements OnInit {
     if (environment.regex.mailRegex.test(value)) {
       this.checkTerms$.next(value);
     } else {
-      this.toast.notValidMail();
       this.isEmailAvailable = undefined;
       this.emailChecked.emit(false);
     }

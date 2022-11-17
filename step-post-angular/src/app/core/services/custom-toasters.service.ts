@@ -25,7 +25,7 @@ export class CustomToastersService {
   }
 
   nothingToUpdate(): void {
-    this.toaster.success('Aucune modification détectée', '', {
+    this.toaster.warning('Aucune modification détectée', '', {
       positionClass: 'toast-bottom-center',
     });
   }
