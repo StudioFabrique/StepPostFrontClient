@@ -118,7 +118,7 @@ export class CustomToastersService {
     });
   }
 
-  passwordReseted(message: string): void {
+  responseMessage(message: string): void {
     this.toaster.success(message, '', { positionClass: 'toast-bottom-center' });
   }
 

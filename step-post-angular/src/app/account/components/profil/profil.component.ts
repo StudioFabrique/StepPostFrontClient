@@ -15,7 +15,6 @@ export class ProfilComponent implements OnInit {
   password: boolean = false; //  true : affiche le composant pour la modification du mot de passe
   coordonnees: boolean = false; //  true : affiche le composant pour la modification des coordonnées
   loader: boolean = false; //  true : affiche le loader
-  errorMsg: string = 'Cette adresse email est indisponible';
 
   constructor(
     private accountService: AccountService,
@@ -32,6 +31,9 @@ export class ProfilComponent implements OnInit {
     this.getCurrentUser();
   }
 
+  /**
+   * requête HTTP pour récupérer les données de l'utilisateur
+   */
   private getCurrentUser(): void {
     this.loader = true;
     this.adressesService.getCurrentUser().subscribe({
@@ -59,9 +61,7 @@ export class ProfilComponent implements OnInit {
     this.loader = false;
     if (error instanceof HttpErrorResponse) {
       if (error.status === 503) {
-        this.toaster.error(this.errorMsg, '', {
-          positionClass: 'toast-bottom-center',
-        });
+        this.toast.mailNotAvailable();
       }
     }
   }
@@ -114,9 +114,7 @@ export class ProfilComponent implements OnInit {
     console.log(response);
 
     this.loader = false;
-    this.toaster.success('Coordonnées', 'mises à jour avec succès', {
-      positionClass: 'toast-bottom-center',
-    });
+    this.toast.profileUpdated();
     const newDest = response.data;
     if (newDest.email !== this.user.email) {
       this.auth.logout();
