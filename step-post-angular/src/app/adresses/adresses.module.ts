@@ -12,7 +12,6 @@ import { BordereauFormComponent } from './components/bordereau-form/bordereau-fo
 import { PreviewComponent } from './components/preview/preview.component';
 import { DisplayedAdresseComponent } from './components/displayed-adresse/displayed-adresse.component';
 import { AdressesService } from './services/adresses.service';
-import { PopupConfirmationComponent } from './components/popup-confirmation/popup-confirmation.component';
 import { SharedModule } from '../shared/shared.module';
 import { AdresseFormComponent } from './components/adresse-form/adresse-form.component';
 
@@ -52,7 +51,6 @@ const adressesRoutes: Routes = [
     BordereauFormComponent,
     PreviewComponent,
     DisplayedAdresseComponent,
-    PopupConfirmationComponent,
   ],
   imports: [CommonModule, RouterModule.forChild(adressesRoutes), SharedModule],
   providers: [AdressesService],

@@ -1,8 +1,8 @@
+import { CustomToastersService } from './../../../core/services/custom-toasters.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
 import { Destinataire } from '../../models/Destinataire.model';
 import { AdressesService } from '../../services/adresses.service';
@@ -29,7 +29,7 @@ export class AdresseFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private toaster: ToastrService
+    private toast: CustomToastersService
   ) {}
 
   ngOnInit(): void {
@@ -86,16 +86,23 @@ export class AdresseFormComponent implements OnInit {
     });
   }
 
+  /**
+   * réinitialisation du formulaire
+   */
   onCancel(): void {
-    if (this.isAddForm) {
-      this.router.navigateByUrl('/adresses');
-    } else if (this.dest) {
+    if (this.dest) {
       this.adresseForm.patchValue(this.dest);
     } else {
       this.adresseForm.reset();
     }
   }
 
+  /**
+   * soumission du formulaire pour sauvegarder
+   * l'adresse. Si le formulaire est valide
+   * enregistrement d'une nouvelle adresse ou mise à jour
+   * d'une adresse existante
+   */
   onSauvegarder() {
     if (this.newDest !== undefined) {
       if (this.dest) {
@@ -103,7 +110,7 @@ export class AdresseFormComponent implements OnInit {
         if (this.adresseForm.valid) {
           this.updateAdresse();
         } else {
-          this.toasterInvalidForm();
+          this.toast.invalidDatas();
         }
       } else {
         if (this.adresseForm.valid) {
@@ -111,12 +118,14 @@ export class AdresseFormComponent implements OnInit {
         }
       }
     } else {
-      this.toaster.warning('Aucun changement détecté', 'Modifications', {
-        positionClass: 'toast-bottom-center',
-      });
+      this.toast.nothingToUpdate();
     }
   }
 
+  /**
+   * envoie une requête HTTP pour enregistrer un nouveau
+   * Destinataire
+   */
   private createAdresse(): void {
     this.adressesService.addAdresse(this.newDest).subscribe({
       next: this.handleUpdateResponse.bind(this),
@@ -124,6 +133,9 @@ export class AdresseFormComponent implements OnInit {
     });
   }
 
+  /**
+   * Envoie une requête HTTP pour mettre à jour un destinataire
+   */
   private updateAdresse(): void {
     this.adressesService.updateAdresse(this.newDest).subscribe({
       next: this.handleUpdateResponse.bind(this),
@@ -131,52 +143,33 @@ export class AdresseFormComponent implements OnInit {
     });
   }
 
+  /**
+   * Gestion erreur 404
+   * @param error any
+   */
   handleError(error: any): void {
     if (error instanceof HttpErrorResponse) {
-      if (error.status === 401 || error.status === 403) {
-        this.router.navigateByUrl('/login');
-      }
       if (error.status === 404) {
         this.router.navigateByUrl('/adresses');
       }
     }
   }
 
+  /**
+   * Gestion réponse positive
+   */
   private handleUpdateResponse(response: any): void {
-    this.toaster.success('adresse enregistrée', '', {
-      positionClass: 'toast-bottom-center',
-    });
+    this.toast.adressCreated();
   }
 
+  /**
+   *
+   */
   onSubmitForm(): void {
     if (this.adresseForm.valid) {
       this.submitted.emit(this.newDest);
     } else {
-      this.toasterInvalidForm();
+      this.toast.invalidDatas();
     }
-    /* 
-    if (this.isAddForm) {
-      this.adressesService.addAdresse(this.newDest).subscribe((response) => {
-        this.toaster.success('enregistrée avec succès', 'Nouvelle adresse', {
-          positionClass: 'toast-bottom-center',
-        });
-        this.router.navigateByUrl('/adresses');
-      });
-    } else if (this.nouveauCourrier) {
-      if (this.newDest !== undefined) {
-        this.dest = this.newDest;
-      }
-      this.retourDest.emit(this.dest);
-    } else {
-      this.newDest = { ...this.newDest, id: this.dest.id };
-      if (this.securiteService.testObject(this.newDest)) {
-        this.updateAdresse();
-      }
-    } */
-  }
-  toasterInvalidForm(): void {
-    this.toaster.warning('', 'Un ou plusieurs champs sont mal remplis', {
-      positionClass: 'toast-bottom-center',
-    });
   }
 }

@@ -1,7 +1,7 @@
+import { CustomToastersService } from './../../../core/services/custom-toasters.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
 import { tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AccountService } from '../../services/account.service';
@@ -13,15 +13,12 @@ import { AccountService } from '../../services/account.service';
 export class PasswordResetComponent implements OnInit {
   emailForm!: FormGroup;
   isEmailValid!: boolean;
-  successMessage: string = 'Email Envoyé';
-  errorMessage: string = 'Adresse email non valide';
-  warningMessage: string = 'Email a déjà été envoyé à cette adresse';
   mailSent!: boolean;
 
   constructor(
     private accountService: AccountService,
     private formBuilder: FormBuilder,
-    private toaster: ToastrService
+    private toast: CustomToastersService
   ) {}
 
   ngOnInit(): void {
@@ -42,24 +39,24 @@ export class PasswordResetComponent implements OnInit {
       .subscribe();
   }
 
+  /**
+   * vérifie et soumet le formulaire
+   *
+   * @returns ne retourne rien, le return sert à sortir de la méthode
+   */
   onSubmit() {
     if (this.mailSent) {
-      this.toaster.warning(this.warningMessage, '', {
-        positionClass: 'toast-bottom-center',
-      });
+      this.toast.mailAlreadySent();
       return;
     }
     if (!this.emailForm.valid) {
-      this.toaster.error(this.errorMessage, '', {
-        positionClass: 'toast-bottom-center',
-      });
+      this.toast.notValidMail();
     } else {
       this.mailSent = true;
       this.accountService.passwordReset(this.emailForm.value.email).subscribe({
         next: this.handleResponse.bind(this),
         error: this.handleError.bind(this),
       });
-      console.log('email envoyé');
     }
   }
 
@@ -76,9 +73,7 @@ export class PasswordResetComponent implements OnInit {
 
   handleResponse(response: boolean): void {
     if (response) {
-      this.toaster.success(this.successMessage, '', {
-        positionClass: 'toast-bottom-center',
-      });
+      this.toast.mailSent();
     }
   }
 }

@@ -1,7 +1,7 @@
+import { CustomToastersService } from './../../../core/services/custom-toasters.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { AccountService } from '../../services/account.service';
 
@@ -16,7 +16,7 @@ export class ReinitialiserPasswordComponent implements OnInit {
     private accountService: AccountService,
     private auth: AuthService,
     private route: ActivatedRoute,
-    private toaster: ToastrService
+    private toast: CustomToastersService
   ) {}
 
   ngOnInit(): void {
@@ -25,6 +25,11 @@ export class ReinitialiserPasswordComponent implements OnInit {
     );
   }
 
+  /**
+   * enregistrele nouveau password de l'utilisateur
+   *
+   * @param value password vérfier dans le composant enfant
+   */
   onSubmitted(value: string): void {
     this.accountService.passwordUpdate(value).subscribe({
       next: this.handleResponse.bind(this),
@@ -41,9 +46,7 @@ export class ReinitialiserPasswordComponent implements OnInit {
   }
 
   handleResponse(response: any): void {
-    this.toaster.success(response.message, '', {
-      positionClass: 'toast-bottom-center',
-    });
+    this.toast.responseMessage(response.message);
     this.auth.logout();
   }
 }

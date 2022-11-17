@@ -1,11 +1,8 @@
-import { HttpErrorResponse } from '@angular/common/http';
+import { CustomToastersService } from './../../../core/services/custom-toasters.service';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { Destinataire } from 'src/app/adresses/models/Destinataire.model';
 import { AdressesService } from 'src/app/adresses/services/adresses.service';
-import { AuthService } from 'src/app/core/services/auth.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -24,9 +21,8 @@ export class UpdateAdresseComponent implements OnInit {
 
   constructor(
     private adressesService: AdressesService,
-    private auth: AuthService,
     private formBuilder: FormBuilder,
-    private toaster: ToastrService
+    private toast: CustomToastersService
   ) {}
 
   /**
@@ -99,35 +95,6 @@ export class UpdateAdresseComponent implements OnInit {
     }
   }
 
-  /**
-   * validation du formulaire, si aucun changement n'a été apporté au
-   * formulaire par l'utilisateur le formulaire n'est pas validé
-   * si des changements ont été apportés et après vérification de sécurité
-   * sur les valeurs des champs du formulaire les nouvelles informations
-   * sont enregistrées
-   */ /* 
-  onSubmitForm(): void {
-    if (this.newDest !== undefined) {
-      if (this.adresseForm.valid) {
-        this.loader = true;
-        this.accountService
-          .updateClientCoordonnees(this.adresseForm.value)
-          .subscribe({
-            next: this.handleResponse.bind(this),
-            error: this.handleError.bind(this),
-          });
-      } else {
-        this.toaster.warning('', 'Un ou plusieurs champs sont mal remplis', {
-          positionClass: 'toast-bottom-center',
-        });
-      }
-    } else {
-      this.toaster.warning('', 'Aucun changement détecté', {
-        positionClass: 'toast-bottom-center',
-      });
-    }
-  } */
-
   onSubmit(): void {
     console.log(this.newDest);
 
@@ -135,19 +102,16 @@ export class UpdateAdresseComponent implements OnInit {
       if (this.adresseForm.valid) {
         this.submitted.emit(this.newDest);
       } else {
-        this.toaster.warning('', 'Un ou plusieurs champs sont mal remplis', {
-          positionClass: 'toast-bottom-center',
-        });
+        this.toast.invalidDatas();
       }
     } else {
-      this.toaster.warning('', 'Aucun changement détecté', {
-        positionClass: 'toast-bottom-center',
-      });
+      this.toast.nothingToUpdate();
     }
   }
 
   /**
    * gestion d'erreurs d'authentification éventuelles
+   *
    * @param error erreur retournée par le backend
    */
   handleError(error: any): void {

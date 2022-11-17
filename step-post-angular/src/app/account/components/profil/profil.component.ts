@@ -1,7 +1,6 @@
+import { CustomToastersService } from './../../../core/services/custom-toasters.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { Destinataire } from 'src/app/adresses/models/Destinataire.model';
 import { AdressesService } from 'src/app/adresses/services/adresses.service';
 import { AuthService } from 'src/app/core/services/auth.service';
@@ -22,7 +21,7 @@ export class ProfilComponent implements OnInit {
     private accountService: AccountService,
     private adressesService: AdressesService,
     private auth: AuthService,
-    private toaster: ToastrService
+    private toast: CustomToastersService
   ) {}
 
   /**

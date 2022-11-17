@@ -1,8 +1,7 @@
+import { CustomToastersService } from './../../../core/services/custom-toasters.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { tap } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { AccountService } from '../../services/account.service';
@@ -25,8 +24,7 @@ export class UpdatePasswordFormComponent implements OnInit {
     private accountService: AccountService,
     private auth: AuthService,
     private formBuilder: FormBuilder,
-    private router: Router,
-    private toaster: ToastrService
+    private toast: CustomToastersService
   ) {}
 
   /**
@@ -52,17 +50,16 @@ export class UpdatePasswordFormComponent implements OnInit {
 
   /**
    * gestion d'éventuelles erreurs d'authentification
+   *
    * @param error erreur retournée par le backend
    */
   handleError(error: any): void {
     this.loader = false;
     if (error instanceof HttpErrorResponse) {
       if (error.status === 401) {
-        this.toaster.warning('Réessayez svp', 'Mot de passe incorrect', {
-          positionClass: 'toast-bottom-center',
-        });
+        this.toast.incorrectPassword();
       } else if (error.status === 403) {
-        this.router.navigateByUrl('/login');
+        this.auth.logout();
       }
     }
   }
@@ -91,13 +88,15 @@ export class UpdatePasswordFormComponent implements OnInit {
     }
   }
 
+  /**
+   * vérifie que le nouveau mot de passe est différent de l'ancien
+   * mot de passe
+   *
+   * @param value string : password vérifié par le composant enfant
+   */
   onSubmitted(value: string): void {
     if (this.passwordForm.value.oldPassword === value) {
-      this.toaster.warning(
-        'le nouveau mot de passe est identique à votre mot de passe actuel',
-        'Mot de passe :',
-        { positionClass: 'toast-bottom-center' }
-      );
+      this.toast.identicalPassword();
     } else {
       this.accountService
         .updateClientPassword(this.passwordForm.value.oldPassword, value)
@@ -111,9 +110,7 @@ export class UpdatePasswordFormComponent implements OnInit {
   handleCheckPasswordResponse(response: boolean): void {
     this.passwordCheck = response;
     if (!this.passwordCheck) {
-      this.toaster.warning('mot de passe incorrect', 'Mot de passe :', {
-        positionClass: 'toast-bottom-center',
-      });
+      this.toast.incorrectPassword();
     }
   }
 
@@ -124,11 +121,7 @@ export class UpdatePasswordFormComponent implements OnInit {
    */
   handleUpdateResponse(response: any): void {
     this.loader = false;
-    this.toaster.success(
-      'Mot de passe mis à jour avec succès !',
-      'Mise à jour',
-      { positionClass: 'toast-bottom-center' }
-    );
+    this.toast.updatedPassword();
     this.auth.logout();
   }
 }

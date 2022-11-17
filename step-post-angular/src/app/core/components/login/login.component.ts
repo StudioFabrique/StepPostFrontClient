@@ -1,8 +1,8 @@
+import { CustomToastersService } from './../../services/custom-toasters.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AuthService } from '../../services/auth.service';
@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private toaster: ToastrService
+    private toast: CustomToastersService
   ) {}
 
   /**
@@ -81,6 +81,8 @@ export class LoginComponent implements OnInit, OnDestroy {
           next: this.successHandler.bind(this),
           error: this.errorHandler.bind(this),
         });
+    } else {
+      this.toast.invalidDatas();
     }
   }
 
@@ -89,13 +91,7 @@ export class LoginComponent implements OnInit, OnDestroy {
    * @param response contient le token
    */
   successHandler(response: any): void {
-    this.toaster.success(
-      `Bienvenue ${response.username.toUpperCase()}`,
-      'Connexion réussie',
-      {
-        positionClass: 'toast-top-center',
-      }
-    );
+    this.toast.loginTrue(response.username);
     this.loader = false;
     this.router.navigateByUrl('/courriers');
   }
@@ -108,17 +104,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.loader = false;
     if (error instanceof HttpErrorResponse) {
       if (error.status == 401) {
-        this.toaster.warning('Veuillez réessayer', 'Identifiants incorrects'!, {
-          positionClass: 'toast-bottom-center',
-        });
+        this.toast.loginFalse();
       } else if (error.status === 403) {
-        this.toaster.warning(
-          "Votre compte n'a pas encore été validé",
-          'Accès réservé',
-          {
-            positionClass: 'toast-bottom-center',
-          }
-        );
+        this.toast.notActivated();
       }
     }
   }

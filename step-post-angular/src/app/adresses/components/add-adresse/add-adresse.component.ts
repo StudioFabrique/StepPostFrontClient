@@ -1,7 +1,6 @@
-import { HttpErrorResponse } from '@angular/common/http';
+import { CustomToastersService } from './../../../core/services/custom-toasters.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { Destinataire } from '../../models/Destinataire.model';
 import { AdressesService } from '../../services/adresses.service';
 
@@ -15,7 +14,7 @@ export class AddAdresseComponent implements OnInit {
   constructor(
     private adressesService: AdressesService,
     private router: Router,
-    private toaster: ToastrService
+    private toast: CustomToastersService
   ) {}
 
   ngOnInit(): void {}
@@ -27,9 +26,7 @@ export class AddAdresseComponent implements OnInit {
   onSubmitted(newDest: Destinataire): void {
     this.loader = true;
     this.adressesService.addAdresse(newDest).subscribe((response) => {
-      this.toaster.success('enregistrée avec succès', 'Nouvelle adresse', {
-        positionClass: 'toast-bottom-center',
-      });
+      this.toast.adressCreated();
       this.router.navigateByUrl('/adresses');
     });
   }
@@ -40,11 +37,6 @@ export class AddAdresseComponent implements OnInit {
    */
   handleError(error: any): void {
     this.loader = false;
-    if (error instanceof HttpErrorResponse) {
-      if (error.status === 401 || error.status === 403) {
-        this.router.navigateByUrl('/login');
-      }
-    }
   }
 
   /**
@@ -54,9 +46,7 @@ export class AddAdresseComponent implements OnInit {
    */
   handleResponse(response: any): void {
     this.loader = false;
-    this.toaster.success('enregistrée avec succès', 'Nouvelle adresse', {
-      positionClass: 'toast-bottom-center',
-    });
+    this.toast.adressCreated();
     this.router.navigateByUrl('/adresses');
   }
 }

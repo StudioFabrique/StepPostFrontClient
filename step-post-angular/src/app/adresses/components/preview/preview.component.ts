@@ -149,6 +149,11 @@ export class PreviewComponent implements OnInit {
     });
   }
 
+  /**
+   * Gestion d'erreur 404
+   *
+   * @param error any
+   */
   handleError(error: any): void {
     if (error instanceof HttpErrorResponse) {
       if (error.status === 404) {

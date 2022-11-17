@@ -1,7 +1,5 @@
-import { HttpErrorResponse } from '@angular/common/http';
+import { CustomToastersService } from './../../../core/services/custom-toasters.service';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { fade } from 'src/app/courriers/animations/animations';
 import { Destinataire } from '../../models/Destinataire.model';
 import { AdressesService } from '../../services/adresses.service';
@@ -21,8 +19,7 @@ export class AdressesComponent implements OnInit {
 
   constructor(
     private adressesService: AdressesService,
-    private router: Router,
-    private toaster: ToastrService
+    private toast: CustomToastersService
   ) {}
 
   /**
@@ -74,26 +71,12 @@ export class AdressesComponent implements OnInit {
   }
 
   /**
-   * gestion des erreurs http liées à l'authentification
-   * @param error erreur renvoyée par le backend
-   */
-  private handleError(error: any): void {
-    this.loader = false;
-    if (error instanceof HttpErrorResponse) {
-      if (error.status === 401 || error.status === 403) {
-        this.router.navigateByUrl('/login');
-      }
-    }
-  }
-
-  /**
    * initialise la recherche d'une adresse
    */
   private getAdresses(): void {
     this.loader = true;
     this.adressesService.getAdresses().subscribe({
       next: this.handleResponse.bind(this),
-      error: this.handleError.bind(this),
     });
   }
 
@@ -129,7 +112,6 @@ export class AdressesComponent implements OnInit {
       this.loader = true;
       this.adressesService.deleteAdresse(this.adresseToDelete.id).subscribe({
         next: this.handleDeleteResponse.bind(this),
-        error: this.handleError.bind(this),
       });
     }
   }
@@ -141,13 +123,7 @@ export class AdressesComponent implements OnInit {
   handleDeleteResponse(response: any): void {
     this.loader = false;
     this.onCloseModal();
-    this.toaster.warning(
-      `${this.adresseToDelete.prenom} ${this.adresseToDelete.nom}`,
-      'Adresse supprimée',
-      {
-        positionClass: 'toast-bottom-center',
-      }
-    );
+    this.toast.adressDeleted();
     this.getAdresses();
   }
 }

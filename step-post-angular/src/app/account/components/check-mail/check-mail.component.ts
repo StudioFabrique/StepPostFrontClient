@@ -1,7 +1,6 @@
+import { CustomToastersService } from './../../../core/services/custom-toasters.service';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
 import { debounceTime, Observable, Subject, switchMap } from 'rxjs';
-import { AuthService } from 'src/app/core/services/auth.service';
 import { environment } from 'src/environments/environment';
 import { ClientService } from '../../services/client.service';
 
@@ -14,14 +13,10 @@ export class CheckMailComponent implements OnInit {
   @Output() email: EventEmitter<string> = new EventEmitter<string>(); //  email choisi par l'utilisateur envoyé au composant parent
   checkTerms$: Subject<string> = new Subject<string>(); //  permet de lancer la recherche automatiquement
   isEmailAvailable!: boolean | undefined; //  true : l'email est disponible dans la bdd
-  failureMsg: string = "Cette adresse email n'est pas disponible";
-  successMsg: string = 'Adresse email disponible';
-  warningMsg: string = "Format d'adresse email invalide";
 
   constructor(
-    private auth: AuthService,
     private clientService: ClientService,
-    private toaster: ToastrService
+    private toast: CustomToastersService
   ) {}
 
   /**
@@ -49,15 +44,8 @@ export class CheckMailComponent implements OnInit {
     this.isEmailAvailable = response.data;
     this.email.emit(response.email);
     this.emailChecked.emit(this.isEmailAvailable);
-    /* 
-    if (this.isEmailAvailable) {
-      this.toaster.success(this.successMsg, '', {
-        positionClass: 'toast-bottom-center',
-      });
-    } */ if (!this.isEmailAvailable) {
-      this.toaster.error(this.failureMsg, '', {
-        positionClass: 'toast-bottom-center',
-      });
+    if (!this.isEmailAvailable) {
+      this.toast.mailNotAvailable();
     }
   }
 
@@ -69,10 +57,10 @@ export class CheckMailComponent implements OnInit {
    */
   onCheck(value: string): void {
     this.email.emit(value);
-    console.log('value', value);
     if (environment.regex.mailRegex.test(value)) {
       this.checkTerms$.next(value);
     } else {
+      this.toast.notValidMail();
       this.isEmailAvailable = undefined;
       this.emailChecked.emit(false);
     }

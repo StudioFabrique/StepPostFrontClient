@@ -1,7 +1,7 @@
+import { CustomToastersService } from './../../../core/services/custom-toasters.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { SecuriteService } from 'src/app/core/services/securite.service';
 import { Destinataire } from '../../models/Destinataire.model';
 import { AdressesService } from '../../services/adresses.service';
@@ -19,7 +19,7 @@ export class EditAdresseComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private securiteService: SecuriteService,
-    private toaster: ToastrService
+    private toast: CustomToastersService
   ) {}
 
   /**
@@ -46,9 +46,6 @@ export class EditAdresseComponent implements OnInit {
   handleError(error: any): void {
     this.loader = false;
     if (error instanceof HttpErrorResponse) {
-      if (error.status === 401 || error.status === 403) {
-        this.router.navigateByUrl('/login');
-      }
       if (error.status === 404) {
         this.router.navigateByUrl('/adresses');
       }
@@ -71,9 +68,7 @@ export class EditAdresseComponent implements OnInit {
    */
   onSubmitted(newDest: Destinataire): void {
     if (newDest === undefined) {
-      this.toaster.warning('Mise à jour', 'Aucune modifications détectée', {
-        positionClass: 'toast-bottom-center',
-      });
+      this.toast.nothingToUpdate();
     } else {
       newDest = { ...newDest, id: this.dest.id };
       if (this.securiteService.testObject(newDest)) {
@@ -101,9 +96,7 @@ export class EditAdresseComponent implements OnInit {
    * @param response réponse du backend
    */
   private handleUpdateResponse(response: any): void {
-    this.toaster.success('adresse enregistrée', 'Modifications', {
-      positionClass: 'toast-bottom-center',
-    });
+    this.toast.adressCreated();
     this.router.navigateByUrl('/adresses');
   }
 }

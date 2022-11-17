@@ -1,6 +1,6 @@
+import { CustomToastersService } from './../../../core/services/custom-toasters.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
 import { Bordereau } from '../../models/bordereau.model';
 import { Destinataire } from '../../models/Destinataire.model';
@@ -18,7 +18,7 @@ export class BordereauFormComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private toaster: ToastrService
+    private toast: CustomToastersService
   ) {}
 
   /**
@@ -75,14 +75,8 @@ export class BordereauFormComponent implements OnInit {
    */
   onSubmitForm(): void {
     if (this.bordereauForm.value.type === null) {
-      this.toaster.warning(
-        'Choissez un type de courrier svp',
-        'Type de courrier manquant',
-        { positionClass: 'toast-bottom-center' }
-      );
+      this.toast.noMailType();
     } else {
-      console.log('check dest', this.dest);
-
       if (this.bordereauForm.valid) {
         console.log('coucou', this.dest);
 
@@ -95,9 +89,7 @@ export class BordereauFormComponent implements OnInit {
         };
         this.preview = true;
       } else {
-        this.toaster.warning('', 'Un ou plusieurs champs sont mal remplis', {
-          positionClass: 'toast-bottom-center',
-        });
+        this.toast.invalidDatas();
       }
     }
   }

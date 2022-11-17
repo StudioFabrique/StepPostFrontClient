@@ -1,7 +1,7 @@
+import { CustomToastersService } from './../../../core/services/custom-toasters.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { Destinataire } from '../../models/Destinataire.model';
 import { AdressesService } from '../../services/adresses.service';
 
@@ -20,7 +20,7 @@ export class NouveauCourrierComponent implements OnInit {
     private adressesService: AdressesService,
     private route: ActivatedRoute,
     private router: Router,
-    private toaster: ToastrService
+    private toast: CustomToastersService
   ) {}
 
   /**
@@ -46,9 +46,6 @@ export class NouveauCourrierComponent implements OnInit {
   handleError(error: any): void {
     this.loader = false;
     if (error instanceof HttpErrorResponse) {
-      if (error.status === 401 || error.status === 403) {
-        this.router.navigateByUrl('/login');
-      }
       if (error.status === 404) {
         this.router.navigateByUrl('/adresses');
       }
@@ -70,11 +67,7 @@ export class NouveauCourrierComponent implements OnInit {
    */
   onSubmitted(newDest: Destinataire): void {
     if (!this.dest && newDest === undefined) {
-      this.toaster.warning(
-        'Un ou plusieurs champs obligatoires sont vides',
-        'Formulaire',
-        { positionClass: 'toast-bottom-center' }
-      );
+      this.toast.invalidDatas();
       return;
     }
     if (newDest !== undefined) {

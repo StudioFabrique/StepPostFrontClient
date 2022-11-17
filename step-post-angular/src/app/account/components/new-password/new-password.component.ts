@@ -1,6 +1,6 @@
+import { CustomToastersService } from './../../../core/services/custom-toasters.service';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
 import { tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
@@ -18,7 +18,7 @@ export class NewPasswordComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private toaster: ToastrService
+    private toast: CustomToastersService
   ) {}
 
   ngOnInit(): void {
@@ -62,17 +62,21 @@ export class NewPasswordComponent implements OnInit {
       .subscribe();
   }
 
+  /**
+   * réinitialise le formulaire du password
+   */
   onCancel(): void {
     this.passwordForm.reset();
   }
 
+  /**
+   * test et soumet le password
+   * en cas de succès envoie le password
+   * au composant parent
+   */
   onSubmit(): void {
     if (!this.passwordForm.valid) {
-      this.toaster.error(
-        'Le mot de passe doit avoir une longueur minimum de 8 caractères, il doit comporter une majuscule, une minuscule, un chiffre et un caractère spécial',
-        '',
-        { timeOut: 10000, positionClass: 'toast-bottom-center' }
-      );
+      this.toast.invalidPassword();
     } else if (
       this.testPassword(
         this.passwordForm.value.newPassword,
@@ -81,18 +85,15 @@ export class NewPasswordComponent implements OnInit {
     ) {
       this.submitted.emit(this.passwordForm.value.newPassword);
     } else {
-      this.toaster.warning(
-        'les deux mots de passe doivent être identiques',
-        'Mot de passe',
-        { positionClass: 'toast-bottom-center' }
-      );
+      this.toast.passwordNotConfirmed();
     }
   }
 
+  /**
+   * test la validité du mot de passe et vérifie que les deux
+   * mots de passe saisis sont identiques
+   */
   testPassword(p1: string, p2: string): boolean {
-    console.log('p1', p1);
-    console.log('p2', p2);
-
     if (
       environment.regex.passwordRegex.test(p1) &&
       environment.regex.passwordRegex.test(p2) &&

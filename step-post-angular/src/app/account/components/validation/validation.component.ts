@@ -1,7 +1,7 @@
+import { CustomToastersService } from './../../../core/services/custom-toasters.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { ClientService } from '../../services/client.service';
 
@@ -22,7 +22,7 @@ export class ValidationComponent implements OnInit {
     private clientService: ClientService,
     private route: ActivatedRoute,
     private router: Router,
-    private toaster: ToastrService
+    private toast: CustomToastersService
   ) {}
 
   ngOnInit(): void {
@@ -37,6 +37,9 @@ export class ValidationComponent implements OnInit {
     });
   }
 
+  /**
+   * redirige l'utilisateur vers la page de connexion
+   */
   onConnexionClick(): void {
     this.router.navigateByUrl('/login');
   }
@@ -65,9 +68,7 @@ export class ValidationComponent implements OnInit {
   }
 
   handleValidationResponse(response: any): void {
-    this.toaster.success(response.message, '', {
-      positionClass: 'toast-bottom-center',
-    });
+    this.toast.responseMessage(response.message);
     this.accountActivated = true;
   }
 }
