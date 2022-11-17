@@ -6,7 +6,7 @@
 export const environment = {
   production: true,
   url: {
-    //  serveur test
+    //  serveur test  ovh
     baseUrl: 'http://dev01.step.eco:3000/api',
     //baseUrl: 'http://localhost:3000/api',
   },
