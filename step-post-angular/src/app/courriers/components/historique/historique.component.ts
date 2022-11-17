@@ -5,7 +5,6 @@ import { fade } from '../../animations/animations';
 import { CourriersService } from '../../services/courriers.service';
 import { RechercheService } from '../../services/recherche.service';
 import { RetourCourrier } from '../../models/retour-courrier.model';
-import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-historique',
@@ -26,7 +25,6 @@ export class HistoriqueComponent implements OnInit {
   msg: string = "Vous n'avez actuellement aucun courrier archivé."; //  message à afficher en cas de liste de courriers vide
 
   constructor(
-    private auth: AuthService,
     public courriersService: CourriersService,
     private rechercheService: RechercheService,
     private router: Router

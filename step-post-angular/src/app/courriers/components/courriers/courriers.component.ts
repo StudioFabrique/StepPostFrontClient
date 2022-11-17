@@ -5,7 +5,6 @@ import { DetailsCourrier } from '../../../core/models/details-courrier-model';
 import { CourriersService } from '../../services/courriers.service';
 import { RetourCourrier } from '../../models/retour-courrier.model';
 import { RechercheService } from '../../services/recherche.service';
-import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-courriers',
@@ -27,7 +26,6 @@ export class CourriersComponent implements OnInit {
     "Vous n'avez actuellement aucun courrier en cours de distribution."; //  message à afficher en cas de liste de courriers vide
 
   constructor(
-    private auth: AuthService,
     public courriersService: CourriersService,
     private rechercheService: RechercheService
   ) {}

@@ -1,16 +1,7 @@
-import { Statut } from './../../models/statuts-model';
 import { HttpErrorResponse } from '@angular/common/http';
 import { RechercheService } from './../../services/recherche.service';
 import { CourriersService } from './../../services/courriers.service';
-import { AuthService } from 'src/app/core/services/auth.service';
-import {
-  Component,
-  ErrorHandler,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DetailsCourrier } from 'src/app/core/models/details-courrier-model';
 import { fade } from '../../animations/animations';
 
@@ -30,7 +21,6 @@ export class DetailsRechercheComponent implements OnInit {
   isPrinting!: boolean;
 
   constructor(
-    private auth: AuthService,
     private courriersService: CourriersService,
     private rechercheService: RechercheService
   ) {}

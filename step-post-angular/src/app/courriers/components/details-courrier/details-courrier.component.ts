@@ -1,6 +1,4 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { DetailsCourrier } from '../../../core/models/details-courrier-model';
 import { CourriersService } from '../../services/courriers.service';
 
@@ -12,10 +10,7 @@ import { CourriersService } from '../../services/courriers.service';
 export class DetailsCourrierComponent implements OnInit {
   @Input() detailsCourrier!: DetailsCourrier;
 
-  constructor(
-    public courriersService: CourriersService,
-    private router: Router
-  ) {}
+  constructor(public courriersService: CourriersService) {}
 
   ngOnInit(): void {
     if (!this.courriersService.etats) {

@@ -7,7 +7,6 @@ import {
   switchMap,
   tap,
 } from 'rxjs';
-import { SecuriteService } from 'src/app/core/services/securite.service';
 import { environment } from 'src/environments/environment';
 import { Destinataire } from '../../models/Destinataire.model';
 import { AdressesService } from '../../services/adresses.service';

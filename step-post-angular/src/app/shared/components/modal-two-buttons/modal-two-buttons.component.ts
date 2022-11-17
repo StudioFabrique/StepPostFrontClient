@@ -1,9 +1,4 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
-import { Destinataire } from 'src/app/adresses/models/Destinataire.model';
-import { AdressesService } from 'src/app/adresses/services/adresses.service';
 
 @Component({
   selector: 'app-modal-two-buttons',
@@ -18,11 +13,7 @@ export class ModalTwoButtonsComponent implements OnInit {
   @Output() leftClick: EventEmitter<void> = new EventEmitter<void>(); // click bouton de gauche
   @Output() rightClick: EventEmitter<void> = new EventEmitter<void>(); //  click bouton de droite
 
-  constructor(
-    private adressesService: AdressesService,
-    private router: Router,
-    private toaster: ToastrService
-  ) {}
+  constructor() {}
 
   ngOnInit(): void {}
 

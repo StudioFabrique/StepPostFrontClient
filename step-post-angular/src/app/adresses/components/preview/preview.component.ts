@@ -2,7 +2,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/core/services/auth.service';
 import { Bordereau } from '../../models/bordereau.model';
 import { Destinataire } from '../../models/Destinataire.model';
 import { AdressesService } from '../../services/adresses.service';
@@ -29,7 +28,6 @@ export class PreviewComponent implements OnInit {
 
   constructor(
     private adressesService: AdressesService,
-    private auth: AuthService,
     private formBuilder: FormBuilder,
     private router: Router
   ) {}
