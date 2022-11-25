@@ -66,7 +66,7 @@ export class CheckMailComponent implements OnInit {
   }
 
   /**
-   * appele le service pour lancer une requête htpp dont
+   * appele le service pour lancer une requête http dont
    * le but est de vérifier la disponibilité d'une adresse
    * email dans la bdd
    * @param value adresse email saisie par l'utilisateur

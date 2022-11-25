@@ -99,7 +99,7 @@ export class AdresseFormComponent implements OnInit {
 
   /**
    * soumission du formulaire pour sauvegarder
-   * l'adresse. Si le formulaire est valide
+   * l'adresse. Si le formulaire est valide,
    * enregistrement d'une nouvelle adresse ou mise à jour
    * d'une adresse existante
    */
