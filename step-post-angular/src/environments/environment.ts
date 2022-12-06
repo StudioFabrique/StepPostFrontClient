@@ -7,7 +7,10 @@ export const environment = {
   production: true,
   url: {
     //  serveur test  ovh
-    baseUrl: 'http://dev01.step.eco:3000/api',
+    //baseUrl: 'http://dev01.step.eco:3000/api',
+    //  heroku
+    baseUrl: 'https://flutter-post.osc-fr1.scalingo.io/api',
+    //  localhost
     //baseUrl: 'http://localhost:3000/api',
   },
   regex: {

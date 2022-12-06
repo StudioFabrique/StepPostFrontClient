@@ -2,7 +2,8 @@ export const environment = {
   production: true,
   // baseUrl: 'http://localhost:3000/api',
   url: {
-    baseUrl: 'http://dev01.step.eco:3000/api',
+    //baseUrl: 'http://dev01.step.eco:3000/api',
+    baseUrl: 'https://flutter-post.osc-fr1.scalingo.io/api',
   },
   regex: {
     mailRegex:
