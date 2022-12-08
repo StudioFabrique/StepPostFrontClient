@@ -9,7 +9,7 @@ export const environment = {
     //  serveur test  ovh
     //baseUrl: 'http://dev01.step.eco:3000/api',
     //  heroku
-    baseUrl: 'https://flutter-post.osc-fr1.scalingo.io/api',
+    baseUrl: 'https://test-api.step-post.fr/api',
     //  localhost
     //baseUrl: 'http://localhost:3000/api',
   },
