@@ -61,7 +61,6 @@ export class CourriersService {
       .pipe(
         tap((value) => {
           this.etats = value;
-          console.table(this.etats);
         })
       )
       .subscribe();

@@ -9,7 +9,8 @@ import { environment } from 'src/environments/environment';
 })
 export class AuthService {
   isLoggedIn!: boolean; // token présent et valide
-  token!: any;
+  accessToken!: any;
+  refreshToken!: any;
   username!: string;
   isLoginPage!: boolean; // true : affiche le bouton inscription permettant la création de compte
 
@@ -30,12 +31,13 @@ export class AuthService {
       })
       .pipe(
         tap((response) => {
-          this.token = response.token;
-          if (this.token) {
-            this.setIsLoggedIn(true);
+          this.accessToken = response.accessToken;
+          this.refreshToken = response.refreshToken;
+          if (this.accessToken) {
+            //this.setIsLoggedIn(true);
             this.username = response.username;
           } else {
-            this.setIsLoggedIn(false);
+            //this.setIsLoggedIn(false);
           }
         })
       );
@@ -46,17 +48,30 @@ export class AuthService {
    * @returns string : token
    */
   getToken(): string {
-    if (!this.token) {
-      this.token = localStorage.getItem('token');
+    if (!this.accessToken) {
+      this.accessToken = localStorage.getItem('token');
     }
-    return this.token;
+    return this.accessToken;
+  }
+
+  /**
+   * sauvegarde les tokens retournés par l'api en localStorage
+   *
+   * @param accessToken string
+   * @param refreshToken string
+   */
+  saveTokens(accessToken: string, refreshToken: string): void {
+    localStorage.setItem('accessToken', accessToken);
+    localStorage.setItem('refresToken', refreshToken);
   }
 
   /**
    * initialise la déconnexion
    */
   logout(): void {
-    this.setIsLoggedIn(false);
+    localStorage.clear();
+    this.isLoggedIn = false;
+    this.router.navigateByUrl('/login');
   }
 
   /**
@@ -66,11 +81,12 @@ export class AuthService {
   setIsLoggedIn(value: boolean): void {
     this.isLoggedIn = value;
     if (!value) {
-      this.token = '';
-      localStorage.removeItem('token');
+      this.accessToken = '';
+      this.logout();
       this.router.navigateByUrl('/login');
     } else if (value) {
-      localStorage.setItem('token', this.token);
+      localStorage.setItem('token', this.accessToken);
+      localStorage.setItem('refreshToken', this.refreshToken);
       this.router.navigateByUrl('/');
     }
   }
@@ -86,5 +102,9 @@ export class AuthService {
     this.http.get<any>(`${environment.url.baseUrl}/auth/username`).subscribe({
       next: this.handleUsernameResponse.bind(this),
     });
+  }
+
+  generateTokens(): Observable<any> {
+    return this.http.get<any>(`${environment.url.baseUrl}/auth/refreshtoken`);
   }
 }

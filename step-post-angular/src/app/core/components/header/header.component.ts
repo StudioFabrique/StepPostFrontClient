@@ -14,9 +14,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(public auth: AuthService, private router: Router) {}
 
-  ngOnInit(): void {
-    console.log(this.burger);
-  }
+  ngOnInit(): void {}
 
   onInscriptionClick(): void {
     this.auth.isLoginPage = false;
