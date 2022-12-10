@@ -1,3 +1,4 @@
+import { CustomToastersService } from './services/custom-toasters.service';
 import { Injectable } from '@angular/core';
 import { CanActivate } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -9,7 +10,7 @@ import { AuthService } from './services/auth.service';
 export class AuthGuard implements CanActivate {
   constructor(
     public authService: AuthService,
-    private toaster: ToastrService
+    private toast: CustomToastersService
   ) {}
 
   canActivate(): boolean {
@@ -20,9 +21,7 @@ export class AuthGuard implements CanActivate {
       }
       return true;
     }
-    this.toaster.error('Connexion', 'Le jeton de session a expiré', {
-      positionClass: 'toast-bottom-center',
-    });
+    this.toast.tokenExpired();
     this.authService.logout();
     return false;
   }

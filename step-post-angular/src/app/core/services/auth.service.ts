@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, Subject, tap } from 'rxjs';
@@ -31,8 +31,9 @@ export class AuthService {
       })
       .pipe(
         tap((response) => {
-          this.accessToken = response.accessToken;
-          this.refreshToken = response.refreshToken;
+          this.saveTokens(response.accessToken, response.refreshToken);
+          console.log(this.refreshToken);
+
           if (this.accessToken) {
             //this.setIsLoggedIn(true);
             this.username = response.username;
@@ -49,7 +50,8 @@ export class AuthService {
    */
   getToken(): string {
     if (!this.accessToken) {
-      this.accessToken = localStorage.getItem('token');
+      this.accessToken = localStorage.getItem('accessToken');
+      this.refreshToken = localStorage.getItem('refreshToken');
     }
     return this.accessToken;
   }
@@ -61,8 +63,10 @@ export class AuthService {
    * @param refreshToken string
    */
   saveTokens(accessToken: string, refreshToken: string): void {
+    this.accessToken = accessToken;
+    this.refreshToken = refreshToken;
     localStorage.setItem('accessToken', accessToken);
-    localStorage.setItem('refresToken', refreshToken);
+    localStorage.setItem('refreshToken', refreshToken);
   }
 
   /**
@@ -70,6 +74,8 @@ export class AuthService {
    */
   logout(): void {
     localStorage.clear();
+    this.accessToken = '';
+    this.refreshToken = '';
     this.isLoggedIn = false;
     this.router.navigateByUrl('/login');
   }
@@ -78,18 +84,17 @@ export class AuthService {
    * modifie le statut de l'utilisateur, connecté ou non
    * @param value boolean, true connexion, false déconnexion
    */
-  setIsLoggedIn(value: boolean): void {
+  /* setIsLoggedIn(value: boolean): void {
     this.isLoggedIn = value;
     if (!value) {
       this.accessToken = '';
       this.logout();
-      this.router.navigateByUrl('/login');
     } else if (value) {
-      localStorage.setItem('token', this.accessToken);
+      localStorage.setItem('accessToken', this.accessToken);
       localStorage.setItem('refreshToken', this.refreshToken);
       this.router.navigateByUrl('/');
     }
-  }
+  } */
 
   handleUsernameResponse(response: string): void {
     this.username = response;
@@ -105,6 +110,17 @@ export class AuthService {
   }
 
   generateTokens(): Observable<any> {
-    return this.http.get<any>(`${environment.url.baseUrl}/auth/refreshtoken`);
+    const refreshToken = this.refreshToken;
+    return this.http
+      .post<any>(`${environment.url.baseUrl}/auth/refreshtoken`, {
+        refreshToken,
+      })
+      .pipe(
+        tap((data: any) => {
+          console.log('data: ', data);
+
+          this.saveTokens(data.accessToken, data.refreshToken);
+        })
+      );
   }
 }

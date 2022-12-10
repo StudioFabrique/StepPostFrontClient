@@ -12,6 +12,12 @@ import { Injectable } from '@angular/core';
 export class CustomToastersService {
   constructor(private toaster: ToastrService) {}
 
+  tokenExpired(): void {
+    this.toaster.error('Connexion', 'Le jeton de session a expiré', {
+      positionClass: 'toast-bottom-center',
+    });
+  }
+
   invalidDatas(): void {
     this.toaster.warning('Un ou plusieurs champs sont mal remplis', '', {
       positionClass: 'toast-bottom-center',

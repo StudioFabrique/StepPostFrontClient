@@ -1,23 +1,26 @@
+import { CustomToastersService } from './../services/custom-toasters.service';
 import {
   HttpEvent,
   HttpHandler,
-  HttpHeaders,
   HttpInterceptor,
   HttpRequest,
   HttpErrorResponse,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { AuthService } from '../services/auth.service';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, switchMap } from 'rxjs/operators';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   token!: string;
+  isRefreshing!: boolean;
+
   constructor(
     private authService: AuthService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private toast: CustomToastersService
   ) {}
 
   intercept(
@@ -27,42 +30,36 @@ export class AuthInterceptor implements HttpInterceptor {
     this.route.queryParams.subscribe((params) => {
       this.token = params['token']
         ? params['token']
-        : this.authService.getToken();
+        : this.authService.accessToken;
     });
-    let authReq = this.addTokenToHeaders(req, this.authService.getToken());
+    let authReq = this.addTokenToHeaders(req, this.token);
     return next.handle(authReq).pipe(
-      catchError((error: HttpErrorResponse) => {
-        if (error.status === 401 || error.status === 403) {
-          console.log('error instanceof');
-
-          this.handleRefreshToken(req, next);
+      catchError((error: any) => {
+        if (error instanceof HttpErrorResponse && error.status === 401) {
+          return this.handleRefreshToken(req, next);
+        } else if (error instanceof HttpErrorResponse && error.status === 403) {
+          this.toast.tokenExpired();
+          this.authService.logout();
         }
-        throw new Error('err');
+        return throwError(() => error);
       })
     );
   }
 
   handleRefreshToken(request: HttpRequest<any>, next: HttpHandler) {
-    console.log('hey');
-
+    this.isRefreshing = true;
     return this.authService.generateTokens().pipe(
-      map(
-        (data: any) => {
-          console.log(data);
-          this.authService.saveTokens(data.accessToken, data.refreshToken);
-          return next.handle(this.addTokenToHeaders(request, data.accessToken));
-        },
-        catchError((error) => {
-          this.authService.logout();
-          throw new Error('bye bye');
-        })
-      )
+      switchMap((data: any) => {
+        this.isRefreshing = false;
+        this.authService.saveTokens(data.accessToken, data.refreshToken);
+        return next.handle(this.addTokenToHeaders(request, data.accessToken));
+      })
     );
   }
 
-  addTokenToHeaders(req: HttpRequest<any>, token: string) {
+  addTokenToHeaders(req: HttpRequest<any>, accessToken: string) {
     return req.clone({
-      headers: req.headers.set('Authorization', `bearer ${token}`),
+      headers: req.headers.set('Authorization', `bearer ${accessToken}`),
     });
   }
 }

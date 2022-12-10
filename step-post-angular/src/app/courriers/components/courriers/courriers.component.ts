@@ -79,6 +79,7 @@ export class CourriersComponent implements OnInit {
     this.courriersService.total = response.total;
     this.courriersService.setPagesMax(this.courriersService.total);
     this.courriersService.setButtonsStyle(this.courriers.length);
+    console.log(this.courriers.length);
   }
 
   /**
