@@ -15,7 +15,6 @@ import { catchError, switchMap } from 'rxjs/operators';
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   token!: string;
-  isRefreshing!: boolean;
 
   constructor(
     private authService: AuthService,
@@ -46,18 +45,16 @@ export class AuthInterceptor implements HttpInterceptor {
     );
   }
 
-  handleRefreshToken(request: HttpRequest<any>, next: HttpHandler) {
-    this.isRefreshing = true;
+  private handleRefreshToken(request: HttpRequest<any>, next: HttpHandler) {
     return this.authService.generateTokens().pipe(
       switchMap((data: any) => {
-        this.isRefreshing = false;
         this.authService.saveTokens(data.accessToken, data.refreshToken);
         return next.handle(this.addTokenToHeaders(request, data.accessToken));
       })
     );
   }
 
-  addTokenToHeaders(req: HttpRequest<any>, accessToken: string) {
+  private addTokenToHeaders(req: HttpRequest<any>, accessToken: string) {
     return req.clone({
       headers: req.headers.set('Authorization', `bearer ${accessToken}`),
     });
