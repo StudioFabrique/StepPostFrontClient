@@ -80,22 +80,6 @@ export class AuthService {
     this.router.navigateByUrl('/login');
   }
 
-  /**
-   * modifie le statut de l'utilisateur, connecté ou non
-   * @param value boolean, true connexion, false déconnexion
-   */
-  /* setIsLoggedIn(value: boolean): void {
-    this.isLoggedIn = value;
-    if (!value) {
-      this.accessToken = '';
-      this.logout();
-    } else if (value) {
-      localStorage.setItem('accessToken', this.accessToken);
-      localStorage.setItem('refreshToken', this.refreshToken);
-      this.router.navigateByUrl('/');
-    }
-  } */
-
   handleUsernameResponse(response: string): void {
     this.username = response;
   }
@@ -111,16 +95,8 @@ export class AuthService {
 
   generateTokens(): Observable<any> {
     const refreshToken = this.refreshToken;
-    return this.http
-      .post<any>(`${environment.url.baseUrl}/auth/refreshtoken`, {
-        refreshToken,
-      })
-      .pipe(
-        tap((data: any) => {
-          console.log('data: ', data);
-
-          this.saveTokens(data.accessToken, data.refreshToken);
-        })
-      );
+    return this.http.post<any>(`${environment.url.baseUrl}/auth/refreshtoken`, {
+      refreshToken,
+    });
   }
 }
