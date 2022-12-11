@@ -31,14 +31,9 @@ export class AuthService {
       })
       .pipe(
         tap((response) => {
-          this.saveTokens(response.accessToken, response.refreshToken);
-          console.log(this.refreshToken);
-
-          if (this.accessToken) {
-            //this.setIsLoggedIn(true);
+          if (response) {
+            this.saveTokens(response.accessToken, response.refreshToken);
             this.username = response.username;
-          } else {
-            //this.setIsLoggedIn(false);
           }
         })
       );
@@ -80,17 +75,17 @@ export class AuthService {
     this.router.navigateByUrl('/login');
   }
 
-  handleUsernameResponse(response: string): void {
-    this.username = response;
-  }
-
   /**
    * récupère le nom de l'utilisateur
    */
-  getUsername(): void {
-    this.http.get<any>(`${environment.url.baseUrl}/auth/username`).subscribe({
-      next: this.handleUsernameResponse.bind(this),
-    });
+  getUsername(): Observable<any> {
+    return this.http.get<any>(`${environment.url.baseUrl}/auth/username`).pipe(
+      tap((response) => {
+        if (response) {
+          this.username = response.username;
+        }
+      })
+    );
   }
 
   generateTokens(): Observable<any> {

@@ -6,10 +6,8 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './liste-liens.component.html',
   styleUrls: ['./liste-liens.component.scss'],
 })
-export class ListeLiensComponent implements OnInit {
+export class ListeLiensComponent {
   constructor(public auth: AuthService) {}
-
-  ngOnInit(): void {}
 
   onLogout(): void {
     this.auth.logout();
