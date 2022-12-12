@@ -1,5 +1,5 @@
-<article className="article-ne-adresse flex flex-col gap-y-4" *ngIf="adresse">
-    <div class="text-black font-bold flex flex-col items-start">
+<article className="article-ne-adresse flex flex-col gap-y-2" *ngIf="adresse">
+    <div class="text-black text-xs font-bold flex flex-col items-start">
 
         <p *ngIf="isExp">
             {{adresse.prenom | titlecase}} {{adresse.nom |
@@ -14,10 +14,10 @@
         <p>{{adresse.complement | titlecase}}</p>
         <p>{{adresse.codePostal | titlecase}} {{adresse.ville | titlecase}}</p>
     </div>
-    <div *ngIf="!isExp" class="text-sm text-black">
+    <!--     <div *ngIf="!isExp" class="text-sm text-black">
         <p *ngIf="infos.instructions">Instructions de livraison :</p>
         <p>{{infos.instructions}}</p>
         <p *ngIf="infos.telephone">( tél : {{infos.telephone}} )</p>
-    </div>
+    </div> -->
 
 </article>

@@ -14,6 +14,7 @@ import { DisplayedAdresseComponent } from './components/displayed-adresse/displa
 import { AdressesService } from './services/adresses.service';
 import { SharedModule } from '../shared/shared.module';
 import { AdresseFormComponent } from './components/adresse-form/adresse-form.component';
+import { InstructionsComponent } from './components/instructions/instructions.component';
 
 const adressesRoutes: Routes = [
   {
@@ -51,6 +52,7 @@ const adressesRoutes: Routes = [
     BordereauFormComponent,
     PreviewComponent,
     DisplayedAdresseComponent,
+    InstructionsComponent,
   ],
   imports: [CommonModule, RouterModule.forChild(adressesRoutes), SharedModule],
   providers: [AdressesService],

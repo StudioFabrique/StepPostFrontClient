@@ -82,7 +82,7 @@ export class AuthService {
     return this.http.get<any>(`${environment.url.baseUrl}/auth/username`).pipe(
       tap((response) => {
         if (response) {
-          this.username = response;
+          this.username = response.username;
         }
       })
     );

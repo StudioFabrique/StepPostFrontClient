@@ -13,12 +13,23 @@
                 </form>
                 <p class="italic text-xs">Date et cachet STEP POST</p>
             </div>
-            <div>
-                <p class="text-xs font-bold">STEP POST Opérateur Postal</p>
-                <p class="text-xs">Autorisation n°12-0098</p>
-                <p class="text-xs font-bold">Technopolis Hélioparc</p>
-                <p class="text-xs">2 av. du Président Pierre Angot 64000 PAU</p>
-                <p class="text-xs">RCS de Pau 434 805 644</p>
+            <div class="w-96 flex items-center gap-x-16">
+                <div class="flex flex-col">
+                    <p class="text-xs font-bold">STEP POST Opérateur Postal</p>
+                    <p class="text-xs">Autorisation n°12-0098</p>
+                    <p class="text-xs font-bold">Technopolis Hélioparc</p>
+                    <p class="text-xs">2 av. du Président Pierre Angot</p>
+                    <p class="text-xs">64000 PAU</p>
+                    <p class="text-xs">RCS de Pau 434 805 644</p>
+                </div>
+                <div class="flex flex-col gap-y-2">
+                    <div class="flex items-center justify-center" *ngIf="qrcode">
+                        <img class="w-24" [src]="qrcode" alt="QRCode" (load)="onQrCodeLoaded()">
+                    </div>
+                    <div class="flex tracking-widest text-sm font-bold justify-center items-center">
+                        <p *ngIf="qrcode">N° {{numBordereau}}</p>
+                    </div>
+                </div>
             </div>
         </article>
         <article class="article-exp-right flex flex-col gap-y-16 w-[50%]">
@@ -26,10 +37,14 @@
                 <h2 class="font-bold">SIGNEO</h2>
                 <p class="text-xs italic">Le service recommandé de Step Post</p>
             </div>
-            <div class="flex flex-col items-start mx-auto gap-y-4">
-                <h3 class="font-bold">Expéditeur</h3>
-                <span>
+            <div class="flex flex-col items-start mx-auto gap-y-2">
+                <h4 class="font-bold">Expéditeur</h4>
+                <span class="ml-4">
                     <app-displayed-adresse [isExp]="true" [adresse]="exp"></app-displayed-adresse>
+                </span>
+                <h4 class="font-bold">Destinataire</h4>
+                <span class="ml-4">
+                    <app-displayed-adresse [isExp]="false" [adresse]="dest" [infos]="infos"></app-displayed-adresse>
                 </span>
             </div>
         </article>
@@ -37,26 +52,19 @@
     <div *ngIf="loader" class="lds-dual-ring"></div>
     <section class="section-bordereau-dest w-[21cm] h-[90mm] bg-orange flex bg-stone-300 p-4">
         <article class="article-dest-left flex flex-col h-full w-[50%]">
-            <div class="flex h-[80%] items-center" *ngIf="!qrcode">
-                <p class="text-xs font-bold">
+            <div class="flex h-96 flex-col items-center justify-around">
+                <p class="text-xs font-bold" *ngIf="!qrcode">
                     Le QR code et le numéro de bordereau seront générés lors de
                     l'impression.
                 </p>
-
-            </div>
-            <div class="flex items-center h-[75%] items-end justify-center" *ngIf="qrcode">
-                <img class="w-40" [src]="qrcode" alt="QRCode" (load)="onQrCodeLoaded()">
-            </div>
-            <div class="flex h-[20%] items-end">
-                <p>Bordereau n°&nbsp;</p>
-                <p *ngIf="!qrcode">-----</p>
-                <p *ngIf="qrcode">{{numBordereau}}</p>
+                <app-instructions [infos]="infos"></app-instructions>
             </div>
         </article>
+        <!-- adresse destinataire -->
         <article class="article-dest-right flex flex-col w-[50%] items-center justify-evenly gap-y-8 my-auto">
             <div class="flex flex-col gap-y-4">
                 <h3 class="font-bold">Destinataire</h3>
-                <span>
+                <span class="ml-4">
                     <app-displayed-adresse [isExp]="false" [adresse]="dest" [infos]="infos"></app-displayed-adresse>
                 </span>
             </div>
