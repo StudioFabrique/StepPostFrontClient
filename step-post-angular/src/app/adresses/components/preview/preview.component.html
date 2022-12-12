@@ -13,7 +13,7 @@
                 </form>
                 <p class="italic text-xs">Date et cachet STEP POST</p>
             </div>
-            <div class="w-96 flex items-center gap-x-16">
+            <div class="w-96 flex items-end gap-x-24">
                 <div class="flex flex-col">
                     <p class="text-xs font-bold">STEP POST Opérateur Postal</p>
                     <p class="text-xs">Autorisation n°12-0098</p>
@@ -24,7 +24,7 @@
                 </div>
                 <div class="flex flex-col gap-y-2">
                     <div class="flex items-center justify-center" *ngIf="qrcode">
-                        <img class="w-24" [src]="qrcode" alt="QRCode" (load)="onQrCodeLoaded()">
+                        <img class="w-32" [src]="qrcode" alt="QRCode" (load)="onQrCodeLoaded()">
                     </div>
                     <div class="flex tracking-widest text-sm font-bold justify-center items-center">
                         <p *ngIf="qrcode">N° {{numBordereau}}</p>
