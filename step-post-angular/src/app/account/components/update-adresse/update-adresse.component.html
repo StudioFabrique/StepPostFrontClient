@@ -74,7 +74,7 @@
                         class="shadow border-stone-300 border w-80 md:w-96 p-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         type="text" id="telephone" formControlName="telephone" placeholder="0102030405">
                 </label>
-                <label class="flex flex-col" [ngStyle]="{visibility: style}">
+                <label class="flex flex-col" *ngIf="!raisonSociale">
                     <div class="flex gap-x-2">
                         Email
                         <p class="text-red">*</p>
@@ -83,6 +83,16 @@
                     <input
                         class="shadow border-stone-300 border w-80 md:w-96 p-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         type="text" id="email" formControlName="email" placeholder="jean.dupont@exemple.fr">
+                </label>
+                <label class="flex flex-col" *ngIf="raisonSociale">
+                    <div class="flex gap-x-2">
+                        Raison Sociale
+                        <p class="text-red">*</p>
+                    </div>
+                    <!-- création de nouveaux comptes -->
+                    <input
+                        class="shadow border-stone-300 border w-80 md:w-96 p-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        type="text" id="raisonSociale" formControlName="raisonSociale" placeholder="Mon Entreprise">
                 </label>
             </div>
             <div class="flex">

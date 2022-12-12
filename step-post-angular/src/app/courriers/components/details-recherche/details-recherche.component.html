@@ -16,7 +16,8 @@
     <div class="min-w-full justify-end hidden print:flex mr-40" *ngIf="signature && isPrinting">
         <img class="signature w-40" [src]="signature" (load)="onLoad()" alt="signature du destinataire">
     </div>
-    <div *ngIf="detailsCourrier.statuts[detailsCourrier.statuts.length - 1].statut_id > 1">
+    <div
+        *ngIf="detailsCourrier.statuts[detailsCourrier.statuts.length - 1].statut_id > 1 && detailsCourrier.statuts[detailsCourrier.statuts.length - 1].statut_id < 5">
         <p class="hidden print:flex text-xs md:text-lg">
             Ce document atteste que Step Post a bien pris en charge votre courrier.
         </p>

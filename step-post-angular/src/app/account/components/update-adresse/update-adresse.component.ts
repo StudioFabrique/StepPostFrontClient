@@ -17,7 +17,7 @@ export class UpdateAdresseComponent implements OnInit {
   adresseForm!: FormGroup; //  formulaire de modification du mot de passe
   newDest!: Destinataire; // enregistrement des changements apportés dans le formulaire par l'utilisateur
   loader: boolean = false; //  true : affiche le loader
-  style!: string; //  affiche le champ email ou non
+  raisonSociale!: boolean; //  affiche le champ email ou raison sociale
 
   constructor(
     private adressesService: AdressesService,
@@ -32,7 +32,7 @@ export class UpdateAdresseComponent implements OnInit {
    * enregistré dans la propriété newDest
    */
   ngOnInit(): void {
-    this.style = this.dest ? 'visible' : 'hidden';
+    this.raisonSociale = this.dest ? false : true;
     this.adresseForm = this.formBuilder.group({
       prenom: [null, Validators.pattern(environment.regex.genericRegex)],
       nom: [
@@ -74,6 +74,13 @@ export class UpdateAdresseComponent implements OnInit {
       email: [
         this.email,
         [Validators.required, Validators.pattern(environment.regex.mailRegex)],
+      ],
+      raisonSociale: [
+        null,
+        [
+          Validators.required,
+          Validators.pattern(environment.regex.genericRegex),
+        ],
       ],
     });
     this.dest = this.adressesService.testNullProperties(this.dest);
