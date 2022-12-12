@@ -10,6 +10,7 @@ import { DetailsRechercheComponent } from './components/details-recherche/detail
 import { NoResultsComponent } from './components/no-results/no-results.component';
 import { HistoriqueComponent } from './components/historique/historique.component';
 import { SharedModule } from '../shared/shared.module';
+import { MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 
 const courriersRoutes: Routes = [
   {
@@ -34,7 +35,13 @@ const courriersRoutes: Routes = [
     RechercheComponent,
     HistoriqueComponent,
   ],
-  imports: [CommonModule, RouterModule.forChild(courriersRoutes), SharedModule],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(courriersRoutes),
+    SharedModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+  ],
   exports: [],
 })
 export class CourriersModule {}

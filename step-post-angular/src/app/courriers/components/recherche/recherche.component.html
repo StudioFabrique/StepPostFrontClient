@@ -6,10 +6,17 @@
                     <label class="text-xs md:text-sm">Numéro de bordereau / Nom du destinataire</label>
                 </div>
                 <div class="flex flex-col justify-center items-center">
-                    <input
-                        class="shadow appearance-none border-2 border-stone-300 w-64 md:w-96 p-4 md:p-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        #searchBox (keyup)="onSearch(searchBox.value)" type="text" id="searchInput" autocomplete="off"
-                        formControlName="searchInput" placeholder="Recherche...">
+                    <div class="flex">
+                        <input
+                            class="shadow appearance-none border-2 border-stone-300 w-64 md:w-96 p-4 md:p-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            #searchBox (keyup)="onSearch(searchBox.value)" type="text" id="searchInput"
+                            autocomplete="off" formControlName="searchInput" placeholder="Recherche...">
+                        <input matInput [matDatepicker]="picker">
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+
+                    </div>
                     <div *ngFor="let name of rechercheList"
                         class="cursor-pointer text-xs md:text-sm flex flex-col justify-center items-start w-64 md:w-full">
                         <p *ngIf="nameList && rechercheList.length !== 0" (click)="onRechercheByName(name)">{{name.nom |
