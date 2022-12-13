@@ -1,5 +1,6 @@
 <div class="text-xs text-black flex flex-col gap-y-2">
-    <p class="text-sm font-bold" *ngIf="infos.instructions">Instructions de livraison :</p>
-    <p>{{infos.instructions}}</p>
+    <p class="text-sm font-bold">Instructions de livraison :</p>
+    <p class="italic" *ngIf="!infos.instructions">Aucunes instructions de livraisons</p>
+    <p *ngIf="infos.instructions">{{infos.instructions}}</p>
     <p *ngIf="infos.telephone">( tél : {{infos.telephone}} )</p>
 </div>

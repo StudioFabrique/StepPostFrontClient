@@ -24,7 +24,7 @@
                 </div>
                 <div class="flex flex-col gap-y-2">
                     <div class="flex items-center justify-center" *ngIf="qrcode">
-                        <img class="w-32" [src]="qrcode" alt="QRCode" (load)="onQrCodeLoaded()">
+                        <img class="w-30" [src]="qrcode" alt="QRCode" (load)="onQrCodeLoaded()">
                     </div>
                     <div class="flex tracking-widest text-sm font-bold justify-center items-center">
                         <p *ngIf="qrcode">N° {{numBordereau}}</p>
@@ -52,11 +52,27 @@
     <div *ngIf="loader" class="lds-dual-ring"></div>
     <section class="section-bordereau-dest w-[21cm] h-[90mm] bg-orange flex bg-stone-300 p-4">
         <article class="article-dest-left flex flex-col h-full w-[50%]">
-            <div class="flex h-96 flex-col items-center justify-around">
+            <div class="w-96 flex h-96 flex-col items-start justify-evenly">
                 <p class="text-xs font-bold" *ngIf="!qrcode">
                     Le QR code et le numéro de bordereau seront générés lors de
                     l'impression.
                 </p>
+                <div class="w-96 flex gap-x-2 items-start justify-between">
+                    <div class="flex flex-col items-start gap-y-2">
+                        <h4 class="font-bold">Expéditeur</h4>
+                        <span class="ml-4">
+                            <app-displayed-adresse [isExp]="true" [adresse]="exp"></app-displayed-adresse>
+                        </span>
+                    </div>
+                    <div class="flex flex-col gap-y-2">
+                        <div class="flex items-center justify-center" *ngIf="qrcode">
+                            <img class="w-30" [src]="qrcode" alt="QRCode">
+                        </div>
+                        <div class="flex tracking-widest text-sm font-bold justify-center items-center">
+                            <p *ngIf="qrcode">N° {{numBordereau}}</p>
+                        </div>
+                    </div>
+                </div>
                 <app-instructions [infos]="infos"></app-instructions>
             </div>
         </article>
@@ -68,12 +84,14 @@
                     <app-displayed-adresse [isExp]="false" [adresse]="dest" [infos]="infos"></app-displayed-adresse>
                 </span>
             </div>
-            <div class="italic text-sm flex px-2 pb-20 bg-white border-black border w-[65%] my-auto justify-around">
-                <p>Signature :</p>
-                <span class="flex">
-                    <p>Date :</p>
-                    <p> .. / .. / .. </p>
-                </span>
+            <div class="bg-orange">
+                <div class="italic text-sm flex px-2 pb-20 bg-white border-black border w-64 my-auto justify-around">
+                    <p>Signature :</p>
+                    <span class="flex">
+                        <p>Date :</p>
+                        <p> .. / .. / .. </p>
+                    </span>
+                </div>
             </div>
         </article>
     </section>
