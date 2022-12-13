@@ -105,7 +105,10 @@
             </div>
         </article>
     </section>
-    <section class="buttons-group w-[21cm] flex justify-end mt-8">
+    <section class="buttons-group w-[21cm] flex flex-col gap-y-4 items-end mt-8">
+        <div>
+            <h4 class="font-bold">Réglez les marges sur "aucune" dans les options d'impression</h4>
+        </div>
         <div class="flex gap-x-4">
             <app-button [text]="'retour'" [bg]="'orange'" (click)="onRetour()"></app-button>
             <app-button [text]="'imprimer'" (click)="onPrint()"></app-button>
