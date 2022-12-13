@@ -1,7 +1,8 @@
 <main class="w-full flex flex-col items-center gap-y-2 mb-10">
+    <!-- volet supérieur -->
     <section class="section-bordereau-exp w-[21cm] h-[90mm] bg-orange flex bg-stone-300 p-4">
         <article class="article-exp-left w-[50%] flex flex-col justify-between items-start">
-            <div class="flex flex-col items-center gap-y-2">
+            <div class="flex flex-col items-start gap-y-2">
                 <img class="w-40" src="assets/img/logo.png" alt="logo step post" />
                 <form class="flex items-center gap-x-1" [formGroup]="typeForm">
                     <input type="checkbox" formControlName="lettreAs" (click)="onCheckboxClick()">
@@ -17,7 +18,7 @@
                 <div class="flex flex-col">
                     <p class="text-xs font-bold">STEP POST Opérateur Postal</p>
                     <p class="text-xs">Autorisation n°12-0098</p>
-                    <p class="text-xs font-bold">Technopolis Hélioparc</p>
+                    <p class="text-xs font-bold">Technopole Hélioparc</p>
                     <p class="text-xs">2 av. du Président Pierre Angot</p>
                     <p class="text-xs">64000 PAU</p>
                     <p class="text-xs">RCS de Pau 434 805 644</p>
@@ -50,48 +51,57 @@
         </article>
     </section>
     <div *ngIf="loader" class="lds-dual-ring"></div>
+    <!-- volet inférieur -->
     <section class="section-bordereau-dest w-[21cm] h-[90mm] bg-orange flex bg-stone-300 p-4">
-        <article class="article-dest-left flex flex-col h-full w-[50%]">
-            <div class="w-96 flex h-96 flex-col items-start justify-evenly">
-                <p class="text-xs font-bold" *ngIf="!qrcode">
-                    Le QR code et le numéro de bordereau seront générés lors de
-                    l'impression.
-                </p>
-                <div class="w-96 flex gap-x-2 items-start justify-between">
-                    <div class="flex flex-col items-start gap-y-2">
-                        <h4 class="font-bold">Expéditeur</h4>
-                        <span class="ml-4">
-                            <app-displayed-adresse [isExp]="true" [adresse]="exp"></app-displayed-adresse>
-                        </span>
-                    </div>
-                    <div class="flex flex-col gap-y-2">
-                        <div class="flex items-center justify-center" *ngIf="qrcode">
-                            <img class="w-30" [src]="qrcode" alt="QRCode">
+        <article class="article-exp-left w-[50%] gap-x-4 flex flex-col justify-between items-start">
+            <!-- partie supérieure -->
+            <div class="flex flex-col items-start">
+                <img class="w-40" src="assets/img/logo.png" alt="logo step post" />
+            </div>
+            <!-- partie inférieure-->
+            <div class="w-96 flex flex-col justify-between items-start gap-y-4">
+                <div class="max-w-72">
+                    <app-instructions [infos]="infos"></app-instructions>
+                </div>
+                <div class="w-96 flex flex-col justify-end">
+                    <div class="w-96 flex items-end justify-between">
+                        <div class="h-full flex flex-col justify-between">
+                            <span class=" text-black">
+                                <p class="text-sm font-bold">Date :</p>
+                            </span>
+                            <div
+                                class="italic text-sm flex justify-center pb-20 bg-white border-black border w-64 h-24">
+                                <p>Signature :</p>
+                            </div>
                         </div>
-                        <div class="flex tracking-widest text-sm font-bold justify-center items-center">
-                            <p *ngIf="qrcode">N° {{numBordereau}}</p>
+                        <div class="w-32">
+                            <div class="flex flex-col gap-y-2">
+                                <div class="flex items-center justify-center" *ngIf="qrcode">
+                                    <img class="w-30" [src]="qrcode" alt="QRCode">
+                                </div>
+                                <div class="flex tracking-widest text-sm font-bold justify-center items-center">
+                                    <p *ngIf="qrcode">N° {{numBordereau}}</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <app-instructions [infos]="infos"></app-instructions>
             </div>
         </article>
-        <!-- adresse destinataire -->
-        <article class="article-dest-right flex flex-col w-[50%] items-center justify-evenly gap-y-8 my-auto">
-            <div class="flex flex-col gap-y-4">
-                <h3 class="font-bold">Destinataire</h3>
+        <article class="article-exp-right flex flex-col gap-y-16 w-[50%]">
+            <div class="flex flex-col items-end">
+                <h2 class="font-bold">SIGNEO</h2>
+                <p class="text-xs italic">Le service recommandé de Step Post</p>
+            </div>
+            <div class="flex flex-col items-start mx-auto gap-y-2">
+                <h4 class="font-bold">Expéditeur</h4>
+                <span class="ml-4">
+                    <app-displayed-adresse [isExp]="true" [adresse]="exp"></app-displayed-adresse>
+                </span>
+                <h4 class="font-bold">Destinataire</h4>
                 <span class="ml-4">
                     <app-displayed-adresse [isExp]="false" [adresse]="dest" [infos]="infos"></app-displayed-adresse>
                 </span>
-            </div>
-            <div class="bg-orange">
-                <div class="italic text-sm flex px-2 pb-20 bg-white border-black border w-64 my-auto justify-around">
-                    <p>Signature :</p>
-                    <span class="flex">
-                        <p>Date :</p>
-                        <p> .. / .. / .. </p>
-                    </span>
-                </div>
             </div>
         </article>
     </section>
