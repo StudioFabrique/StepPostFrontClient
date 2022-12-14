@@ -1,3 +1,5 @@
+import { ListeLiensComponent } from './components/liste-liens/liste-liens.component';
+import { FooterComponent } from './components/footer/footer.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -12,6 +14,8 @@ import { BtnPagesComponent } from './components/btn-pages/btn-pages.component';
 import { ModalTwoButtonsComponent } from './components/modal-two-buttons/modal-two-buttons.component';
 import { ModalSignatureComponent } from './components/modal-signature/modal-signature.component';
 import { ModalOneButtonComponent } from './components/modal-one-button/modal-one-button.component';
+import { HeaderComponent } from './components/header/header.component';
+import { ListeLienMobileComponent } from './components/liste-lien-mobile/liste-lien-mobile.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +29,10 @@ import { ModalOneButtonComponent } from './components/modal-one-button/modal-one
     ModalTwoButtonsComponent,
     ModalSignatureComponent,
     ModalOneButtonComponent,
+    HeaderComponent,
+    FooterComponent,
+    ListeLiensComponent,
+    ListeLienMobileComponent,
   ],
   imports: [
     CommonModule,
@@ -46,6 +54,10 @@ import { ModalOneButtonComponent } from './components/modal-one-button/modal-one
     ModalTwoButtonsComponent,
     ModalSignatureComponent,
     ModalOneButtonComponent,
+    HeaderComponent,
+    FooterComponent,
+    ListeLiensComponent,
+    ListeLienMobileComponent,
   ],
 })
 export class SharedModule {}

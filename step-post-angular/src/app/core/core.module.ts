@@ -4,15 +4,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { CourriersModule } from '../courriers/courriers.module';
 import { LoginComponent } from './components/login/login.component';
 import { RouterModule, Routes } from '@angular/router';
-import { HeaderComponent } from './components/header/header.component';
 import { httpInterceptorProviders } from './interceptors';
 import { AdressesModule } from '../adresses/adresses.module';
 import { registerLocaleData } from '@angular/common';
 import * as fr from '@angular/common/locales/fr';
 import { AccountModule } from '../account/account.module';
 import { SharedModule } from '../shared/shared.module';
-import { ListeLiensComponent } from './components/liste-liens/liste-liens.component';
-import { ListeLienMobileComponent } from './components/liste-lien-mobile/liste-lien-mobile.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const coreRoutes: Routes = [
@@ -30,12 +27,7 @@ const coreRoutes: Routes = [
 ];
 
 @NgModule({
-  declarations: [
-    LoginComponent,
-    HeaderComponent,
-    ListeLiensComponent,
-    ListeLienMobileComponent,
-  ],
+  declarations: [LoginComponent],
   imports: [
     CommonModule,
     BrowserAnimationsModule,
@@ -50,7 +42,6 @@ const coreRoutes: Routes = [
     httpInterceptorProviders,
     { provide: LOCALE_ID, useValue: 'fr-FR' },
   ],
-  exports: [HeaderComponent],
 })
 export class CoreModule {
   constructor() {

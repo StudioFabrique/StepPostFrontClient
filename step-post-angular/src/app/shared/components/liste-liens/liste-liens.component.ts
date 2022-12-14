@@ -1,4 +1,6 @@
-import { AuthService } from './../../services/auth.service';
+import { RouterModule } from '@angular/router';
+import { AuthService } from 'src/app/core/services/auth.service';
+
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./liste-liens.component.scss'],
 })
 export class ListeLiensComponent {
-  constructor(public auth: AuthService) {}
+  constructor(public auth: AuthService, private router: RouterModule) {}
 
   onLogout(): void {
     this.auth.logout();

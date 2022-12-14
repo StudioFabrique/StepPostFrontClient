@@ -1,7 +1,9 @@
-import { slideIn } from './../../animations/animations';
+import { slideIn } from '../../animations/animations';
+
+import { AuthService } from 'src/app/core/services/auth.service';
+
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-header',
