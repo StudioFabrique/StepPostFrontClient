@@ -14,6 +14,7 @@ import { SharedModule } from '../shared/shared.module';
 import { ListeLiensComponent } from './components/liste-liens/liste-liens.component';
 import { ListeLienMobileComponent } from './components/liste-lien-mobile/liste-lien-mobile.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FooterComponent } from './components/footer/footer.component';
 
 const coreRoutes: Routes = [
   {
@@ -35,6 +36,7 @@ const coreRoutes: Routes = [
     HeaderComponent,
     ListeLiensComponent,
     ListeLienMobileComponent,
+    FooterComponent,
   ],
   imports: [
     CommonModule,
@@ -50,7 +52,7 @@ const coreRoutes: Routes = [
     httpInterceptorProviders,
     { provide: LOCALE_ID, useValue: 'fr-FR' },
   ],
-  exports: [HeaderComponent],
+  exports: [HeaderComponent, FooterComponent],
 })
 export class CoreModule {
   constructor() {
