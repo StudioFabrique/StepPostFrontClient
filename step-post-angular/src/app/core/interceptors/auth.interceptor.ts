@@ -24,11 +24,7 @@ export class AuthInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    this.route.queryParams.subscribe((params) => {
-      this.token = params['token']
-        ? params['token']
-        : this.authService.accessToken;
-    });
+    this.token = this.authService.accessToken;
     let authReq = this.addTokenToHeaders(req, this.token);
     return next.handle(authReq).pipe(
       catchError((error: any) => {

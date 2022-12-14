@@ -26,9 +26,9 @@ export class ReinitialiserPasswordComponent implements OnInit {
   }
 
   /**
-   * enregistrele nouveau password de l'utilisateur
+   * enregistre le nouveau password de l'utilisateur
    *
-   * @param value password vérfier dans le composant enfant
+   * @param value password vérfié dans le composant enfant
    */
   onSubmitted(value: string): void {
     this.accountService.passwordUpdate(value).subscribe({

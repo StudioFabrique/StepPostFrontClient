@@ -53,7 +53,7 @@ export class ValidationComponent implements OnInit {
 
   handleError(error: any): void {
     if (error instanceof HttpErrorResponse) {
-      if (error.status === 403) {
+      if (error.status === 400) {
         this.expired = true;
       }
     }
