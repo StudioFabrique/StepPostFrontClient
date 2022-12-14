@@ -1,4 +1,3 @@
-import { CustomToastersService } from './../services/custom-toasters.service';
 import {
   HttpEvent,
   HttpHandler,
@@ -18,8 +17,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
   constructor(
     private authService: AuthService,
-    private route: ActivatedRoute,
-    private toast: CustomToastersService
+    private route: ActivatedRoute
   ) {}
 
   intercept(
@@ -37,7 +35,6 @@ export class AuthInterceptor implements HttpInterceptor {
         if (error instanceof HttpErrorResponse && error.status === 401) {
           return this.handleRefreshToken(req, next);
         } else if (error instanceof HttpErrorResponse && error.status === 403) {
-          this.toast.tokenExpired();
           this.authService.logout();
         }
         return throwError(() => error);
