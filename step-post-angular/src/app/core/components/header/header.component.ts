@@ -6,7 +6,7 @@ import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styles: ['@media print { header { display: none } }'],
+  styleUrls: ['./header.component.scss'],
   animations: [slideIn],
 })
 export class HeaderComponent implements OnInit {

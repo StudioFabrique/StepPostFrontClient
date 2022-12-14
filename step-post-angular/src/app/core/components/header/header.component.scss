@@ -1,0 +1,10 @@
+header {
+    height: 10.3vh;
+}
+
+
+@media print {
+    header {
+        display: none
+    }
+}
