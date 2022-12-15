@@ -1,10 +1,16 @@
 .main-content {
-    min-height: 68vh;
+    min-height: calc(100vh - 38vh);
 }
 
 @media screen and (max-width: 500px) {
     .main-content {
         min-height: 18vh;
         margin-bottom: 10vh;
+    }
+}
+
+@media print {
+    .footer {
+        display: none;
     }
 }

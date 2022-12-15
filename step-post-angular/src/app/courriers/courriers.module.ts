@@ -10,6 +10,7 @@ import { DetailsRechercheComponent } from './components/details-recherche/detail
 import { NoResultsComponent } from './components/no-results/no-results.component';
 import { HistoriqueComponent } from './components/historique/historique.component';
 import { SharedModule } from '../shared/shared.module';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 const courriersRoutes: Routes = [
   {
@@ -33,6 +34,7 @@ const courriersRoutes: Routes = [
     NoResultsComponent,
     RechercheComponent,
     HistoriqueComponent,
+    PaginationComponent,
   ],
   imports: [CommonModule, RouterModule.forChild(courriersRoutes), SharedModule],
   exports: [],

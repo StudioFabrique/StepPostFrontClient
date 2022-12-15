@@ -5,6 +5,7 @@ import { fade } from '../../animations/animations';
 import { CourriersService } from '../../services/courriers.service';
 import { RechercheService } from '../../services/recherche.service';
 import { RetourCourrier } from '../../models/retour-courrier.model';
+import { max } from 'rxjs';
 
 @Component({
   selector: 'app-historique',
@@ -241,5 +242,10 @@ export class HistoriqueComponent implements OnInit {
         next: this.handleResponse.bind(this),
         error: this.handleError.bind(this),
       });
+  }
+
+  onSetMax(value: number) {
+    this.courriersService.max = value;
+    this.getCourriers();
   }
 }

@@ -18,6 +18,11 @@
     <div *ngIf="loader && !rechercheNom" class="lds-dual-ring"></div>
     <section class="titre mx-4 flex flex-col items-center gap-y-4 md:max-w-5xl md:container md:mx-auto"
         *ngIf="courriersService.etats" @fade>
+
+        <div class="w-full flex justify-start" *ngIf="courriers && !loader">
+            <app-pagination (previous)="onClickPrevious()" (next)="onClickNext()"
+                (max)="onSetMax($event)"></app-pagination>
+        </div>
         <table class="min-w-full table-auto text-xs md:text-lg" *ngIf="(!loader && courriers) || rechercheNom">
             <thead>
                 <tr class="bg-blue text-white text-left cursor-pointer">
@@ -52,24 +57,9 @@
                 </tr>
             </tbody>
         </table>
-        <div class="button-group flex gap-x-2 text-sm items-center" *ngIf="courriers && !loader">
-            <!-- 
-            <button
-                class="border-2 py-1 px-2 bg-stone-300 text-black rounded cursor-pointer hover:bg-stone-200 active:translate-x-0.5 active:translate-y-0.5"
-                [ngStyle]="{visibility: courriersService.previous}" (click)="onClickPrevious()"> {{"<"}}
-            </button>
-        -->
-            <app-btn-pages [text]="'<'" [ngStyle]="{visibility: courriersService.previous}" (click)="onClickPrevious()">
-            </app-btn-pages>
-            <p class="text-xs">{{courriersService.page + 1}} / {{courriersService.pagesMax}}</p>
-            <!-- 
-            <button
-                class="border-2 py-1 px-2 bg-stone-300 text-black rounded cursor-pointer hover:bg-stone-200 active:translate-x-0.5 active:translate-y-0.5"
-                [ngStyle]="{visibility: courriersService.next}" (click)="onClickNext()"> {{">"}}
-            </button>
-             -->
-            <app-btn-pages [text]="'>'" [ngStyle]="{visibility: courriersService.next}" (click)="onClickNext()">
-            </app-btn-pages>
+        <div class="w-full flex justify-start" *ngIf="courriers && !loader">
+            <app-pagination (previous)="onClickPrevious()" (next)="onClickNext()"
+                (max)="onSetMax($event)"></app-pagination>
         </div>
     </section>
     <section *ngIf="!loader && !courriers">

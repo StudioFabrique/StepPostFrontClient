@@ -1,0 +1,28 @@
+<div class="button-group w-full flex justify-start items-center gap-x-4"><!-- *ngIf="courriers && !loader" -->
+    <!-- 
+    <button
+        class="border-2 py-1 px-2 bg-stone-300 text-black rounded cursor-pointer hover:bg-stone-200 active:translate-x-0.5 active:translate-y-0.5"
+        [ngStyle]="{visibility: courriersService.previous}" (click)="onClickPrevious()"> {{"<"}}
+    </button>
+--><label class="flex items-center gap-x-2">Nombre de courriers par page
+        <select (change)="onSetMax($event)" value="{{courriersService.max}}"
+            class="shadow border-stone-300 w-80 md:w-24 p-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            <option value="10">10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+        </select></label>
+    <div class="flex items-center gap-x-2 text-sm">
+        <app-btn-pages [text]="'<'" [ngStyle]="{visibility: courriersService.previous}" (click)="onClickPrevious()">
+        </app-btn-pages>
+        <p class="text-xs">{{courriersService.page + 1}} / {{courriersService.pagesMax}}</p>
+        <!-- 
+            <button
+                class="border-2 py-1 px-2 bg-stone-300 text-black rounded cursor-pointer hover:bg-stone-200 active:translate-x-0.5 active:translate-y-0.5"
+                [ngStyle]="{visibility: courriersService.next}" (click)="onClickNext()"> {{">"}}
+            </button>
+             -->
+        <app-btn-pages [text]="'>'" [ngStyle]="{visibility: courriersService.next}" (click)="onClickNext()">
+        </app-btn-pages>
+    </div>
+</div>
