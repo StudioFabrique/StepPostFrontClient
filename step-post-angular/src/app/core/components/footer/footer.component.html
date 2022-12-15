@@ -1,29 +1,37 @@
 <footer class="flex flex-col justify-between text-white text-sm bg-blue rounded-tr-3xl">
-    <div class="h-3/4 w-full flex">
-        <div class="h-full px-4 flex items-center">
-            <img class="w-48" src="assets/img/logo-step-post.png" alt="logo-step" />
+    <div class="h-3/4 w-full flex flex-col md:flex-row justify-between md:gap-x-16 gap-y-2 md:gap-y-0 p-8">
+        <div class="md:w-2/3 flex flex-col md:flex-row md:justify-between gap-y-2 md:gap-y-0">
+            <div class="h-full flex items-start">
+                <img class="w-40" src="assets/img/logo-step-post.png" alt="logo-step" />
+            </div>
+            <div
+                class="w-1/2 flex flex-col md:flex-row items-start md:items-center justify-evenly md:justify-start gap-x-8 gap-y-2 md:gap-y-0">
+                <div class="h-full flex flex-col justify-between">
+                    <span>
+                        <h4 class="font-bold">Technopole Hélioparc</h4>
+                    </span>
+                    <span>
+                        <p>2 avenue du Président Pierre Angot</p>
+                    </span>
+                    <span>
+                        <p>64053 Pau CEDEX</p>
+                    </span>
+                </div>
+                <div class="h-full flex flex-col justify-start md:gap-y-4">
+                    <span class="flex gap-x-4">
+                        <h4>{{contactEmail}}</h4>
+                    </span>
+                    <span class="flex gap-x-4">
+                        <h4>{{contactPhone}}</h4>
+                    </span>
+                </div>
+            </div>
         </div>
-        <div class="w-1/2 flex items-center justify-evenly">
-            <div class="w-64 h-3/4 flex flex-col justify-start bg-blue">
-                <span>
-                    <h4 class="font-bold">Technopole Hélioparc</h4>
-                </span>
-                <span>
-                    <p>2 avenue du Président Pierre Angot</p>
-                </span>
-                <span>
-                    <p>64053 Pau CEDEX</p>
-                </span>
-            </div>
-            <div class="w-40 h-3/4 flex flex-col justify-start">
-                <span class="flex gap-x-4 items-center">
-                    <h4>contact@step.eco</h4>
-                </span>
-                <span class="flex gap-x-4 items-center">
-                    <h4>05 59 14 78 79</h4>
-                </span>
-            </div>
+        <div class="flex items-start">
+            <img class="w-24 md:w-32 md:mr-4" src="assets/img/logo-footer.png" alt="logo footer" />
         </div>
     </div>
-    <div class="bg-blue_grey pl-4">Copyright STEP 2022</div>
+    <div class="bg-blue_greyflex ml-8 mb-8 md:mb-4 justify-start">
+        <div>Droits Réservés Step 2022</div>
+    </div>
 </footer>

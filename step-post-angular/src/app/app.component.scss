@@ -1,4 +1,10 @@
 .main-content {
-    min-height: 73vh;
-    margin-bottom: 5vh;
+    min-height: 68vh;
+}
+
+@media screen and (max-width: 500px) {
+    .main-content {
+        min-height: 18vh;
+        margin-bottom: 10vh;
+    }
 }
