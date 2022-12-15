@@ -11,8 +11,14 @@ import { NoResultsComponent } from './components/no-results/no-results.component
 import { HistoriqueComponent } from './components/historique/historique.component';
 import { SharedModule } from '../shared/shared.module';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { RechercheNomComponent } from './components/recherche-nom/recherche-nom.component';
 
 const courriersRoutes: Routes = [
+  {
+    path: 'recherche-nom/:name/:firstname',
+    component: RechercheNomComponent,
+    canActivate: [AuthGuard],
+  },
   {
     path: 'courriers',
     component: CourriersComponent,
@@ -35,6 +41,7 @@ const courriersRoutes: Routes = [
     RechercheComponent,
     HistoriqueComponent,
     PaginationComponent,
+    RechercheNomComponent,
   ],
   imports: [CommonModule, RouterModule.forChild(courriersRoutes), SharedModule],
   exports: [],

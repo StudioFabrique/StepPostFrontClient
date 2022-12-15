@@ -1,5 +1,6 @@
+import { ActivatedRoute } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { fade } from '../../animations/animations';
 import { DetailsCourrier } from '../../../core/models/details-courrier-model';
 import { CourriersService } from '../../services/courriers.service';
@@ -24,6 +25,8 @@ export class CourriersComponent implements OnInit {
   loader: boolean = false; //  true : le spinner est affiché
   msg: string =
     "Vous n'avez actuellement aucun courrier en cours de distribution."; //  message à afficher en cas de liste de courriers vide
+  @Input() name!: string;
+  @Input() firstname!: string;
 
   constructor(
     public courriersService: CourriersService,
@@ -43,6 +46,12 @@ export class CourriersComponent implements OnInit {
     this.courriersService.max = 5;
     if (!this.courriersService.etats) {
       this.courriersService.getStatutsList();
+    }
+    if (this.name !== null) {
+      if (this.firstname === null) {
+        this.firstname = '';
+      }
+      this.getCourriersByName();
     }
     this.getCourriers();
   }
@@ -195,8 +204,8 @@ export class CourriersComponent implements OnInit {
     this.loader = true;
     this.rechercheService
       .rechercheByName(
-        this.courriers[0].nom,
-        this.courriers[0].prenom,
+        this.name,
+        this.firstname,
         this.courriersService.filter,
         this.courriersService.page,
         this.courriersService.max
