@@ -1,4 +1,4 @@
-<main class="md:w-full flex flex-col items-center gap-y-5 md:gap-y-10 mb-8  md:mb-10">
+<main class="md:w-full flex flex-col items-center gap-y-5 md:gap-y-10 mb-8  md:mb-20">
     <section class="md:max-w-7xl container mx-auto flex flex col items-center">
         <app-recherche class="min-w-full" [noResults]="noResults" (isLoading)="onSetLoader($event)"
             (searchedName)="onRechercheNom($event)" (retourNoResults)="onRetour()">
@@ -75,5 +75,4 @@
     <section *ngIf="!loader && !courriers">
         <app-liste-vide [msg]="msg"></app-liste-vide>
     </section>
-
 </main>
