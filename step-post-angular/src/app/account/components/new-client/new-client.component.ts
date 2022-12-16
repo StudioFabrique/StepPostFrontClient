@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 import { CustomToastersService } from './../../../core/services/custom-toasters.service';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/core/services/auth.service';
@@ -78,6 +80,7 @@ export class NewClientComponent implements OnInit {
     };
     this.clientService.createExp(this.expediteur).subscribe({
       next: this.handleResponse.bind(this),
+      error: this.handleError.bind(this),
     });
   }
 
@@ -87,8 +90,15 @@ export class NewClientComponent implements OnInit {
    *
    * @param response any
    */
-  handleResponse(response: any): void {
+  private handleResponse(response: any): void {
     this.toast.accountCreated();
     this.auth.logout();
+  }
+
+  private handleError(error: any): void {
+    if (error instanceof HttpErrorResponse && error.status === 500) {
+      this.toast.serverIssue();
+      this.auth.logout();
+    }
   }
 }

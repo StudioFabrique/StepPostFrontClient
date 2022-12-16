@@ -147,4 +147,14 @@ export class CustomToastersService {
       positionClass: 'toast-bottom-center',
     });
   }
+
+  serverIssue(): void {
+    this.toaster.error(
+      'Problème serveur, veuillez réessayer plus tard svp',
+      '',
+      {
+        positionClass: 'toast-bottom-center',
+      }
+    );
+  }
 }
