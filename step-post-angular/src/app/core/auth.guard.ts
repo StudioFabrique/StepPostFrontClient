@@ -21,7 +21,7 @@ export class AuthGuard implements CanActivate {
       }
       return true;
     }
-    this.toast.tokenExpired();
+    //this.toast.tokenExpired();
     this.authService.logout();
     return false;
   }
