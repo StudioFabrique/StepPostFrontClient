@@ -110,7 +110,9 @@
             <h4 class="font-bold">Réglez les marges sur "aucune" dans les options d'impression</h4>
         </div>
         <div class="flex gap-x-4">
-            <app-button [text]="'retour accueil'" [bg]="'orange'" (click)="onRetour()"></app-button>
+            <app-button *ngIf="isPrinting" [text]="'retour accueil'" [bg]="'orange'"
+                (click)="onRetourAccueil()"></app-button>
+            <app-button *ngIf="!isPrinting" [text]="'retour'" [bg]="'orange'" (click)="onRetour()"></app-button>
             <app-button [text]="'imprimer'" (click)="onPrint()"></app-button>
         </div>
     </section>

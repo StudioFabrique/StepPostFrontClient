@@ -55,5 +55,5 @@
     </div>
 </article>
 <article *ngIf="preview">
-    <app-preview [bordereau]="bordereau"></app-preview>
+    <app-preview [bordereau]="bordereau" (retour)="onRetourClick()"></app-preview>
 </article>

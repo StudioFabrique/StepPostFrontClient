@@ -13,7 +13,7 @@ import { AdressesService } from '../../services/adresses.service';
 })
 export class PreviewComponent implements OnInit {
   @Input() bordereau!: Bordereau; //  informations affichées sur le bordereau d'expédition
-  //@Output() retour = new EventEmitter<void>(); //  indique au composant parent qu'il doit annuler l'affichage de ce composant
+  @Output() retour = new EventEmitter<void>(); //  indique au composant parent qu'il doit annuler l'affichage de ce composant
   numBordereau!: string; //  numéro de bordereau affiché une fois le QRCode généré
   dest!: Destinataire; //  adresse du destinataire
   exp!: Destinataire; //  adresse de l'expéditeur (utilisateur connecté)
@@ -115,6 +115,13 @@ export class PreviewComponent implements OnInit {
    * de ce composant
    */
   onRetour(): void {
+    this.retour.emit();
+  }
+
+  /**
+   * redirige l'utilisateur vers la page d'accueil
+   */
+  onRetourAccueil(): void {
     this.router.navigateByUrl('/');
   }
 
