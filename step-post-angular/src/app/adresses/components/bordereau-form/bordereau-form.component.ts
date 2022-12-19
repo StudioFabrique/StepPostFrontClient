@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { CustomToastersService } from './../../../core/services/custom-toasters.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -18,6 +19,7 @@ export class BordereauFormComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
+    private router: Router,
     private toast: CustomToastersService
   ) {}
 
@@ -50,12 +52,14 @@ export class BordereauFormComponent implements OnInit {
   }
 
   /**
-   * reset les champs du formulaires suite à une intéraction
-   * de l'utilisateur
+   * redirige l'utilisateur vers le carnet d'adresses
    */
-  onCancel(): void {
+  onCarnetAdresses(): void {
+    /* 
     this.bordereauForm.get('instructions')?.setValue(null);
-    this.bordereauForm.get('telephone')?.setValue(this.dest.telephone);
+    this.bordereauForm.get('telephone')?.setValue(this.dest.telephone); */
+
+    this.router.navigateByUrl('/adresses');
   }
 
   /**

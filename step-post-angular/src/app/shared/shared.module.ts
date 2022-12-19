@@ -12,6 +12,7 @@ import { BtnPagesComponent } from './components/btn-pages/btn-pages.component';
 import { ModalTwoButtonsComponent } from './components/modal-two-buttons/modal-two-buttons.component';
 import { ModalSignatureComponent } from './components/modal-signature/modal-signature.component';
 import { ModalOneButtonComponent } from './components/modal-one-button/modal-one-button.component';
+import { YellowButtonComponent } from './components/yellow-button/yellow-button.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ModalOneButtonComponent } from './components/modal-one-button/modal-one
     ModalTwoButtonsComponent,
     ModalSignatureComponent,
     ModalOneButtonComponent,
+    YellowButtonComponent,
   ],
   imports: [
     CommonModule,

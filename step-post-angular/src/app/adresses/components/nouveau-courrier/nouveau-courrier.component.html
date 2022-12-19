@@ -1,18 +1,18 @@
 <main class="md:w-full flex flex-col items-center gap-y-8">
     <section *ngIf="!retourDest" class="w-80 md:w-full md:max-w-4xl md:text-lg text-sm md:flex mx-auto">
         <div class="w-80 md:min-w-full flex justify-between font-bold">
-            <h4>Imprimer un bordereau d'expédition</h4>
-            <a routerLink="/adresses">
+            <h4>Informations de livraison</h4>
+            <!-- <a routerLink="/adresses">
                 <h4 class="underline cursor-pointer text-orange">retour</h4>
-            </a>
+            </a> -->
         </div>
     </section>
     <section *ngIf="retourDest" class="w-80 md:w-full md:max-w-lg md:text-lg text-sm md:flex mx-auto">
         <div class="w-80 md:min-w-full flex justify-between font-bold">
-            <h4>Imprimer un bordereau d'expédition</h4>
-            <a routerLink="/adresses">
+            <h4>Informations de livraison</h4>
+            <!-- <a routerLink="/adresses">
                 <h4 class="underline cursor-pointer text-orange">retour</h4>
-            </a>
+            </a> -->
         </div>
     </section>
     <div *ngIf="loader" class="lds-dual-ring"></div>
